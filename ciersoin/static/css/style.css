@@ -50,7 +50,7 @@ h5 {
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus {
-  background-color: #293846;
+  background-color: #108F3C;
   color: white;
 }
 .nav .open > a,
@@ -661,7 +661,7 @@ fieldset[disabled] .btn-info.active {
   border-color: #26d7d9;
 }
 .btn-default {
-  background-color: #c2c2c2;
+  background-color: #4B3C7D;
   border-color: #c2c2c2;
   color: #FFFFFF;
 }
@@ -670,7 +670,7 @@ fieldset[disabled] .btn-info.active {
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-  background-color: #bababa;
+  background-color: #008F96;
   border-color: #bababa;
   color: #FFFFFF;
 }
