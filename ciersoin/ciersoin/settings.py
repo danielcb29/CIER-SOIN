@@ -60,8 +60,8 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ciersoindb',
-        'USER': 'danielcb',
-        'PASSWORD': '1144067772',
+        'USER': 'cieruser',
+        'PASSWORD': 'ciersoin',
         'HOST': '127.0.0.1',
         'PORT': '5432',
 
