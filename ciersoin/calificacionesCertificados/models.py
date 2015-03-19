@@ -1,6 +1,6 @@
 from django.db import models
-from calificacionesCertificados import LeaderTeacher
-from cursosCohortesActividades import Cohorte
+from calificacionesCertificados.models import LeaderTeacher
+from cursosCohortesActividades.models import Cohorte
 # Create your models here.
 
 class Certificado(models.Model):
@@ -17,7 +17,7 @@ class Certificado(models.Model):
         (EXCELENCIA,'Excelencia'),
     )
 
-    tipo = models.CharField(max_length=3,choices=TIPO_CERTIFICADO_CHOICES,default=ASISTIO)
+    tipo = models.CharField(max_length=100,choices=TIPO_CERTIFICADO_CHOICES,default=ASISTIO)
 
     cohorte = models.ForeignKey(Cohorte)
 
