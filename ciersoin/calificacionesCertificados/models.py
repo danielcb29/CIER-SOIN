@@ -1,6 +1,6 @@
 from django.db import models
 from calificacionesCertificados.models import LeaderTeacher
-from cursosCohortesActividades.models import Cohorte
+from cursosCohortesActividades.models import Cohorte,Actividad
 # Create your models here.
 
 class Certificado(models.Model):
@@ -22,6 +22,6 @@ class Certificado(models.Model):
     cohorte = models.ForeignKey(Cohorte)
 
 class Calificacion(models.Model):
-    notas = models.CharField(max_length=35)
-    cohorte = models.ForeignKey(Cohorte)
+    valor = models.CharField(max_length=35)
+    actividad = models.ForeignKey(Actividad)
     leader_teacher = models.ForeignKey(LeaderTeacher)
