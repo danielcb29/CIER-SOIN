@@ -47,11 +47,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <a class="navbar-brand" >Panel Administrador de CIERSOIN</a>
                 <!--a class="navbar-brand" href="index.html">CIERSOIN</a-->
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-
 
 
                 <li class="dropdown">
@@ -63,50 +63,53 @@
                     </ul>
                 </li>
             </ul>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav" >
-                    <li>
-                        <img src="{% static 'img/logo_admpage.png' %}" style="padding-left: 40px">
-                    </li>
-                    <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Matricula</a>
-                    </li>
-                    <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Cursos</a>
-                    </li>
-                    <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Cohortes</a>
-                    </li>
-                    <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Actvidades</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Calificaciones</a>
-                    </li>
-                    <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Master Teacher</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
-                    </li>
-                    <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
-                    </li>
-                </ul>
+            <!-- scroll -->
+            <div class="ibox-content" style="overflow-x:auto;">
+                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav" >
+                        <li>
+                            <a style="background-color: white;"><img src="{% static 'img/logo_admpage.png' %}" style="padding-left: 20px; "></a>
+                        </li>
+                        <li class="active">
+                            <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Matricula</a>
+                        </li>
+                        <li>
+                            <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Cursos</a>
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-fw fa-table"></i> Cohortes</a>
+                        </li>
+                        <li>
+                            <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Actvidades</a>
+                        </li>
+                        <li>
+                            <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Calificaciones</a>
+                        </li>
+                        <li>
+                            <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Master Teacher</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="demo" class="collapse">
+                                <li>
+                                    <a href="#">Dropdown Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Dropdown Item</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                        </li>
+                        <li>
+                            <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
             </div>
-            <!-- /.navbar-collapse -->
         </nav>
 
         <div id="page-wrapper">
