@@ -1,5 +1,5 @@
 from django.db import models
-from teacher.models import Teacher
+from teacher.models import MasterTeacher,LeaderTeacher
 # Create your models here.
 
 class Curso(models.Model):
@@ -24,6 +24,9 @@ class Curso(models.Model):
 
     area = models.CharField(max_length=100, choices=AREA_CURSO_CHOICES, default=MATEMATICA)
 
+    def __str__(self):
+        return self.nombre
+
 
 class Actividad(models.Model):
     nombre = models.CharField(max_length=100)
@@ -46,15 +49,36 @@ class Actividad(models.Model):
     tipo = models.CharField(max_length=100, choices=TIPO_ACTIVIDAD_CHOICES, default=TALLER)
     curso = models.OneToOneField(Curso) #Una actividad pertenece a un unico curso
 
+    def __str__(self):
+        return self.nombre
+
 class Cohorte(models.Model):
     numero_cohorte = models.IntegerField()
     fecha_inicial = models.DateField()
     fecha_final = models.DateField()
     # Llaves foreneas de una cohorte, una para curso y otra su master teacher
     curso = models.OneToOneField(Curso)
-    master_teacher = models.OneToOneField(Teacher)
+    master_teacher = models.OneToOneField(MasterTeacher)
+
+    PRIMER = 'I:Feb-Jun'
+    SEGUNDO = 'II:Agos-Dic'
+
+    PERIODO_COHORTE_CHOICES= (
+        (PRIMER,'I:Feb-Jun'),
+        (SEGUNDO,'II:Agos-Dic'),
+    )
+
+    periodo = models.CharField(max_length=100,choices=PERIODO_COHORTE_CHOICES,default=PRIMER)
+
+    estudiantes = models.ManyToManyField(LeaderTeacher)
 
     #Relacion muchos a muchos con actividad
     actividad = models.ManyToManyField(Actividad)
+
+    class Meta:
+        unique_together = ('numero_cohorte', 'periodo','fecha_inicial')
+
+    def __str__(self):
+        return self.curso.nombre+"-"+self.numero_cohorte+":"+self.fecha_inicial+","+self.periodo
 
 

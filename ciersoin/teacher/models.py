@@ -40,4 +40,32 @@ class Teacher(User):
     historia_academica = models.ForeignKey(HistoriaAcademica) #Puede tener varios titulos academicos
     historia_laboral = models.ForeignKey(HistoriaLaboral) #Puede tener varios historiales laborares
 
+class LeaderTeacher(Teacher):
+    class Meta:
+        permissions = (
+            # Permission identifier     human-readable permission name
+            ("ver_calificaciones",               "Puede ver calif descargar cert"),
+            ("editar_datos_personales",          "Puede editar sus propios datos"),
+            ("listar_LT",                        "Se permite editar, activar , desactivar" ),
+            ("matricular_lt",                    "Matricular estudiantes a cohortes" ),
+
+
+        )
+
+    def __str__(self):
+        return self.get_full_name()
+
+class MasterTeacher(Teacher):
+    class Meta:
+        permissions = (
+            # Permission identifier     human-readable permission name
+            ("anadir_calificaciones",            "Puede calificar cursos"),
+            ("editar_datos_personales",          "Puede editar sus propios datos"),
+
+
+        )
+
+    def __str__(self):
+        return self.get_full_name()
+
 

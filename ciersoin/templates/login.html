@@ -37,11 +37,13 @@
             <div class="col-md-6">
                 <div class="ibox-content">
                     <form class="m-t" role="form" action="" method="post">
+                        {% csrf_token %}
+                        <p style="color: red">{{error}}</p>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Nombre de Usuario" required="">
+                            <input type="text" name="username" class="form-control" placeholder="Nombre de Usuario" required>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Contraseña" required="">
+                            <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
                         </div>
                         <button type="submit" class="btn btn-primary block full-width m-b">Iniciar Sesion</button>
 
