@@ -6,3 +6,6 @@ def login(request):
 
 def index(request):
     return render(request,'index.html',{})
+
+def admin_index(request):
+    return render(request,'index_admin.html',{})

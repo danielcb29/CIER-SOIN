@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^login$',login),
     url(r'^$',index),
     url(r'^calificaciones/',include('calificacionesCertificados.urls')),
+    url(r'^index/',admin_index),
 )
