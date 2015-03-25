@@ -40,15 +40,4 @@ class Teacher(User):
     historia_academica = models.ForeignKey(HistoriaAcademica) #Puede tener varios titulos academicos
     historia_laboral = models.ForeignKey(HistoriaLaboral) #Puede tener varios historiales laborares
 
-class LeaderTeacher(Teacher):
-    matriculable = models.BooleanField(default=False)
-
-class MasterTeacher(Teacher):
-    class Meta:
-        permissions = (
-            # Permission identifier     human-readable permission name
-            ("change_datos_personales",               "Puede cambiar sus datos personales"),
-
-
-        )
 
