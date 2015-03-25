@@ -1,5 +1,5 @@
 from django.db import models
-from teacher.models import MasterTeacher
+from teacher.models import Teacher
 # Create your models here.
 
 class Curso(models.Model):
@@ -52,7 +52,7 @@ class Cohorte(models.Model):
     fecha_final = models.DateField()
     # Llaves foreneas de una cohorte, una para curso y otra su master teacher
     curso = models.OneToOneField(Curso)
-    master_teacher = models.OneToOneField(MasterTeacher)
+    master_teacher = models.OneToOneField(Teacher)
 
     #Relacion muchos a muchos con actividad
     actividad = models.ManyToManyField(Actividad)
