@@ -1,10 +1,10 @@
 from django.db import models
-from teacher.models import LeaderTeacher
+from teacher.models import Teacher
 from cursosCohortesActividades.models import Cohorte,Actividad
 # Create your models here.
 
 class Certificado(models.Model):
-    leader_teacher = models.OneToOneField(LeaderTeacher)
+    leader_teacher = models.OneToOneField(Teacher)
 
     #Choices de tipo
     ASISTIO='Asistio'
@@ -24,4 +24,4 @@ class Certificado(models.Model):
 class Calificacion(models.Model):
     valor = models.CharField(max_length=35)
     actividad = models.OneToOneField(Actividad)
-    leader_teacher = models.OneToOneField(LeaderTeacher)
+    leader_teacher = models.OneToOneField(Teacher)
