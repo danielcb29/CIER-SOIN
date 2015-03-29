@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from historiaAcademicaLaboral.models import HistoriaAcademica,HistoriaLaboral
+
 # Create your models here.
 # Modelo para Master Teacher, con datos personales, historia laboral e historial academico
 
@@ -31,14 +31,30 @@ class Teacher(User):
     #Datos personales
     #NOMBRE , APELLIDO , NOMBRE DE USUARIO , CONTRASEnA, EMAIL : NO VAN PQ SE HEREDAN DEL MODELO USER DE DJANGO
 
-    numeroIdentificacion = models.IntegerField()
+    cedula = models.IntegerField()
     direccion = models.CharField(max_length=100)
     municipio  = models.CharField(max_length=100)
     departamento = models.CharField(max_length=100)
     zona = models.CharField(max_length=100, choices=TIPO_ZONA_CHOICES,default=URBANA)
 
-    historia_academica = models.ForeignKey(HistoriaAcademica) #Puede tener varios titulos academicos
-    historia_laboral = models.ForeignKey(HistoriaLaboral) #Puede tener varios historiales laborares
+    # Opciones para la area de un curso, faltan por definir mas areas
+
+    MATEMATICA = 'Matematicas'
+    CIENCIAS = 'Ciencias'
+    LITERATURA = 'Literatura'
+    ARTES = 'Artes'
+    MUSICA = 'Musica'
+
+    AREA_CURSO_CHOICES = (
+        (MATEMATICA, 'Matematicas'),
+        (CIENCIAS, 'Ciencias'),
+        (LITERATURA, 'Literatura'),
+        (ARTES, 'Artes'),
+        (MUSICA, 'Musica'),
+    )
+
+    area_interes = models.CharField(max_length=100, choices=AREA_CURSO_CHOICES, default=MATEMATICA)
+
 
 class LeaderTeacher(Teacher):
     class Meta:
@@ -48,6 +64,7 @@ class LeaderTeacher(Teacher):
             ("editar_datos_personales",          "Puede editar sus propios datos"),
             ("listar_LT",                        "Se permite editar, activar , desactivar" ),
             ("matricular_lt",                    "Matricular estudiantes a cohortes" ),
+            ("terminar_datos_lt",                "Terminar datos lab y acad lt" ),
 
 
         )
@@ -61,6 +78,7 @@ class MasterTeacher(Teacher):
             # Permission identifier     human-readable permission name
             ("anadir_calificaciones",            "Puede calificar cursos"),
             ("editar_datos_personales",          "Puede editar sus propios datos"),
+            ("terminar_datos_mt",                "Terminar datos lab y acad mt" ),
 
 
         )

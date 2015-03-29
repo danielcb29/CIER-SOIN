@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from teacher.forms import LeaderTeacherForm
 
 
 def iniciar_sesion(request):
@@ -31,8 +32,9 @@ def cerrar_sesion(request):
     return HttpResponseRedirect('/login')
 
 def index(request):
-    return render(request,'index.html',{})
+    lt_form = LeaderTeacherForm()
+    return render(request,'index.html',{'form':lt_form,'exito':False})
 
-@login_required
+@login_required(login_url='/login')
 def admin_index(request):
     return render(request,'index_admin.html',{})

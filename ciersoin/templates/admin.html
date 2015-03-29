@@ -154,6 +154,22 @@
                             </ul>
                         </li>
                         {% endif %}
+                        {% if  user.is_authenticated%}
+                            {% if 'teacher.terminar_datos_lt' in perms  or 'teacher.terminar_datos_mt' in perms %}
+                            <!-- actividades -->
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#terminar_datos"><i class="fa fa-fw fa-arrows-v"></i> Actualizar Registro <i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="terminar_datos" class="collapse">
+                                    <li>
+                                        <a href="/academica-laboral/academica">Historia Academica</a>
+                                    </li>
+                                    <li>
+                                        <a href="/academica-laboral/laboral">Hisotria Laboral</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            {% endif %}
+                        {% endif %}
 
                         {% if 'teacher.ver_calificaciones' in perms and user.is_authenticated%}
                         <!-- calificaciones LT-->
