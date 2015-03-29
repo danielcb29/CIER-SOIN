@@ -1,0 +1,61 @@
+{%extends "admin.html"%}
+
+{%block content %}
+ <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Historia Academica <small>Registre su historial academico...</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Aqui podra registrar tantas historias academicas como tenga
+                            </li>
+
+                        </ol>
+
+                        <div class="col-lg-8">
+                            {% if exito %}
+                                <div class="alert alert-success alert-dismissable">
+                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                                    <i class="fa fa-check"></i> Se ha registrado la historia academica con exito!
+                                </div>
+					        {% endif %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <!-- universidad -->
+                                <div class="form-group">
+                                    <label>{{form.universidad.label}}</label>
+                                    <p class="help-block">Universidad donde realizo el estudio.</p>
+                                    {{form.universidad}}
+                                </div>
+
+                                <!-- titulo -->
+                                <div class="form-group">
+                                    <label>{{form.titulo.label}}</label>
+                                    <p class="help-block">Titulo obtenido.</p>
+                                    {{form.titulo}}
+                                </div>
+
+                                <!-- nivel -->
+                                <div class="form-group">
+                                    <label>{{form.nivel.label}}</label>
+                                    <p class="help-block">Nivel cursado.</p>
+                                    {{form.nivel}}
+                                </div>
+
+                                <!-- teacher invisible -->
+                                <input style="visibility: hidden" value="{{teacher_id}}" name="teacher" id="teacher_id">
+
+                                <!--BOTON-->
+
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary">Crear</button>
+									</div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+{% endblock %}
