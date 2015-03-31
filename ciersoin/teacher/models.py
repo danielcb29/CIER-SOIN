@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+#from cursosCohortesActividades.models import Curso
 # Create your models here.
 # Modelo para Master Teacher, con datos personales, historia laboral e historial academico
 
@@ -85,5 +85,4 @@ class MasterTeacher(Teacher):
 
     def __str__(self):
         return self.get_full_name()
-
 

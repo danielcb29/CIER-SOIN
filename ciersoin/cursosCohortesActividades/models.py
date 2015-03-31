@@ -81,4 +81,8 @@ class Cohorte(models.Model):
     def __str__(self):
         return self.curso.nombre+"-"+self.numero_cohorte+":"+self.fecha_inicial+","+self.periodo
 
+class Aspirante(models.Model):
+    leader_teacher = models.ForeignKey(LeaderTeacher)
+    curso = models.ForeignKey(Curso)
+    aceptado = models.BooleanField(default=False)
 

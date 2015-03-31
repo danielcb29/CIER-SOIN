@@ -144,17 +144,14 @@
                                         <div class="col-lg-8">
                                             <div class="form-group">
                                                 <label>{{form.username.label}} *</label>
-                                                <!--input id="userName" name="userName" type="text" class="form-control required"-->
                                                 {{form.username}}
                                             </div>
                                             <div class="form-group">
                                                 <label>{{form.email.label}} *</label>
-                                                <!--input id="password" name="password" type="text" class="form-control required"-->
                                                 {{form.email}}
                                             </div>
                                             <div class="form-group">
                                                 <label>{{form.password.label}} *</label>
-                                                <!--input id="confirm" name="confirm" type="text" class="form-control required"-->
                                                 {{form.password}}
                                             </div>
                                             <div class="form-group">
@@ -179,63 +176,61 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>{{form.first_name.label}} *</label>
-                                                <!--input id="name" name="name" type="text" class="form-control required"-->
                                                 {{form.first_name}}
                                             </div>
                                             <div class="form-group">
                                                 <label>{{form.last_name.label}} *</label>
-                                                <!--input id="surname" name="surname" type="text" class="form-control required"-->
                                                 {{form.last_name}}
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>{{form.cedula.label}} *</label>
-                                                <!--input id="email" name="email" type="text" class="form-control required email"-->
                                                 {{form.cedula}}
                                             </div>
                                             <div class="form-group">
                                                 <label>{{form.direccion.label}} *</label>
-                                                <!--input id="address" name="address" type="text" class="form-control"-->
                                                 {{form.direccion}}
                                             </div>
 
                                         </div>
                                         <div class="col-lg-6">
 
-                                                <div class="form-group">
-                                                    <label>{{form.area_interes.label}} *</label>
-                                                    <!--input id="email" name="email" type="text" class="form-control required email"-->
-                                                    {{form.area_interes}}
-                                                </div>
+                                            <div class="form-group">
+                                                <label>{{form.departamento.label}} *</label>
+                                                {{form.departamento}}
+                                            </div>
 
                                             <div class="form-group">
                                                 <label>{{form.municipio.label}} *</label>
-                                                <!--input id="address" name="address" type="text" class="form-control"-->
                                                 {{form.municipio}}
                                             </div>
 
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label>{{form.departamento.label}} *</label>
-                                                <!--input id="email" name="email" type="text" class="form-control required email"-->
-                                                {{form.departamento}}
+                                                <label>{{form.zona.label}} *</label>
+                                                {{form.zona}}
                                             </div>
-
-                                                <div class="form-group">
-                                                    <label>{{form.zona.label}} *</label>
-                                                    <!--input id="address" name="address" type="text" class="form-control"-->
-                                                    {{form.zona}}
-                                                </div>
-
-
                                         </div>
                                     </div>
                                 </fieldset>
-
-
-
+                                <h1>Area de trabajo</h1>
+                                <fieldset style="overflow: auto">
+                                    <h2>Información sobre area de trabajo y curso a matricular</h2>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>{{form.area_interes.label}} *</label>
+                                                {{form.area_interes}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Curso *</label>
+                                                <!--{{form.last_name}}-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
                             </form>
                         </div>
                     </div>
@@ -320,7 +315,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-white" href="/" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-white" href="/" data-dismiss="modal">Salir</button>
                                 <button type="submit" class="btn btn-primary">Aplicar</button>
                             </div>
                         </form>
