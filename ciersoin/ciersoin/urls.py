@@ -14,4 +14,5 @@ urlpatterns = patterns('',
     url(r'^index/',admin_index),
     url(r'^teacher/',include('teacher.urls')),
     url(r'^academica-laboral/',include('historiaAcademicaLaboral.urls')),
+    url(r'^cursos/',include('cursosCohortesActividades.urls')),
 )

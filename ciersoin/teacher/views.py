@@ -4,6 +4,7 @@ from .teacherfactory import TeacherFactory
 from django.contrib.auth.hashers import make_password,is_password_usable
 from .models import LeaderTeacher
 from cursosCohortesActividades.cursoiterator import CursoIterator
+from cursosCohortesActividades.models import Aspirante,Curso
 # Create your views here.
 
 def registro_lt(request):
@@ -17,6 +18,12 @@ def registro_lt(request):
             lt.groups.add(2)
             lt.is_active = False
             lt.save()
+            #Asigancion de aspirante!
+            aspirante = Aspirante()
+            aspirante.leader_teacher = lt
+            aspirante.curso = Curso.objects.get(nombre=request.POST['curso'],area=request.POST['area_interes'])
+            aspirante.save()
+            #Fin asignacion aspirante!
             lt_form = LeaderTeacherForm()
             exito = True
     return render(request,'index.html',{'form':lt_form,'exito':exito})
@@ -28,6 +35,7 @@ def oferta_cursos_lt(request):
     area = ""
     cursos = []
     disponibilidad_cursos = False
+    cc = ""
     if request.method == 'POST':
         cc = request.POST['cc']
         lt = LeaderTeacher.objects.filter(cedula=cc)
@@ -44,6 +52,15 @@ def oferta_cursos_lt(request):
                 while not cursos_iterator.is_done():
                     cursos.append(cursos_iterator.next())
 
-    return render(request,'index.html',{'form':lt_form,'oferta':oferta,'error':error,'area':area,'cursos':cursos,'disponibilidad':disponibilidad_cursos})
+    return render(request,'index.html',{'form':lt_form,'oferta':oferta,'error':error,'area':area,'cursos':cursos,'disponibilidad':disponibilidad_cursos,'cedula':cc})
 
+def aspirar_curso(request,cc):
+    lt = LeaderTeacher.objects.get(cedula=cc)
+    curso = Curso.objects.get(nombre=request.POST['cursos-oferta'])
+    aspirante = Aspirante()
+    aspirante.leader_teacher=lt
+    aspirante.curso=curso
+    aspirante.save()
+    lt_form = LeaderTeacherForm()
+    return render(request,'index.html',{'form':lt_form,'exito_app':True})
 

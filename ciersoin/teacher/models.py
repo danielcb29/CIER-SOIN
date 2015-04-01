@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+#from cursosCohortesActividades.models import Curso
 # Create your models here.
 # Modelo para Master Teacher, con datos personales, historia laboral e historial academico
 
@@ -31,7 +31,7 @@ class Teacher(User):
     #Datos personales
     #NOMBRE , APELLIDO , NOMBRE DE USUARIO , CONTRASEnA, EMAIL : NO VAN PQ SE HEREDAN DEL MODELO USER DE DJANGO
 
-    cedula = models.IntegerField()
+    cedula = models.IntegerField(unique=True)
     direccion = models.CharField(max_length=100)
     municipio  = models.CharField(max_length=100)
     departamento = models.CharField(max_length=100)
@@ -85,5 +85,4 @@ class MasterTeacher(Teacher):
 
     def __str__(self):
         return self.get_full_name()
-
 

@@ -23,7 +23,7 @@ class Curso(models.Model):
     )
 
     area = models.CharField(max_length=100, choices=AREA_CURSO_CHOICES, default=MATEMATICA)
-
+    activo = models.BooleanField(default=True)
     def __str__(self):
         return self.nombre
 
@@ -48,7 +48,7 @@ class Actividad(models.Model):
 
     tipo = models.CharField(max_length=100, choices=TIPO_ACTIVIDAD_CHOICES, default=TALLER)
     curso = models.OneToOneField(Curso) #Una actividad pertenece a un unico curso
-
+    activo = models.BooleanField(default=True)
     def __str__(self):
         return self.nombre
 
@@ -74,11 +74,15 @@ class Cohorte(models.Model):
 
     #Relacion muchos a muchos con actividad
     actividad = models.ManyToManyField(Actividad)
-
+    activo = models.BooleanField(default=True)
     class Meta:
         unique_together = ('numero_cohorte', 'periodo','fecha_inicial')
 
     def __str__(self):
         return self.curso.nombre+"-"+self.numero_cohorte+":"+self.fecha_inicial+","+self.periodo
 
+class Aspirante(models.Model):
+    leader_teacher = models.ForeignKey(LeaderTeacher)
+    curso = models.ForeignKey(Curso)
+    aceptado = models.BooleanField(default=False)
 

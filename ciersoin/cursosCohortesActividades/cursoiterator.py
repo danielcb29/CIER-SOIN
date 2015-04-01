@@ -1,12 +1,12 @@
 __author__ = 'daniel'
-from cursosCohortesActividades.models import Cohorte,Curso
+from cursosCohortesActividades.models import Aspirante,Curso
 class CursoIterator():
     index = 0
     cursos_ofertados = []
 
     def __init__(self,area,teacher):
-        cursados = [x.curso.id for x in Cohorte.objects.filter(estudiantes=teacher)]
-        self.cursos_ofertados = [y for y in Curso.objects.filter(area=area).exclude(id__in=cursados)]
+        cursados = [x.curso.id for x in Aspirante.objects.filter(leader_teacher=teacher)]
+        self.cursos_ofertados = [y for y in Curso.objects.filter(area=area,activo=True).exclude(id__in=cursados)]
     def len(self):
         return len(self.cursos_ofertados)
     def next(self):

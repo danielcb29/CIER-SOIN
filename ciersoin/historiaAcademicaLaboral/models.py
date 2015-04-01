@@ -18,6 +18,7 @@ class HistoriaAcademica(models.Model):
     titulo = models.CharField(max_length=100)
     nivel = models.CharField(max_length=100,choices=NIVEL_CHOICES,default=PREGRADO)
     teacher = models.ForeignKey(Teacher)#Pertenece a un unico profesor
+    activo = models.BooleanField(default=True)
 
 class HistoriaLaboral(models.Model):
     #Historial laboral
@@ -28,3 +29,4 @@ class HistoriaLaboral(models.Model):
     tipo_ensenanza = models.CharField(max_length=100)
     anos_exp = models.IntegerField()
     teacher = models.ForeignKey(Teacher)#Pertenece a un unico profesor
+    activo = models.BooleanField(default=True)
