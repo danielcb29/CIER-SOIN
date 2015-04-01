@@ -8,4 +8,6 @@ urlpatterns = patterns('',
     url(r'^crearmt$',crear_mt),
     url(r'^listarmt$',listar_mt),
     url(r'^eliminar/(\d+)$',eliminar),
+    url(r'^listarlt$',listar_lt),
+    url(r'^aceptar/(\d+)$',aceptar_lt),
 )

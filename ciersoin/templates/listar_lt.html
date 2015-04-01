@@ -5,15 +5,54 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Inicio <small>Bienvenido {{user.get_full_name}}...</small>
+                            Lista de LTs <small>Aceptarlos, si estan en la lista de presupuesto...</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Información de apoyo
+                                <i class="fa fa-dashboard"></i>A continuación los aspirantes a cursos ordenados por area y curso, acepte los que se encuentran en la lista de presupuesto
                             </li>
 
                         </ol>
-                        Hola mundo
+                        {%for a in areas%}
+                        <h3 style="color:#2b542c">{{a.nombre}}</h3>
+                        {%for c in a.cursos %}
+                        <h4>{{c.nombre}}</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre Usuario</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Cedula</th>
+                                        <th>Municipio</th>
+                                        <th>Estado</th>
+                                        <th>Aceptar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {%for as in c.estudiantes %}
+                                    <tr>
+                                        <td>{{as.leader_teacher.username}}</td>
+                                        <td>{{as.leader_teacher.first_name}}</td>
+                                        <td>{{as.leader_teacher.last_name}}</td>
+                                        <td>{{as.leader_teacher.cedula}}</td>
+                                        <td>{{as.leader_teacher.municipio}}</td>
+                                        {%if as.aceptado %}
+								            <td><p><span class="badge badge-primary">Activo</span></p></td>
+                                            <td><a href="/teacher/aceptar/{{as.id}}"><button class="btn btn-xs btn-danger dim"><i class="fa fa-check-square-o"></i> Rechazar</button></a></td>
+							            {%else%}
+								            <td><p><span class="badge badge-danger">Inactivo</span></p></td>
+                                            <td><a href="/teacher/aceptar/{{as.id}}"><button class="btn btn-xs btn-success dim"><i class="fa fa-check-square"></i> Aceptar</button></a></td>
+							            {%endif%}
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
                     </div>
 
                 </div>

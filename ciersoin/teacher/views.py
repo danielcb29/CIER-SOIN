@@ -7,6 +7,7 @@ from cursosCohortesActividades.cursoiterator import CursoIterator
 from cursosCohortesActividades.models import Aspirante,Curso
 from django.contrib.auth.decorators import login_required,permission_required
 from django.http import HttpResponseRedirect
+from .area import Area,Curso_Estudiantes
 # Create your views here.
 
 def registro_lt(request):
@@ -100,3 +101,46 @@ def eliminar(request,id):
         teach.is_active=True
     teach.save()
     return HttpResponseRedirect("/teacher/listarmt")
+
+@login_required
+@permission_required('teacher.listar_LT', login_url="/index")
+def listar_lt(request):
+    #Areas definidias en el sistema
+    areas = ['Matematicas','Ciencias','Literatura','Artes','Musica']
+    array_ars = []
+    for ar in areas:
+        area_obj = Area()
+        area_obj.nombre = ar
+        cursos = Curso.objects.filter(area=ar)
+        cur_array = []
+        for cur in cursos:
+            cur_es = Curso_Estudiantes()
+            cur_es.nombre = cur.nombre
+            asp_array = Aspirante.objects.filter(curso=cur) #Aspirantes al curso
+            cur_es.estudiantes = asp_array
+            cur_array.append(cur_es)
+        area_obj.cursos = cur_array
+        array_ars.append(area_obj)
+
+    return render(request,'listar_lt.html',{'areas':array_ars})
+
+@login_required
+@permission_required('teacher.listar_LT', login_url="/index")
+def aceptar_lt(request,id_asp):
+    aspirante = Aspirante.objects.get(id=id_asp)
+    lt = aspirante.leader_teacher
+    if aspirante.aceptado:
+        aspirante.aceptado = False
+        aspirante.save()
+        other = Aspirante.objects.filter(leader_teacher=lt,aceptado=True).count()
+        print 'cantidad de aspiraciones aceptadas: '+str(other)
+        if other==0:
+            lt.is_active=False
+            lt.save()
+    else:
+        aspirante.aceptado = True
+        aspirante.save()
+        if not lt.is_active:
+            lt.is_active = True
+            lt.save()
+    return HttpResponseRedirect('/teacher/listarlt')
