@@ -1,5 +1,5 @@
 {%extends "admin.html"%}
-
+{%load staticfiles%}
 {%block content %}
  <!-- Page Heading -->
                 <div class="row">
@@ -17,4 +17,7 @@
                     </div>
 
                 </div>
+{% endblock %}
+{%block js%}
+{{block.super}}
 {% endblock %}

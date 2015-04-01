@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from .forms import LeaderTeacherForm
+from .forms import LeaderTeacherForm,MasterTeacherForm
 from .teacherfactory import TeacherFactory
 from django.contrib.auth.hashers import make_password,is_password_usable
 from .models import LeaderTeacher
 from cursosCohortesActividades.cursoiterator import CursoIterator
 from cursosCohortesActividades.models import Aspirante,Curso
+from django.contrib.auth.decorators import login_required,permission_required
 # Create your views here.
 
 def registro_lt(request):
@@ -63,4 +64,22 @@ def aspirar_curso(request,cc):
     aspirante.save()
     lt_form = LeaderTeacherForm()
     return render(request,'index.html',{'form':lt_form,'exito_app':True})
+
+#Funcionalidades con login
+@login_required
+@permission_required('teacher.add_masterteacher', login_url="/index")
+def crear_mt(request):
+    mt_form = MasterTeacherForm()
+    exito = False
+    if request.method=='POST':
+        mt_form = MasterTeacherForm(request.POST)
+        if mt_form.is_valid():
+            factory = TeacherFactory()
+            mt = factory.crearTeacher(mt_form)
+            mt.password = make_password(request.POST['password']) #Password seguro encriptado en sha2
+            mt.groups.add(3)
+            mt.save()
+            exito = True
+            mt_form = MasterTeacherForm()
+    return render(request,'crear_mt.html',{'form':mt_form,'exito':exito})
 
