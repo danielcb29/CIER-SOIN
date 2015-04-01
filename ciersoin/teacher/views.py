@@ -2,10 +2,11 @@ from django.shortcuts import render
 from .forms import LeaderTeacherForm,MasterTeacherForm
 from .teacherfactory import TeacherFactory
 from django.contrib.auth.hashers import make_password,is_password_usable
-from .models import LeaderTeacher
+from .models import LeaderTeacher,Teacher,MasterTeacher
 from cursosCohortesActividades.cursoiterator import CursoIterator
 from cursosCohortesActividades.models import Aspirante,Curso
 from django.contrib.auth.decorators import login_required,permission_required
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 def registro_lt(request):
@@ -83,3 +84,19 @@ def crear_mt(request):
             mt_form = MasterTeacherForm()
     return render(request,'crear_mt.html',{'form':mt_form,'exito':exito})
 
+@login_required
+@permission_required('teacher.add_masterteacher', login_url="/index")
+def listar_mt(request):
+    teachers = MasterTeacher.objects.all()
+    return render(request,'listar_mt.html',{'teachers':teachers})
+
+@login_required
+@permission_required('teacher.add_masterteacher', login_url="/index")
+def eliminar(request,id):
+    teach = Teacher.objects.get(id=id)
+    if teach.is_active:
+        teach.is_active=False
+    else:
+        teach.is_active=True
+    teach.save()
+    return HttpResponseRedirect("/teacher/listarmt")

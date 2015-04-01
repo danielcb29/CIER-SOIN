@@ -6,4 +6,6 @@ urlpatterns = patterns('',
     url(r'^oferta-cursos-lt$',oferta_cursos_lt),
     url(r'^aspirante/(\d+)$',aspirar_curso),
     url(r'^crearmt$',crear_mt),
+    url(r'^listarmt$',listar_mt),
+    url(r'^eliminar/(\d+)$',eliminar),
 )

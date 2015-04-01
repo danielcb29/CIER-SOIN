@@ -3,7 +3,7 @@ from teacher.models import MasterTeacher,LeaderTeacher
 # Create your models here.
 
 class Curso(models.Model):
-    nombre = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=100,unique=True)
     descripcion = models.TextField()
 
     # Opciones para la area de un curso, faltan por definir mas areas
@@ -85,4 +85,7 @@ class Aspirante(models.Model):
     leader_teacher = models.ForeignKey(LeaderTeacher)
     curso = models.ForeignKey(Curso)
     aceptado = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.leader_teacher.get_full_name()
 
