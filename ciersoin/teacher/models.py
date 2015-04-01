@@ -31,7 +31,7 @@ class Teacher(User):
     #Datos personales
     #NOMBRE , APELLIDO , NOMBRE DE USUARIO , CONTRASEnA, EMAIL : NO VAN PQ SE HEREDAN DEL MODELO USER DE DJANGO
 
-    cedula = models.IntegerField()
+    cedula = models.IntegerField(unique=True)
     direccion = models.CharField(max_length=100)
     municipio  = models.CharField(max_length=100)
     departamento = models.CharField(max_length=100)

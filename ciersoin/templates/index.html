@@ -137,6 +137,37 @@
 					        {% endif %}
                             <form id="form" action="/teacher/registrolt" method="post" class="wizard-big">
                                 {% csrf_token %}
+                                <h1>Area de trabajo</h1>
+                                <fieldset style="overflow: auto">
+                                    <h2>Información sobre area de trabajo y curso a matricular</h2>
+                                    <small>Primero debe elegir su area de trabajo, dar click en el boton cargar cursos y seleccionar el curso al desea aplicar</small>
+                                    <div class="row">
+                                        <br>
+                                        <!--form id="form-area" method="post" action="/cursos/listar-area"-->
+                                            {% csrf_token %}
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>{{form.area_interes.label}} *</label>
+                                                    {{form.area_interes}}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Curso *</label>
+                                                    <select class="form-control" name="curso" id="id_curso" aria-required="true" requiered>
+                                                        {%for curso in curso_list%}
+                                                            <option value="{{curso}}">{{curso}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Click para cargar cursos del area</label><br>
+                                                    <!--a href="list_course();"--><button type="button" id="listCourse" class="btn btn-primary" onclick="list_course();"><i class="fa fa-paste"></i> Cargar Cursos</button><!--/a-->
+                                                </div>
+                                            </div>
+                                        <!--/form-->
+                                    </div>
+                                </fieldset>
                                 <h1>Usuario</h1>
                                 <fieldset style="overflow: auto">
                                     <h2>Información de Sesion</h2>
@@ -215,22 +246,6 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                                <h1>Area de trabajo</h1>
-                                <fieldset style="overflow: auto">
-                                    <h2>Información sobre area de trabajo y curso a matricular</h2>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>{{form.area_interes.label}} *</label>
-                                                {{form.area_interes}}
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Curso *</label>
-                                                <!--{{form.last_name}}-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
                             </form>
                         </div>
                     </div>
@@ -249,13 +264,14 @@
 
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <!--hr class="section-heading-spacer"-->
-                    <!--div class="clearfix"></div-->
                     <h2 class="section-heading" style="color:white">Has realizado un curso antes?</h2>
                     <p class="lead" style="color:white">Ingresa tu cedula aqui!</p>
-                    <!--div class="col-lg-10"-->
-
-                        <!--div class="ibox-content" style="background-color: #2F4050"-->
+                            {% if exito_app %}
+						        <div class="alert alert-success alert-dismissable">
+							        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+							        <i class="fa fa-check"></i> Se ha registrado su solicitud con exito!
+						        </div>
+					        {% endif %}
                             <form role="form" class="form-inline" action="/teacher/oferta-cursos-lt" method="post">
                                 {% csrf_token %}
                                 <h3><small style="color: white">Recuerde que debe estar registrado en el programa del CIER</small></h3>
@@ -263,9 +279,6 @@
                                 <div class="form-group"><label for="cc" class="sr-only">Cedula</label>
                                     <input type="number" placeholder="Ingrese su cedula" id="cc" name= "cc" class="form-control"></div>
                                 <button class="btn btn-primary" type="submit">Ingresar</button></form>
-                        <!--/div-->
-
-                    <!--/div-->
                 </div>
                 <div class="col-lg-6 col-sm-pull-6  col-sm-6">
                     <!--img class="img-responsive" src="{% static 'img/dog.png' %}" alt=""-->
@@ -302,12 +315,12 @@
                 </div>
                 <div class="modal-body">
                     {% if disponibilidad %}
-                        <form action="" method="post" class="form-horizontal">
+                        <form action="/teacher/aspirante/{{cedula}}" method="post" class="form-horizontal">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Cursos:</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control">
+                                    <select class="form-control" id="cursos-oferta" name="cursos-oferta">
                                         {% for cur in cursos%}
                                             <option>{{cur}}</option>
                                         {%endfor%}
@@ -445,6 +458,15 @@
     <script src="{%static 'js/plugins/flot/jquery.flot.tooltip.min.js' %}"></script>
     <script src="{%static 'js/plugins/flot/jquery.flot.resize.js' %}"></script>
     <script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
+
+    <script>
+        function list_course() {
+            var areas = document.getElementById("id_area_interes");
+            var selected_area = areas.options[areas.selectedIndex].text;
+            var link = "/cursos/listar-area/".concat(selected_area);
+            window.location=link;
+        };
+    </script>
 
     {%if oferta %}
         <script>
