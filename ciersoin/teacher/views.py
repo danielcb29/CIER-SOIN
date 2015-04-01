@@ -7,7 +7,7 @@ from cursosCohortesActividades.cursoiterator import CursoIterator
 from cursosCohortesActividades.models import Aspirante,Curso
 from django.contrib.auth.decorators import login_required,permission_required
 from django.http import HttpResponseRedirect
-from .area import Area,Curso_Estudiantes
+from .area import AreaIterator,Curso_EstudiantesIterator
 # Create your views here.
 
 def registro_lt(request):
@@ -109,12 +109,12 @@ def listar_lt(request):
     areas = ['Matematicas','Ciencias','Literatura','Artes','Musica']
     array_ars = []
     for ar in areas:
-        area_obj = Area()
+        area_obj = AreaIterator()
         area_obj.nombre = ar
         cursos = Curso.objects.filter(area=ar)
         cur_array = []
         for cur in cursos:
-            cur_es = Curso_Estudiantes()
+            cur_es = Curso_EstudiantesIterator()
             cur_es.nombre = cur.nombre
             asp_array = Aspirante.objects.filter(curso=cur) #Aspirantes al curso
             cur_es.estudiantes = asp_array

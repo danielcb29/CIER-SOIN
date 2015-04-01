@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from cursosCohortesActividades.models import Curso
 # Create your models here.
-# Modelo para Master Teacher, con datos personales, historia laboral e historial academico
 
 class Teacher(User):
     #Zonas
@@ -54,6 +52,7 @@ class Teacher(User):
     )
 
     area_interes = models.CharField(max_length=100, choices=AREA_CURSO_CHOICES, default=MATEMATICA)
+
 
 
 class LeaderTeacher(Teacher):

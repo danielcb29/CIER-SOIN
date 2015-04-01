@@ -1,5 +1,6 @@
 from django.db import models
 from teacher.models import MasterTeacher,LeaderTeacher
+import datetime
 # Create your models here.
 
 class Curso(models.Model):
@@ -49,6 +50,8 @@ class Actividad(models.Model):
     tipo = models.CharField(max_length=100, choices=TIPO_ACTIVIDAD_CHOICES, default=TALLER)
     curso = models.OneToOneField(Curso) #Una actividad pertenece a un unico curso
     activo = models.BooleanField(default=True)
+    #Se agrega fecha para saber si esta retrasada
+    fecha_entrega = models.DateTimeField(default=str(datetime.datetime.now()))
     def __str__(self):
         return self.nombre
 
@@ -57,8 +60,8 @@ class Cohorte(models.Model):
     fecha_inicial = models.DateField()
     fecha_final = models.DateField()
     # Llaves foreneas de una cohorte, una para curso y otra su master teacher
-    curso = models.OneToOneField(Curso)
-    master_teacher = models.OneToOneField(MasterTeacher)
+    curso = models.ForeignKey(Curso)
+    master_teacher = models.ForeignKey(MasterTeacher)
 
     PRIMER = 'I:Feb-Jun'
     SEGUNDO = 'II:Agos-Dic'

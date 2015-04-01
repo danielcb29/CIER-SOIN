@@ -1,8 +1,8 @@
 __author__ = 'daniel'
-class Area():
+class AreaIterator():
     nombre = ""
     cursos = []
 
-class Curso_Estudiantes():
+class Curso_EstudiantesIterator():
     nombre = ""
     estudiantes = []
