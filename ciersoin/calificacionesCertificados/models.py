@@ -25,7 +25,7 @@ class Certificado(models.Model):
         return self.leader_teacher.get_full_name()+":"+self.tipo
 #Una calificacion representa la abstraccion de una nota , una nota tiene un valor, una unica actividad a la cual pertenece y un unico estudiante
 class Calificacion(models.Model):
-    valor = models.CharField(max_length=35)
+    valor = models.FloatField(default=-1)
     actividad = models.OneToOneField(Actividad)
     leader_teacher = models.OneToOneField(LeaderTeacher)
 

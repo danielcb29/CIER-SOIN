@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from .forms import LeaderTeacherForm
+from .forms import LeaderTeacherForm,MasterTeacherForm
 from .teacherfactory import TeacherFactory
 from django.contrib.auth.hashers import make_password,is_password_usable
-from .models import LeaderTeacher
+from .models import LeaderTeacher,Teacher,MasterTeacher
 from cursosCohortesActividades.cursoiterator import CursoIterator
 from cursosCohortesActividades.models import Aspirante,Curso
+from django.contrib.auth.decorators import login_required,permission_required
+from django.http import HttpResponseRedirect
+from .area import AreaIterator,Curso_EstudiantesIterator
 # Create your views here.
 
 def registro_lt(request):
@@ -64,3 +67,80 @@ def aspirar_curso(request,cc):
     lt_form = LeaderTeacherForm()
     return render(request,'index.html',{'form':lt_form,'exito_app':True})
 
+#Funcionalidades con login
+@login_required
+@permission_required('teacher.add_masterteacher', login_url="/index")
+def crear_mt(request):
+    mt_form = MasterTeacherForm()
+    exito = False
+    if request.method=='POST':
+        mt_form = MasterTeacherForm(request.POST)
+        if mt_form.is_valid():
+            factory = TeacherFactory()
+            mt = factory.crearTeacher(mt_form)
+            mt.password = make_password(request.POST['password']) #Password seguro encriptado en sha2
+            mt.groups.add(3)
+            mt.save()
+            exito = True
+            mt_form = MasterTeacherForm()
+    return render(request,'crear_mt.html',{'form':mt_form,'exito':exito})
+
+@login_required
+@permission_required('teacher.add_masterteacher', login_url="/index")
+def listar_mt(request):
+    teachers = MasterTeacher.objects.all()
+    return render(request,'listar_mt.html',{'teachers':teachers})
+
+@login_required
+@permission_required('teacher.add_masterteacher', login_url="/index")
+def eliminar(request,id):
+    teach = Teacher.objects.get(id=id)
+    if teach.is_active:
+        teach.is_active=False
+    else:
+        teach.is_active=True
+    teach.save()
+    return HttpResponseRedirect("/teacher/listarmt")
+
+@login_required
+@permission_required('teacher.listar_LT', login_url="/index")
+def listar_lt(request):
+    #Areas definidias en el sistema
+    areas = ['Matematicas','Ciencias','Literatura','Artes','Musica']
+    array_ars = []
+    for ar in areas:
+        area_obj = AreaIterator()
+        area_obj.nombre = ar
+        cursos = Curso.objects.filter(area=ar)
+        cur_array = []
+        for cur in cursos:
+            cur_es = Curso_EstudiantesIterator()
+            cur_es.nombre = cur.nombre
+            asp_array = Aspirante.objects.filter(curso=cur) #Aspirantes al curso
+            cur_es.estudiantes = asp_array
+            cur_array.append(cur_es)
+        area_obj.cursos = cur_array
+        array_ars.append(area_obj)
+
+    return render(request,'listar_lt.html',{'areas':array_ars})
+
+@login_required
+@permission_required('teacher.listar_LT', login_url="/index")
+def aceptar_lt(request,id_asp):
+    aspirante = Aspirante.objects.get(id=id_asp)
+    lt = aspirante.leader_teacher
+    if aspirante.aceptado:
+        aspirante.aceptado = False
+        aspirante.save()
+        other = Aspirante.objects.filter(leader_teacher=lt,aceptado=True).count()
+        print 'cantidad de aspiraciones aceptadas: '+str(other)
+        if other==0:
+            lt.is_active=False
+            lt.save()
+    else:
+        aspirante.aceptado = True
+        aspirante.save()
+        if not lt.is_active:
+            lt.is_active = True
+            lt.save()
+    return HttpResponseRedirect('/teacher/listarlt')
