@@ -1,29 +1,14 @@
 from django.db import models
 from teacher.models import MasterTeacher,LeaderTeacher
 import datetime
+from areas.models import Area
 # Create your models here.
 
 class Curso(models.Model):
     nombre = models.CharField(max_length=100,unique=True)
     descripcion = models.TextField()
 
-    # Opciones para la area de un curso, faltan por definir mas areas
-
-    MATEMATICA = 'Matematicas'
-    CIENCIAS = 'Ciencias'
-    LITERATURA = 'Literatura'
-    ARTES = 'Artes'
-    MUSICA = 'Musica'
-
-    AREA_CURSO_CHOICES = (
-        (MATEMATICA, 'Matematicas'),
-        (CIENCIAS, 'Ciencias'),
-        (LITERATURA, 'Literatura'),
-        (ARTES, 'Artes'),
-        (MUSICA, 'Musica'),
-    )
-
-    area = models.CharField(max_length=100, choices=AREA_CURSO_CHOICES, default=MATEMATICA)
+    area = models.ForeignKey(Area)
     activo = models.BooleanField(default=True)
     def __str__(self):
         return self.nombre
@@ -51,7 +36,7 @@ class Actividad(models.Model):
     curso = models.OneToOneField(Curso) #Una actividad pertenece a un unico curso
     activo = models.BooleanField(default=True)
     #Se agrega fecha para saber si esta retrasada
-    fecha_entrega = models.DateTimeField(default=str(datetime.datetime.now()))
+    fecha_entrega = models.DateTimeField()
     def __str__(self):
         return self.nombre
 

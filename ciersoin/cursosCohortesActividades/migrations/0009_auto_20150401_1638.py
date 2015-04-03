@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='actividad',
             name='fecha_entrega',
-            field=models.DateTimeField(default=b'2015-04-01 16:38:46.985127'),
+            field=models.DateTimeField(),
             preserve_default=True,
         ),
     ]

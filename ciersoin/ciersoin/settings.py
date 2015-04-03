@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'historiaAcademicaLaboral',
     'reportes',
     'teacher',
+    'areas',
 )
 
 MIDDLEWARE_CLASSES = (

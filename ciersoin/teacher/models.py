@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from areas.models import Area
 # Create your models here.
 
 class Teacher(User):
@@ -35,24 +36,7 @@ class Teacher(User):
     departamento = models.CharField(max_length=100)
     zona = models.CharField(max_length=100, choices=TIPO_ZONA_CHOICES,default=URBANA)
 
-    # Opciones para la area de un curso, faltan por definir mas areas
-
-    MATEMATICA = 'Matematicas'
-    CIENCIAS = 'Ciencias'
-    LITERATURA = 'Literatura'
-    ARTES = 'Artes'
-    MUSICA = 'Musica'
-
-    AREA_CURSO_CHOICES = (
-        (MATEMATICA, 'Matematicas'),
-        (CIENCIAS, 'Ciencias'),
-        (LITERATURA, 'Literatura'),
-        (ARTES, 'Artes'),
-        (MUSICA, 'Musica'),
-    )
-
-    area_interes = models.CharField(max_length=100, choices=AREA_CURSO_CHOICES, default=MATEMATICA)
-
+    area_interes = models.ForeignKey(Area)
 
 
 class LeaderTeacher(Teacher):
