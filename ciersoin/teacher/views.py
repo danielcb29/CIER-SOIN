@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import LeaderTeacherForm,MasterTeacherForm
+from .forms import LeaderTeacherForm,MasterTeacherForm,TeacherEditForm
 from .teacherfactory import TeacherFactory
 from django.contrib.auth.hashers import make_password,is_password_usable
 from .models import LeaderTeacher,Teacher,MasterTeacher
@@ -8,6 +8,7 @@ from cursosCohortesActividades.models import Aspirante,Curso
 from django.contrib.auth.decorators import login_required,permission_required
 from django.http import HttpResponseRedirect
 from areas.models import Area
+from historiaAcademicaLaboral.models import HistoriaAcademica,HistoriaLaboral
 # Create your views here.
 
 def registro_lt(request):
@@ -137,3 +138,24 @@ def aceptar_lt(request,id_asp):
             lt.is_active = True
             lt.save()
     return HttpResponseRedirect('/teacher/listarlt')
+@login_required
+@permission_required('teacher.editar_datos_personales', login_url="/index")
+def edit_teach(request):
+    id = request.user.id
+    teach = Teacher.objects.get(id=id)
+    form = TeacherEditForm(instance=teach)
+    historiasacademicas = HistoriaAcademica.objects.filter(teacher=teach)
+    historiaslaborales = HistoriaLaboral.objects.filter(teacher=teach)
+    exito = False
+    if request.method=='POST':
+        form_nuevo = TeacherEditForm(request.POST,instance=teach,initial=teach.__dict__)
+        if form_nuevo.has_changed():
+            if form_nuevo.is_valid():
+                usuario_nuevo = form_nuevo.save()
+                new_pass = request.POST['password']
+                if not is_password_usable(new_pass):
+                    usuario_nuevo.password = make_password(new_pass,hasher='sha1')
+                    usuario_nuevo.save()
+                exito = True
+                form = form_nuevo
+    return render(request,'edit_teach.html',{'form':form,'exito':exito,'historiaacademica':historiasacademicas,'historialaboral':historiaslaborales,'teach':teach})

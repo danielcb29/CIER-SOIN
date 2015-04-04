@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^eliminar/(\d+)$',eliminar),
     url(r'^listarlt$',listar_lt),
     url(r'^aceptar/(\d+)$',aceptar_lt),
+    url(r'^configuracion$',edit_teach),
 )
