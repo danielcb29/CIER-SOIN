@@ -1,0 +1,394 @@
+{%extends "admin.html"%}
+{% load staticfiles %}
+{%block css%}
+    <link href="{% static 'css/plugins/iCheck/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'css/plugins/steps/jquery.steps.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+{% endblock %}
+{%block content %}
+ <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Crear MasterTeacher <small>Creacion de MT en el sistema...</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Ingrese la información del MT como se le indica a continiación
+                            </li>
+
+                        </ol>
+                        {% if exito %}
+						        <div class="alert alert-success alert-dismissable">
+							        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+							        <i class="fa fa-check"></i> Se han actualizado sus datos correctamente!
+						        </div>
+                        {% endif %}
+                            <form id="form" action="" method="post" class="wizard-big">
+                                {% csrf_token %}
+                                <h1>Usuario</h1>
+                                <fieldset style="overflow: auto">
+                                    <h2>Información de Sesion</h2>
+                                    <div class="row" >
+                                        <div class="col-lg-8">
+                                            <div class="form-group">
+                                                <label>{{form.username.label}} *</label>
+                                                {{form.username}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{{form.email.label}} *</label>
+                                                {{form.email}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{{form.password.label}} *</label>
+                                                {{form.password}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Confirmar Contraseña *</label>
+                                                <input id="confirm" name="confirm" type="password" placeholder="Contraseña" class="form-control required" value="{{form.password.value}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="text-center">
+                                                <div style="margin-top: 20px">
+                                                    <i class="fa fa-sign-in" style="font-size: 180px;color: #e5e5e5 "></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <h1>Personal y Demograficos</h1>
+                                <fieldset style="overflow: auto">
+                                    <h2>Información Personal y Demografica</h2>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>{{form.first_name.label}} *</label>
+                                                {{form.first_name}}
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{{form.last_name.label}} *</label>
+                                                {{form.last_name}}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Cedula: *</label>
+                                                <input class="form-control" value="{{teach.cedula}}" type="number" disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>{{form.direccion.label}} *</label>
+                                                {{form.direccion}}
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>{{form.departamento.label}} *</label>
+                                                {{form.departamento}}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>{{form.municipio.label}} *</label>
+                                                {{form.municipio}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                 <h1>Area de trabajo</h1>
+                                <fieldset style="overflow: auto">
+                                    <h2>Información sobre area de trabajo y curso a matricular</h2>
+                                    <small>Primero debe elegir su area de trabajo, dar click en el boton cargar cursos y seleccionar el curso al desea aplicar</small>
+                                    <div class="row">
+                                        <br>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Area Interes *</label>
+                                                    <input class="form-control" value="{{teach.area_interes}}" type="text" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{form.zona.label}} *</label>
+                                                    {{form.zona}}
+                                                </div>
+
+                                            </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                    </div>
+
+                </div>
+                <div class="row">
+                    {% if exito_ha %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                        <i class="fa fa-check"></i> Se han actualizado sus datos correctamente!
+                    </div>
+                    {% endif %}
+                    <h3>Historial Academico</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Universidad</th>
+                                        <th>Titulo</th>
+                                        <th>Nivel</th>
+                                        <th>Estado</th>
+                                        <th>Activar/Desactivar</th>
+                                        <th>Editar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {%for ha in historiaacademica%}
+                                    <tr>
+                                        <td>{{ha.universidad}}</td>
+                                        <td>{{ha.titulo}}</td>
+                                        <td>{{ha.nivel}}</td>
+                                        {%if ha.activo %}
+								            <td><p><span class="badge badge-primary">Activo</span></p></td>
+                                            <td><a href="/academica-laboral/eliminar/ha/{{ha.id}}"><button class="btn btn-xs btn-danger dim"><i class="fa fa-check-square-o"></i> Desactivar</button></a></td>
+							            {%else%}
+								            <td><p><span class="badge badge-danger">Inactivo</span></p></td>
+                                            <td><a href="/academica-laboral/eliminar/ha/{{ha.id}}"><button class="btn btn-xs btn-success dim"><i class="fa fa-check-square"></i> Reactivar</button></a></td>
+							            {%endif%}
+                                        <td><a href="/academica-laboral/editar/ha/{{ha.id}}"><button class="btn btn-xs btn-info dim"><i class="fa fa-paste"></i> Editar</button></a></td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+                <div class="row">
+                    {% if exito_hl %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                        <i class="fa fa-check"></i> Se han actualizado sus datos correctamente!
+                    </div>
+                    {% endif %}
+                    <h3>Historal Laboral</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Sede</th>
+                                        <th>Institucion</th>
+                                        <th>Grado</th>
+                                        <th>Tiempo</th>
+                                        <th>Tipo Enseñanza</th>
+                                        <th>Años Experiencia</th>
+                                        <th>Estado</th>
+                                        <th>Activar/Desactivar</th>
+                                        <th>Editar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {%for hl in historialaboral%}
+                                    <tr>
+                                        <td>{{hl.sede}}</td>
+                                        <td>{{hl.institucion}}</td>
+                                        <td>{{hl.grado}}</td>
+                                        <td>{{hl.tiempo}}</td>
+                                        <td>{{hl.tipo_ensenanza}}</td>
+                                        <td>{{hl.anos_exp}}</td>
+                                        {%if hl.activo %}
+								            <td><p><span class="badge badge-primary">Activo</span></p></td>
+                                            <td><a href="/academica-laboral/eliminar/hl/{{hl.id}}"><button class="btn btn-xs btn-danger dim"><i class="fa fa-check-square-o"></i> Desactivar</button></a></td>
+							            {%else%}
+								            <td><p><span class="badge badge-danger">Inactivo</span></p></td>
+                                            <td><a href="/academica-laboral/eliminar/hl/{{hl.id}}"><button class="btn btn-xs btn-success dim"><i class="fa fa-check-square"></i> Reactivar</button></a></td>
+							            {%endif%}
+                                         <td><a href="/academica-laboral/editar/hl/{{hl.id}}"><button class="btn btn-xs btn-info dim"><i class="fa fa-paste"></i> Editar</button></a></td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+
+<!-- CODIGO DE MODAL DE EDICION DE DATOS -->
+		{% if editar %}
+		<button type="button" id="botonModalEdicion" class="btn btn-primary" data-toggle="modal" data-target="#editarTeach" style="display:none;"></button>
+		<div class="modal fade" id="editarTeach">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">Editar {{type}}</h4>
+						<small>Cambie los campos que requiera y unda guardar, de no ser asi unda cancelar</small>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" method="post" action="" data-parsley-validate="true" >
+							{% csrf_token %}
+						{% for campo in form_history%}
+							<div class="form-group">
+                            {{campo.errors}}
+                            <label class="col-lg-2 control-label">{{campo.label}}</label>
+                            <div class="col-lg-6">
+                                {{campo}}
+                            </div>
+                        </div>
+						{% endfor %}
+						<div class="modal-footer">
+							<button type="button" class="btn btn-white" href="/teacher/configuracion" data-dismiss="modal">Cancelar</button>
+                        	<button type="submit" class="btn btn-primary">Guardar cambios</button>
+						</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		{% endif %}
+{% endblock %}
+
+{% block js %}
+
+    <!-- Custom and plugin javascript -->
+    <script src="{%static 'js/inspinia.js' %}"></script>
+    <script src="{%static 'js/plugins/pace/pace.min.js' %}"></script>
+    <script src="{% static 'js/ui-modal-notification.demo.min.js' %}"></script>
+
+    {{block.super}}
+
+    {%if editar %}
+        <script>
+            $(document).ready(function(){
+                $('#botonModalEdicion').click();
+            });
+        </script>
+    {%endif%}
+
+    <!-- Steps -->
+    <script src="{%static 'js/plugins/staps/jquery.steps.min.js' %}"></script>
+
+    <!-- Jquery Validate -->
+    <script src="{%static 'js/plugins/validate/jquery.validate.min.js' %}"></script>
+
+    <!-- Flot -->
+    <script src="{%static 'js/plugins/flot/jquery.flot.js' %}"></script>
+    <script src="{%static 'js/plugins/flot/jquery.flot.tooltip.min.js' %}"></script>
+    <script src="{%static 'js/plugins/flot/jquery.flot.resize.js' %}"></script>
+<script>
+
+
+        $(document).ready(function(){
+            $("#wizard").steps();
+            $("#form").steps({
+                bodyTag: "fieldset",
+                onStepChanging: function (event, currentIndex, newIndex)
+                {
+                    // Always allow going backward even if the current step contains invalid fields!
+                    if (currentIndex > newIndex)
+                    {
+                        return true;
+                    }
+
+                    // Forbid suppressing "Warning" step if the user is to young
+                    if (newIndex === 3 && Number($("#age").val()) < 18)
+                    {
+                        return false;
+                    }
+
+                    var form = $(this);
+
+                    // Clean up if user went backward before
+                    if (currentIndex < newIndex)
+                    {
+                        // To remove error styles
+                        $(".body:eq(" + newIndex + ") label.error", form).remove();
+                        $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                    }
+
+                    // Disable validation on fields that are disabled or hidden.
+                    form.validate().settings.ignore = ":disabled,:hidden";
+
+                    // Start validation; Prevent going forward if false
+                    return form.valid();
+                },
+                onStepChanged: function (event, currentIndex, priorIndex)
+                {
+                    // Suppress (skip) "Warning" step if the user is old enough.
+                    if (currentIndex === 2 && Number($("#age").val()) >= 18)
+                    {
+                        $(this).steps("next");
+                    }
+
+                    // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                    if (currentIndex === 2 && priorIndex === 3)
+                    {
+                        $(this).steps("previous");
+                    }
+                },
+                onFinishing: function (event, currentIndex)
+                {
+                    var form = $(this);
+
+                    // Disable validation on fields that are disabled.
+                    // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                    form.validate().settings.ignore = ":disabled";
+
+                    // Start validation; Prevent form submission if false
+                    return form.valid();
+                },
+                onFinished: function (event, currentIndex)
+                {
+                    var form = $(this);
+
+                    // Submit form input
+                    form.submit();
+                }
+            }).validate({
+                        errorPlacement: function (error, element)
+                        {
+                            element.before(error);
+                        },
+                        rules: {
+                            confirm: {
+                                equalTo: "#password"
+                            }
+                        }
+                    });
+            var d1 = [[1262304000000, 6], [1264982400000, 3057], [1267401600000, 20434], [1270080000000, 31982], [1272672000000, 26602], [1275350400000, 27826], [1277942400000, 24302], [1280620800000, 24237], [1283299200000, 21004], [1285891200000, 12144], [1288569600000, 10577], [1291161600000, 10295]];
+            var d2 = [[1262304000000, 5], [1264982400000, 200], [1267401600000, 1605], [1270080000000, 6129], [1272672000000, 11643], [1275350400000, 19055], [1277942400000, 30062], [1280620800000, 39197], [1283299200000, 37000], [1285891200000, 27000], [1288569600000, 21000], [1291161600000, 17000]];
+
+            var data1 = [
+                { label: "Data 1", data: d1, color: '#17a084'},
+                { label: "Data 2", data: d2, color: '#127e68' }
+            ];
+            $.plot($("#flot-chart1"), data1, {
+                xaxis: {
+                    tickDecimals: 0
+                },
+                series: {
+                    lines: {
+                        show: true,
+                        fill: true,
+                        fillColor: {
+                            colors: [{
+                                opacity: 1
+                            }, {
+                                opacity: 1
+                            }]
+                        },
+                    },
+                    points: {
+                        width: 0.1,
+                        show: false
+                    },
+                },
+                grid: {
+                    show: false,
+                    borderWidth: 0
+                },
+                legend: {
+                    show: false,
+                }
+            });
+       });
+
+    </script>
+{% endblock %}

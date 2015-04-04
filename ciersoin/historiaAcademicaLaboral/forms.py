@@ -11,7 +11,7 @@ class HistoriaAcademicaForm(ModelForm):
             'universidad' : forms.TextInput(attrs={'class':'form-control','placeholder':'Universidad...'}),
             'titulo': forms.TextInput(attrs={'class':'form-control','placeholder':'Titulo...'}),
             'nivel': forms.Select(attrs={'class':'form-control chosen-select'}),
-            'teacher' : forms.Select(attrs={'class':'combobox'}),
+            'teacher' : forms.Select(attrs={'class':'combobox','style':'visibility: hidden'}),
         }
 
 class HistoriaLaboralForm(ModelForm):
@@ -25,5 +25,5 @@ class HistoriaLaboralForm(ModelForm):
             'tiempo':forms.TextInput(attrs={'class':'form-control','placeholder':'Anios...','type':'number'}),
             'tipo_ensenanza':forms.TextInput(attrs={'class':'form-control','placeholder':'Tipo ensenanza...'}),
             'anos_exp' : forms.TextInput(attrs={'class':'form-control','placeholder':'Anios experiencia...','type':'number'}),
-            'teacher' : forms.Select(attrs={'class':'combobox'}),
+            'teacher' : forms.Select(attrs={'class':'combobox','style':'visibility: hidden'}),
         }
