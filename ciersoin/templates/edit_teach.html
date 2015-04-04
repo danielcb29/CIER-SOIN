@@ -121,6 +121,12 @@
 
                 </div>
                 <div class="row">
+                    {% if exito_ha %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                        <i class="fa fa-check"></i> Se han actualizado sus datos correctamente!
+                    </div>
+                    {% endif %}
                     <h3>Historial Academico</h3>
                         <div class="table-responsive">
                             <table class="table table-hover table-striped">
@@ -156,6 +162,12 @@
                         </div>
                 </div>
                 <div class="row">
+                    {% if exito_hl %}
+                    <div class="alert alert-success alert-dismissable">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                        <i class="fa fa-check"></i> Se han actualizado sus datos correctamente!
+                    </div>
+                    {% endif %}
                     <h3>Historal Laboral</h3>
                         <div class="table-responsive">
                             <table class="table table-hover table-striped">
@@ -196,6 +208,41 @@
                             </table>
                         </div>
                 </div>
+
+<!-- CODIGO DE MODAL DE EDICION DE DATOS -->
+		{% if editar %}
+		<button type="button" id="botonModalEdicion" class="btn btn-primary" data-toggle="modal" data-target="#editarTeach" style="display:none;"></button>
+		<div class="modal fade" id="editarTeach">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">Editar {{type}}</h4>
+						<small>Cambie los campos que requiera y unda guardar, de no ser asi unda cancelar</small>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" method="post" action="" data-parsley-validate="true" >
+							{% csrf_token %}
+						{% for campo in form_history%}
+							<div class="form-group">
+                            {{campo.errors}}
+                            <label class="col-lg-2 control-label">{{campo.label}}</label>
+                            <div class="col-lg-6">
+                                {{campo}}
+                            </div>
+                        </div>
+						{% endfor %}
+						<div class="modal-footer">
+							<button type="button" class="btn btn-white" href="/teacher/configuracion" data-dismiss="modal">Cancelar</button>
+                        	<button type="submit" class="btn btn-primary">Guardar cambios</button>
+						</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		{% endif %}
 {% endblock %}
 
 {% block js %}
@@ -203,8 +250,17 @@
     <!-- Custom and plugin javascript -->
     <script src="{%static 'js/inspinia.js' %}"></script>
     <script src="{%static 'js/plugins/pace/pace.min.js' %}"></script>
+    <script src="{% static 'js/ui-modal-notification.demo.min.js' %}"></script>
 
     {{block.super}}
+
+    {%if editar %}
+        <script>
+            $(document).ready(function(){
+                $('#botonModalEdicion').click();
+            });
+        </script>
+    {%endif%}
 
     <!-- Steps -->
     <script src="{%static 'js/plugins/staps/jquery.steps.min.js' %}"></script>
