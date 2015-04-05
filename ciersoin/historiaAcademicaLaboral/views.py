@@ -35,10 +35,10 @@ def nueva_laboral(request):
 @login_required
 def editar_ha(request,id):
     editar = True
-    ha = HistoriaAcademica.objects.get(id=id)
-    ha_form = HistoriaAcademicaForm(instance=ha,initial=ha.__dict__)
     id_user = request.user.id
     teach = Teacher.objects.get(id=id_user)
+    ha = HistoriaAcademica.objects.get(id=id,teacher=teach) #UrlInjection protected
+    ha_form = HistoriaAcademicaForm(instance=ha,initial=ha.__dict__)
     form = TeacherEditForm(instance=teach)
     historiasacademicas = HistoriaAcademica.objects.filter(teacher=teach)
     historiaslaborales = HistoriaLaboral.objects.filter(teacher=teach)
@@ -65,10 +65,10 @@ def eliminar_ha(request,id):
 @login_required
 def editar_hl(request,id):
     editar = True
-    hl = HistoriaLaboral.objects.get(id=id)
-    hl_form = HistoriaLaboralForm(instance=hl,initial=hl.__dict__)
     id_user = request.user.id
     teach = Teacher.objects.get(id=id_user)
+    hl = HistoriaLaboral.objects.get(id=id,teacher=teach) #Urlinjection protected
+    hl_form = HistoriaLaboralForm(instance=hl,initial=hl.__dict__)
     form = TeacherEditForm(instance=teach)
     historiasacademicas = HistoriaAcademica.objects.filter(teacher=teach)
     historiaslaborales = HistoriaLaboral.objects.filter(teacher=teach)
