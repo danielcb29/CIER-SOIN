@@ -224,13 +224,15 @@
 						<form class="form-horizontal" method="post" action="" data-parsley-validate="true" >
 							{% csrf_token %}
 						{% for campo in form_history%}
+                            {% if not 'Teacher' in campo.label%}
 							<div class="form-group">
-                            {{campo.errors}}
-                            <label class="col-lg-2 control-label">{{campo.label}}</label>
-                            <div class="col-lg-6">
-                                {{campo}}
+                                {{campo.errors}}
+                                <label class="col-lg-2 control-label">{{campo.label}}</label>
+                                <div class="col-lg-6">
+                                    {{campo}}
+                                </div>
                             </div>
-                        </div>
+                            {% endif %}
 						{% endfor %}
 						<div class="modal-footer">
 							<button type="button" class="btn btn-white" href="/teacher/configuracion" data-dismiss="modal">Cancelar</button>
