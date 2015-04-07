@@ -1,6 +1,9 @@
-__author__ = 'daniel'
+__author__ = 'alvaro'
 from django.conf.urls import patterns, include, url
 from .views import *
+
+
 urlpatterns = patterns('',
     url(r'^listar-area/(.+)$',listar_curos_area),
+    url(r'^crearcurso$', crear_curso),
 )

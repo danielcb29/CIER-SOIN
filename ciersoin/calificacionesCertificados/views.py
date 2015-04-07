@@ -5,5 +5,5 @@ def consultar_calificaciones(request):
     return render(request,'admin.html',{})
 
 
-#Funcionalidades con login
-@login_required
+
+

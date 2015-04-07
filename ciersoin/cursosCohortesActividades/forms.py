@@ -15,13 +15,13 @@ class CursoForm(ModelForm):
 class ActividadForm(ModelForm):
     class Meta:
         model = Actividad
-        fields= ['nombre', 'descripcion','tipo', 'curso', 'fecha_emtrega']
+        fields= ['nombre', 'descripcion','tipo', 'curso', 'fecha_entrega']
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control required','placeholder':'Nombre...'}),
             'descripcion': forms.TextInput(attrs={'class':'form-control required','placeholder':'Descripción...'}),
             'tipo': forms.Select(attrs={'class':'form-control required','placeholder':'Tipo...'}),
             'curso': forms.Select(attrs={'class':'form-control required'}),
-            'fecha_emtrega': forms.DateTimeInput(attrs={'class':'form-control required', 'placeholder': 'Fecha de entrega....'})
+            'fecha_entrega': forms.DateTimeInput(attrs={'class':'form-control required', 'placeholder': 'Fecha de entrega....'})
         }
 
 class CohorteForm(ModelForm):
