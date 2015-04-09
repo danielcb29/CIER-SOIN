@@ -17,7 +17,7 @@ class LeaderTeacherForm(ModelForm):
             'direccion': forms.TextInput(attrs={'class':'form-control','placeholder required':'Direccion...'}),
             'area_interes' : forms.Select(attrs={'class':'form-control required'}),
             'municipio': forms.TextInput(attrs={'class':'form-control required','placeholder':'Municipio...'}),
-            'departamento': forms.TextInput(attrs={'class':'form-control required','placeholder':'Departamento...'}),
+            'departamento': forms.Select(attrs={'class':'form-control required','placeholder':'Departamento...'}),
             'zona': forms.Select(attrs={'class':'form-control required','placeholder':'Zona...'}),
         }
 
@@ -35,7 +35,7 @@ class MasterTeacherForm(ModelForm):
             'direccion': forms.TextInput(attrs={'class':'form-control','placeholder required':'Direccion...'}),
             'area_interes' : forms.Select(attrs={'class':'form-control required'}),
             'municipio': forms.TextInput(attrs={'class':'form-control required','placeholder':'Municipio...'}),
-            'departamento': forms.TextInput(attrs={'class':'form-control required','placeholder':'Departamento...'}),
+            'departamento': forms.Select(attrs={'class':'form-control required','placeholder':'Departamento...'}),
             'zona': forms.Select(attrs={'class':'form-control required','placeholder':'Zona...'}),
         }
 
@@ -51,7 +51,7 @@ class TeacherEditForm(ModelForm):
             'password' : forms.TextInput(attrs={'id':'password','type':'password','class':'form-control required','placeholder':'Contrasena...'}),
             'direccion': forms.TextInput(attrs={'class':'form-control','placeholder required':'Direccion...'}),
             'municipio': forms.TextInput(attrs={'class':'form-control required','placeholder':'Municipio...'}),
-            'departamento': forms.TextInput(attrs={'class':'form-control required','placeholder':'Departamento...'}),
+            'departamento': forms.Select(attrs={'class':'form-control required','placeholder':'Departamento...'}),
             'zona': forms.Select(attrs={'class':'form-control required','placeholder':'Zona...'}),
 
 
