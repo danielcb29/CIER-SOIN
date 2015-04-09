@@ -12,12 +12,12 @@ def listar_curos_area(request,area):
     lt_form = LeaderTeacherForm(initial={'area_interes':area_obj})
     return render(request,'index.html',{'form':lt_form,'curso_list':curso_list})
 
-#Funcionalidades con login
+#Funcionalidades con login0
 @login_required
 @permission_required('curso.add_curso', login_url="/index")
 def crear_curso(request):
     curso = CursoForm()
-    exito = false
+    exito = False
     if request.method=='POST':
         curso = CursoForm(request.POST)
         curso.save()
