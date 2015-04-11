@@ -33,7 +33,7 @@ class Actividad(models.Model):
     )
 
     tipo = models.CharField(max_length=100, choices=TIPO_ACTIVIDAD_CHOICES, default=TALLER)
-    curso = models.OneToOneField(Curso) #Una actividad pertenece a un unico curso
+    curso = models.ForeignKey(Curso) #Una actividad pertenece a un unico curso
     activo = models.BooleanField(default=True)
     #Se agrega fecha para saber si esta retrasada
     fecha_entrega = models.DateTimeField()
