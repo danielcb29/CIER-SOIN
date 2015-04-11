@@ -1,0 +1,53 @@
+{%extends "admin.html"%}
+{%load staticfiles%}
+{%block content %}
+ <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Listar cursos <small>Activacion/Desactivacion de un curso...</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Seleccione el curso que desea desactivar
+                            </li>
+
+                        </ol>
+                        <h3>Cursos</h3>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre del Curso</th>
+                                        <th>Descripción</th>
+                                        <th>Área</th>
+                                        <th>Estado</th>
+                                        <th>Activar/Desactivar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {%for curso in cursos%}
+                                    <tr>
+                                        <td>{{curso.nombre}}</td>
+                                        <td>{{curso.descripcion}}</td>
+                                        <td>{{curso.area}}</td>
+                                        {%if curso.activo %}
+								            <td><p><span class="badge badge-primary">Activo</span></p></td>
+                                            <td><a href="/cursos/eliminar/{{curso.id}}"><button class="btn btn-xs btn-danger dim"><i class="fa fa-check-square-o"></i> Desactivar</button></a></td>
+							            {%else%}
+								            <td><p><span class="badge badge-danger">Inactivo</span></p></td>
+                                            <td><a href="/cursos/eliminar/{{curso.id}}"><button class="btn btn-xs btn-success dim"><i class="fa fa-check-square"></i> Reactivar</button></a></td>
+							            {%endif%}
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+{% endblock %}
+{%block js%}
+{{block.super}}
+{% endblock %}
