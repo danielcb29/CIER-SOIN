@@ -40,3 +40,20 @@ def eliminar_curso(request, id):
         curso.activo=True
     curso.save()
     return HttpResponseRedirect("/cursos/listarcursos")
+
+@login_required
+@permission_required('curso.change_curso', login_url="/index")
+def editar_curso(request, id_curso):
+    cursos = Curso.objects.all()
+    curso = Curso.objects.get(pk = id_curso)
+    form_edicion = CursoForm(instance=curso, initial=curso.__dict__)
+    if request.method == 'POST':
+        form_edicion = CursoForm(
+            request.POST, instance=curso, initial=curso.__dict__)
+        if form_edicion.has_changed():
+            if form_edicion.is_valid():
+                form_edicion.save()
+                return HttpResponseRedirect("/cursos/listarcursos")
+        else:
+            return HttpResponseRedirect("/cursos/listarcursos")
+    return render(request, 'listar_cursos.html', {'cursos': cursos, 'edicion': True, 'form_edicion': form_edicion})
