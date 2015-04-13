@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^crearcurso$', crear_curso),
     url(r'^listarcursos$', listar_curso),
     url(r'^eliminar/(\d+)$',eliminar_curso),
+    url(r'^editar/(\d+)$',editar_curso),
 )
