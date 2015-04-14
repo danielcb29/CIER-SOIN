@@ -27,13 +27,36 @@ class Teacher(User):
         (TECNICA, 'Tecnica'),
     )
 
+    #Departamentos
+
+    VALLE = 'Valle del Cauca'
+    CAUCA = 'Cauca'
+    NARINO = 'Narino'
+    TOLIMA = 'Tolima'
+    HUILA = 'Huila'
+    CAQUETA = 'Caqueta'
+    PUTUMAYO = 'Putumayo'
+    AMAZONAS= 'Amazonas'
+
+    DEP_CHOICES = (
+        (VALLE , 'Valle del Cauca'),
+        (CAUCA , 'Cauca'),
+        (NARINO , 'Narino'),
+        (TOLIMA , 'Tolima'),
+        (HUILA , 'Huila'),
+        (CAQUETA , 'Caqueta'),
+        (PUTUMAYO , 'Putumayo'),
+        (AMAZONAS , 'Amazonas'),
+    )
+
+
     #Datos personales
     #NOMBRE , APELLIDO , NOMBRE DE USUARIO , CONTRASEnA, EMAIL : NO VAN PQ SE HEREDAN DEL MODELO USER DE DJANGO
 
     cedula = models.IntegerField(unique=True)
     direccion = models.CharField(max_length=100)
     municipio  = models.CharField(max_length=100)
-    departamento = models.CharField(max_length=100)
+    departamento = models.CharField(max_length=100, choices = DEP_CHOICES , default= VALLE)
     zona = models.CharField(max_length=100, choices=TIPO_ZONA_CHOICES,default=URBANA)
 
     area_interes = models.ForeignKey(Area)
