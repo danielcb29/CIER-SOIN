@@ -128,7 +128,7 @@
 
                         {% if 'cursosCohortesActividades.add_cohorte' in perms and user.is_authenticated%}
                         <!-- cohortes -->
-                        <li>
+                        <!--li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#cohorte"><i class="fa fa-fw fa-arrows-v"></i> Cohortes <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="cohorte" class="collapse">
                                 <li>
@@ -138,7 +138,7 @@
                                     <a href="#">Listar</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li-->
                         {% endif %}
 
                         {% if 'cursosCohortesActividades.add_actividad' in perms and user.is_authenticated%}
@@ -189,7 +189,15 @@
                         {% if 'calificacionesCertificados.ver_reportes' in perms and user.is_authenticated%}
                         <!-- DASHBOARDS -->
                         <li>
-                            <a href=""><i class="fa fa-fw fa-dashboard"></i> Reportes</a>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#terminar_datos"><i class="fa fa-fw fa-pie-chart"></i> Reportes <i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="terminar_datos" class="collapse">
+                                    <li>
+                                        <a href="/reportes/graficos">Graficos</a>
+                                    </li>
+                                    <li>
+                                        <a href="/reportes/listados">Listados</a>
+                                    </li>
+                                </ul>
                         </li>
                         {% endif %}
                     </ul>
@@ -203,7 +211,17 @@
 
             {% endblock%}
            </div>
+           <br/>
+           <div class="footer">
+            <div class="pull-right">
+                10GB of <strong>250GB</strong> Free.
+            </div>
+            <div>
+                <strong>Copyright</strong> CIERSOIN Univalle &copy; 2015
+            </div>
+        </div>
        </div>
+       
 
     </div>
     <!-- /#wrapper -->
