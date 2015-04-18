@@ -1,15 +1,17 @@
 {%extends "admin.html"%}
 
+{% load staticfiles %}
+
 {%block content %}
  <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Cursos <small>Registre el curso a crear...</small>
+                            Actividades <small>Creacion de actividades...</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Aqui podra crear los cursos que oferta el CIER
+                                <i class="fa fa-dashboard"></i> Aqui podra crear las actividades que se realizaran en los distintos cursos
                             </li>
 
                         </ol>
@@ -18,42 +20,39 @@
                             {% if exito %}
                                 <div class="alert alert-success alert-dismissable">
                                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
-                                    <i class="fa fa-check"></i> Se creado un curso con exito!
+                                    <i class="fa fa-check"></i> Se creado una actividad con exito!
                                 </div>
 					        {% endif %}
                             <form action="" method="post">
                                 {% csrf_token %}
                                 <!-- Nombre -->
-                                {{form.nombre.errors}}
                                 <div class="form-group">
                                     <label>{{form.nombre.label}}</label>
-                                    <p class="help-block">Nombre del curso.</p>
+                                    <p class="help-block">Nombre de la actividad.</p>
                                     {{form.nombre}}
                                 </div>
 
                                 <!-- Descripcion -->
-                                {{form.descripcion.errors}}
                                 <div class="form-group">
                                     <label>{{form.descripcion.label}}</label>
-                                    <p class="help-block">Descripción breve del curso.</p>
+                                    <p class="help-block">Descripción de la actividad.</p>
                                     {{form.descripcion}}
                                 </div>
 
-                                <!-- Área -->
-                                {{form.area.errors}}
+                                <!-- Tipo -->
                                 <div class="form-group">
-                                    <label>{{form.area.label}}</label>
-                                    <p class="help-block">Área al que pertenece el curso.</p>
-                                    {{form.area}}
+                                    <label>{{form.tipo.label}}</label>
+                                    <p class="help-block">Tipo de Actividad.</p>
+                                    {{form.tipo}}
                                 </div>
 
-                                <!-- Semanas -->
-                                {{form.semanas.errors}}
+                                <!-- Curso -->
                                 <div class="form-group">
-                                    <label>{{form.semanas.label}}</label>
-                                    <p class="help-block">Área al que pertenece el curso.</p>
-                                    {{form.semanas}}
+                                    <label>{{form.curso.label}}</label>
+                                    <p class="help-block">Curso al que pertenece la Actividad.</p>
+                                     {{form.curso}}
                                 </div>
+
 
                                 <!--BOTON-->
 
@@ -66,4 +65,11 @@
                     </div>
 
                 </div>
+{% endblock %}
+
+
+{% block js %}
+{{block.super}}
+
+
 {% endblock %}
