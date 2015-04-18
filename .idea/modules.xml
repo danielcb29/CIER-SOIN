@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CIER_SOIN.iml" filepath="$PROJECT_DIR$/.idea/CIER_SOIN.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../../../gedi/.idea/GEDI.iml" filepath="$PROJECT_DIR$/../../../../gedi/.idea/GEDI.iml" />
     </modules>
   </component>
 </project>

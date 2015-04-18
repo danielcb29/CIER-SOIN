@@ -24,7 +24,6 @@
                             <form action="" method="post">
                                 {% csrf_token %}
                                 <!-- Nombre -->
-                                {{form.nombre.errors}}
                                 <div class="form-group">
                                     <label>{{form.nombre.label}}</label>
                                     <p class="help-block">Nombre del curso.</p>
@@ -32,7 +31,6 @@
                                 </div>
 
                                 <!-- Descripcion -->
-                                {{form.descripcion.errors}}
                                 <div class="form-group">
                                     <label>{{form.descripcion.label}}</label>
                                     <p class="help-block">Descripción breve del curso.</p>
@@ -40,19 +38,10 @@
                                 </div>
 
                                 <!-- Área -->
-                                {{form.area.errors}}
                                 <div class="form-group">
                                     <label>{{form.area.label}}</label>
                                     <p class="help-block">Área al que pertenece el curso.</p>
                                     {{form.area}}
-                                </div>
-
-                                <!-- Semanas -->
-                                {{form.semanas.errors}}
-                                <div class="form-group">
-                                    <label>{{form.semanas.label}}</label>
-                                    <p class="help-block">Área al que pertenece el curso.</p>
-                                    {{form.semanas}}
                                 </div>
 
                                 <!--BOTON-->
