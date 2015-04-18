@@ -21,11 +21,12 @@ def crear_curso(request):
     exito = False
     if request.method=='POST':
         curso = CursoForm(request.POST)
+        print curso.errors
         if curso.is_valid():
             curso.save()
             exito = True
             curso = CursoForm()
-    return render(request, 'crear_curso.html', {'form':CursoForm,'exito':exito} )
+    return render(request, 'crear_curso.html', {'form':curso,'exito':exito} )
 
 @login_required
 @permission_required('curso.add_curso', login_url="/index")
