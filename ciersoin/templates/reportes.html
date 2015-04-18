@@ -11,6 +11,9 @@
                         <h1 class="page-header">
                             Reportes <small>Datos estadisticos recuperados del sistema</small>
                         </h1>
+                        Estos reportes muestran las estadisticas del mes: {{mes}}
+                        <br/>
+                        <br/>
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i> Cursos con Menos potencial de avance
@@ -227,11 +230,11 @@
 {{block.super}}
 <!-- ChartJS-->
     <script src="{% static 'js/plugins/chartJs/Chart.min.js' %}"></script>
-    <script typ>
+    <script>
     $(document).ready(function(){
 
         var datos_cursoaspirante = {
-        labels: ['Discretas','Pintura','Magia', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso'], // {{lista_cursos|save}}
+        labels: ['Discretas','Pintura','Magia', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso'], // {{lista_cursos|safe}}
         datasets: [
                 {
                     label: "Curso con mayor numero de asistentes",

@@ -4,7 +4,7 @@ from cursosCohortesActividades.models import Cohorte,Actividad
 # Create your models here.
 
 class Certificado(models.Model):
-    leader_teacher = models.OneToOneField(LeaderTeacher)
+    leader_teacher = models.ForeignKey(LeaderTeacher)
 
     #Choices de tipo
     ASISTIO='Asistio'
@@ -26,8 +26,8 @@ class Certificado(models.Model):
 #Una calificacion representa la abstraccion de una nota , una nota tiene un valor, una unica actividad a la cual pertenece y un unico estudiante
 class Calificacion(models.Model):
     valor = models.FloatField(default=-1)
-    actividad = models.OneToOneField(Actividad)
-    leader_teacher = models.OneToOneField(LeaderTeacher)
+    actividad = models.ForeignKey(Actividad)
+    leader_teacher = models.ForeignKey(LeaderTeacher)
 
     class Meta:
         permissions = (

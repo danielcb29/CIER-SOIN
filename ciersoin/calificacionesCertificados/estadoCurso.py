@@ -1,20 +1,20 @@
 __author__ = 'alvaro'
 from .models import Certificado
 from teacher.models import LeaderTeacher
-from cursosCohortesActividades.models import Cohortes
+from cursosCohortesActividades.models import Cohorte
 
 class Contexto():
 
     global EstadoCurso
 
 
-class EstadoCursoAprobado(EstadoCurso):
+class EstadoCursoAprobado():
 
     def generarCertificado(idTeacher):
 
         return 0
 
-class EstadoCursoReprobIncomp(EstadoCurso):
+class EstadoCursoReprobIncomp():
 
     def generarCertificado(idTeacher):
 
