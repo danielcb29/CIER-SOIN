@@ -10,8 +10,23 @@ class Curso(models.Model):
 
     area = models.ForeignKey(Area)
     activo = models.BooleanField(default=True)
+
+    SEIS = 6
+    SIETE = 7
+
+    SEMANAS_CHOICES = (
+        (SEIS,6),
+        (SIETE, 7),
+    )
+
+
+    semanas = models.IntegerField(choices=SEMANAS_CHOICES, default=SIETE)
+
     def __str__(self):
         return self.nombre
+
+    def __unicode__(self):
+        return u"%s" % self.nombre
 
 
 class Actividad(models.Model):
@@ -36,7 +51,7 @@ class Actividad(models.Model):
     curso = models.ForeignKey(Curso) #Una actividad pertenece a un unico curso
     activo = models.BooleanField(default=True)
     #Se agrega fecha para saber si esta retrasada
-    fecha_entrega = models.DateTimeField()
+    #fecha_entrega = models.DateTimeField()
     def __str__(self):
         return self.nombre
 
@@ -61,7 +76,7 @@ class Cohorte(models.Model):
     estudiantes = models.ManyToManyField(LeaderTeacher)
 
     #Relacion muchos a muchos con actividad
-    actividad = models.ManyToManyField(Actividad)
+    #Cambio en el modelo actividad = models.ManyToManyField(Actividad)
     activo = models.BooleanField(default=True)
     class Meta:
         unique_together = ('numero_cohorte', 'periodo','fecha_inicial')
@@ -77,4 +92,6 @@ class Aspirante(models.Model):
 
     def __str__(self):
         return self.leader_teacher.get_full_name()
+
+
 
