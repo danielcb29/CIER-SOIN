@@ -11,12 +11,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='aspirante',
-            name='matriculado',
-            field=models.BooleanField(default=False),
-            preserve_default=True,
-        ),
+
         migrations.AlterField(
             model_name='actividad',
             name='curso',

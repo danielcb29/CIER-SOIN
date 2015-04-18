@@ -5,7 +5,7 @@ from .models import Curso, Cohorte, Actividad
 class CursoForm(ModelForm):
     class Meta:
         model = Curso
-        fields = ['nombre', 'descripcion', 'area']
+        fields = ['nombre', 'descripcion', 'area','semanas']
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control required','placeholder':'Nombre...'}),
             'descripcion': forms.TextInput(attrs={'class':'form-control required','placeholder':'Descripcion...'}),
@@ -16,7 +16,7 @@ class CursoForm(ModelForm):
 class ActividadForm(ModelForm):
     class Meta:
         model = Actividad
-        fields= ['nombre', 'descripcion','tipo', 'curso', 'fecha_entrega']
+        fields= ['nombre', 'descripcion','tipo', 'curso']#, 'fecha_entrega']
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control required','placeholder':'Nombre...'}),
             'descripcion': forms.TextInput(attrs={'class':'form-control required','placeholder':'Descripcion...'}),
@@ -28,7 +28,7 @@ class ActividadForm(ModelForm):
 class CohorteForm(ModelForm):
     class Meta:
         model = Cohorte
-        fields = ['numero_cohorte', 'fecha_inicial', 'fecha_final', 'periodo', 'estudiantes', 'master_teacher', 'curso', 'actividad']
+        fields = ['numero_cohorte', 'fecha_inicial', 'fecha_final', 'periodo', 'estudiantes', 'master_teacher', 'curso']#, 'actividad']
         widgets = {
             'numero_cohorte': forms.NumberInput(attrs={'class':'form-control required','placeholder':'Numero de la cohorte...'}),
             'fecha_inicial': forms.DateInput(attrs={'class':'form-control required','placeholder':'Fecha...'}),
