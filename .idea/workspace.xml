@@ -29,6 +29,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+<<<<<<< HEAD
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ciersoin/cursosCohortesActividades/forms.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -47,6 +48,16 @@
             <state vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="3645">
               <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="7" selection-end-column="79" />
               <folding />
+=======
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ciersoin/cursosCohortesActividades/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="975">
+              <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
             </state>
           </provider>
         </entry>
@@ -54,8 +65,13 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ciersoin/cursosCohortesActividades/models.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
               <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+=======
+            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="285">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
               <folding />
             </state>
           </provider>
@@ -64,18 +80,31 @@
       <file leaf-file-name="crear_actividades.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ciersoin/templates/crear_actividades.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="1200">
               <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+=======
+            <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="960">
+              <caret line="33" column="64" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ciersoin/cursosCohortesActividades/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
               <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+=======
+      <file leaf-file-name="listar_cursos.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ciersoin/templates/listar_cursos.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-19.217392" vertical-offset="1268" max-vertical-offset="1875">
+              <caret line="114" column="41" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="41" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
               <folding>
                 <element signature="e#22#73#0" expanded="true" />
               </folding>
@@ -83,8 +112,23 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ciersoin/ciersoin/views.py">
+=======
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ciersoin/teacher/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="915">
+              <caret line="38" column="98" selection-start-line="38" selection-start-column="98" selection-end-line="38" selection-end-column="98" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/models.py">
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -93,21 +137,62 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="crear_cohorte.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ciersoin/templates/crear_cohorte.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-14.958333" vertical-offset="1" max-vertical-offset="2025">
               <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
               <folding />
+=======
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="crear_curso.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ciersoin/templates/crear_curso.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.516129" vertical-offset="211" max-vertical-offset="1110">
               <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+=======
+      <file leaf-file-name="estadoCurso.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/estadoCurso.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48989114" vertical-offset="0" max-vertical-offset="643">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding>
+                <element signature="e#22#53#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ciersoin/teacher/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
               <folding />
             </state>
           </provider>
@@ -123,7 +208,12 @@
       <list>
         <option value="$PROJECT_DIR$/ciersoin/masterteacher/models.py" />
         <option value="$PROJECT_DIR$/ciersoin/calificacionesCertificados/models.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/ciersoin/calificacionesCertificados/views.py" />
+=======
+        <option value="$PROJECT_DIR$/ciersoin/cursosCohortesActividades/models.py" />
+        <option value="$PROJECT_DIR$/ciersoin/cursosCohortesActividades/forms.py" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
         <option value="$PROJECT_DIR$/ciersoin/templates/index_admin.html" />
         <option value="$PROJECT_DIR$/ciersoin/reportes/fachada.py" />
         <option value="$PROJECT_DIR$/ciersoin/reportes/FachadaReporte.py" />
@@ -132,6 +222,7 @@
         <option value="$PROJECT_DIR$/ciersoin/templates/listar_actividades.html" />
         <option value="$PROJECT_DIR$/ciersoin/ciersoin/settings.py" />
         <option value="$PROJECT_DIR$/ciersoin/templates/listar_cursos.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/ciersoin/ciersoin/urls.py" />
         <option value="$PROJECT_DIR$/ciersoin/cursosCohortesActividades/views.py" />
         <option value="$PROJECT_DIR$/ciersoin/cursosCohortesActividades/urls.py" />
@@ -141,6 +232,11 @@
         <option value="$PROJECT_DIR$/ciersoin/cursosCohortesActividades/models.py" />
         <option value="$PROJECT_DIR$/ciersoin/cursosCohortesActividades/forms.py" />
         <option value="$PROJECT_DIR$/ciersoin/templates/crear_curso.html" />
+=======
+        <option value="$PROJECT_DIR$/ciersoin/teacher/state.py" />
+        <option value="$PROJECT_DIR$/ciersoin/calificacionesCertificados/estadoCurso.py" />
+        <option value="$PROJECT_DIR$/ciersoin/calificacionesCertificados/views.py" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       </list>
     </option>
   </component>
@@ -148,10 +244,16 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="65" />
     <option name="y" value="24" />
     <option name="width" value="1615" />
     <option name="height" value="1026" />
+=======
+    <option name="y" value="-4" />
+    <option name="width" value="1360" />
+    <option name="height" value="772" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -301,6 +403,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="cursosCohortesActividades" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -324,6 +427,9 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ciersoin" />
+=======
+              <option name="myItemId" value="calificacionesCertificados" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -333,7 +439,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../gedi" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -447,10 +557,14 @@
       <option name="ADDITIONAL_ARGS" value="" />
       <method />
     </configuration>
+<<<<<<< HEAD
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Attests">
+=======
+    <configuration default="true" type="tests" factoryName="Unittests">
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -468,6 +582,29 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
+<<<<<<< HEAD
+=======
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="CIER_SOIN" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -490,7 +627,19 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
+<<<<<<< HEAD
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+=======
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Attests">
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -503,6 +652,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="CIER_SOIN" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+<<<<<<< HEAD
       <option name="TARGET" value="" />
       <option name="SETTINGS_FILE" value="" />
       <option name="CUSTOM_SETTINGS" value="false" />
@@ -511,6 +661,18 @@
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
+=======
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -521,6 +683,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="CIER_SOIN" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+<<<<<<< HEAD
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
@@ -538,6 +701,9 @@
       <tasks />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
+=======
+      <option name="ADDITIONAL_ARGS" value="" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <method />
     </configuration>
     <list size="0" />
@@ -556,8 +722,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="65" y="24" width="1615" height="1026" extended-state="6" />
     <editor active="true" />
+=======
+    <frame x="0" y="-4" width="1360" height="772" extended-state="6" />
+    <editor active="false" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2495356" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -572,12 +743,16 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+=======
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -586,6 +761,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -602,6 +778,12 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
+=======
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout>
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -637,6 +819,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ciersoin/cursosCohortesActividades/migrations/0009_auto_20150401_1638.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
@@ -645,6 +828,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/models.py">
+=======
+    <entry file="file://$PROJECT_DIR$/ciersoin/templates/crear_curso.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="945">
+          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ciersoin/templates/crear_mt.html">
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -771,6 +964,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34127843" vertical-offset="0" max-vertical-offset="923">
@@ -780,6 +974,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ciersoin/templates/listar_mt.html">
+=======
+    <entry file="file://$PROJECT_DIR$/ciersoin/teacher/tests.py">
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4827586" vertical-offset="61" max-vertical-offset="960">
           <caret line="33" column="64" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
@@ -795,6 +992,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ciersoin/areas/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="923">
@@ -804,6 +1002,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ciersoin/cursosCohortesActividades/__init__.py">
+=======
+    <entry file="file://$PROJECT_DIR$/ciersoin/ciersoin/views.py">
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="923">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -879,6 +1080,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ciersoin/templates/edit_teach.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-99.416664" vertical-offset="3059" max-vertical-offset="6015">
@@ -888,6 +1090,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ciersoin/teacher/views.py">
+=======
+    <entry file="file://$PROJECT_DIR$/ciersoin/reportes/models.py">
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="780" max-vertical-offset="2340">
           <caret line="98" column="23" selection-start-line="98" selection-start-column="23" selection-end-line="98" selection-end-column="23" />
@@ -913,9 +1118,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ciersoin/ciersoin/urls.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
           <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
           <folding />
+=======
+        <state vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="3495">
+          <caret line="122" column="77" selection-start-line="122" selection-start-column="77" selection-end-line="122" selection-end-column="77" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
         </state>
       </provider>
     </entry>
@@ -929,6 +1139,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ciersoin/ciersoin/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -940,6 +1151,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="923">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+=======
+        <state vertical-scroll-proportion="0.12903225" vertical-offset="310" max-vertical-offset="990">
+          <caret line="26" column="48" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
         </state>
       </provider>
     </entry>
@@ -997,8 +1212,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../gedi/gedi/templates/crear_integrante.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="-2.8375974" vertical-offset="2551" max-vertical-offset="3630">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="960">
+          <caret line="33" column="64" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
           <folding />
         </state>
       </provider>
@@ -1013,29 +1233,86 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ciersoin/cursosCohortesActividades/forms.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
           <caret line="12" column="77" selection-start-line="12" selection-start-column="77" selection-end-line="12" selection-end-column="77" />
+=======
+        <state vertical-scroll-proportion="-19.217392" vertical-offset="1268" max-vertical-offset="1875">
+          <caret line="114" column="41" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="41" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ciersoin/cursosCohortesActividades/migrations/0012_auto_20150418_1555.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="923">
+=======
+    <entry file="file://$PROJECT_DIR$/ciersoin/teacher/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="915">
+          <caret line="38" column="98" selection-start-line="38" selection-start-column="98" selection-end-line="38" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ciersoin/teacher/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1470">
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ciersoin/templates/crear_curso.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.516129" vertical-offset="211" max-vertical-offset="1110">
           <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
+=======
+    <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="643">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ciersoin/calificacionesCertificados/estadoCurso.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48989114" vertical-offset="0" max-vertical-offset="643">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#22#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> be3669d3d7979c33a4d1244f03ae61bc098a29f3
   </component>
 </project>
