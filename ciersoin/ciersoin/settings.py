@@ -77,16 +77,13 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-DATE_INPUT_FORMATS = ('%m/%d/%Y','%Y/%m/%d')
-SHORT_DATE_FORMAT = 'm/d/Y'
-
 LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = False
+USE_L10N = True
 
 USE_TZ = True
 
