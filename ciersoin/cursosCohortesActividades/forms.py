@@ -9,8 +9,7 @@ class CursoForm(ModelForm):
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control required','placeholder':'Nombre...'}),
             'descripcion': forms.TextInput(attrs={'class':'form-control required','placeholder':'Descripcion...'}),
-            'area': forms.Select(attrs={'class':'form-control required'}),
-            'semanas': forms.Select(attrs={'class':'form-control required'}),
+            'area': forms.Select(attrs={'class':'form-control required'})
         }
 
 class ActividadForm(ModelForm):
@@ -22,7 +21,7 @@ class ActividadForm(ModelForm):
             'descripcion': forms.TextInput(attrs={'class':'form-control required','placeholder':'Descripcion...'}),
             'tipo': forms.Select(attrs={'class':'form-control required','placeholder':'Tipo...'}),
             'curso': forms.Select(attrs={'class':'form-control required'}),
-            #Modificacion en formulario 'fecha_entrega': forms.DateTimeInput(attrs={'class':'form-control required', 'placeholder': 'Fecha de entrega....'})
+            'fecha_entrega': forms.DateTimeInput(attrs={'class':'form-control required', 'placeholder': 'Fecha de entrega....'})
         }
 
 class CohorteForm(ModelForm):
@@ -37,5 +36,6 @@ class CohorteForm(ModelForm):
             'estudiantes': forms.SelectMultiple(attrs={'class':'form-control required','placeholder':'Estudiantes...'}),
             'master_teacher': forms.Select(attrs={'class':'form-control required','placeholder':'Master Teacher...'}),
             'curso': forms.Select(attrs={'class':'form-control required'}),
-            #Modificacion 'actividad': forms.SelectMultiple(attrs={'class': 'form-control chosen-select', 'data-placeholder': 'Seleccione un autor...', 'multiple':1, 'tabindex':'4'}),
+            'actividad': forms.SelectMultiple(attrs={'class':'form-control required','placeholder':'Actividad...'}),
+
         }

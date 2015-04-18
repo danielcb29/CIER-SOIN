@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .cursoobserver import CursoObserver
 from teacher.forms import LeaderTeacherForm
-from .models import Curso, Actividad
-from .forms import CursoForm, ActividadForm
+from .models import Curso
+from .forms import CursoForm
 from django.contrib.auth.decorators import login_required,permission_required
 # Create your views here.
 
@@ -21,10 +21,9 @@ def crear_curso(request):
     exito = False
     if request.method=='POST':
         curso = CursoForm(request.POST)
-        if curso.is_valid():
-            curso.save()
-            exito = True
-            curso = CursoForm()
+        curso.save()
+        exito = True
+        curso = CursoForm()
     return render(request, 'crear_curso.html', {'form':CursoForm,'exito':exito} )
 
 @login_required
@@ -58,21 +57,3 @@ def editar_curso(request, id_curso):
         else:
             return HttpResponseRedirect("/cursos/listarcursos")
     return render(request, 'listar_cursos.html', {'cursos': cursos, 'edicion': True, 'form_edicion': form_edicion})
-
-
-@login_required
-@permission_required('actividad.add_actividad',login_url='index')
-def crear_actividad(request):
-    actividad = ActividadForm()
-    exito = False
-    if request.method =='POST':
-        actividad = ActividadForm(request.POST)
-        print actividad.errors
-        if actividad.is_valid():
-            actividad.save()
-            exito = True
-            actividad = ActividadForm()
-    return render(request, 'crear_actividades.html', {'form':ActividadForm, 'exito':exito})
-
-def crear_cohorte(request):
-    return render(request, 'crear_cohorte.html',{})
