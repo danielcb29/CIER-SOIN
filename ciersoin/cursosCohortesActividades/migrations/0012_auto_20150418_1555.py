@@ -12,4 +12,10 @@ class Migration(migrations.Migration):
 
     operations = [
 
+        migrations.AlterField(
+            model_name='actividad',
+            name='curso',
+            field=models.ForeignKey(to='cursosCohortesActividades.Curso'),
+            preserve_default=True,
+        ),
     ]
