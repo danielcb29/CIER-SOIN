@@ -35,8 +35,8 @@ class Actividad(models.Model):
     tipo = models.CharField(max_length=100, choices=TIPO_ACTIVIDAD_CHOICES, default=TALLER)
     curso = models.ForeignKey(Curso) #Una actividad pertenece a un unico curso
     activo = models.BooleanField(default=True)
-    #Se agrega fecha para saber si esta retrasada
-    fecha_entrega = models.DateTimeField()
+    #Se agrega fecha para saber si esta retrasada, Se elimina ya que es una abstraccion, las fechas se asignaran a cada actividad instanciada en cada cohorte
+    #fecha_entrega = models.DateTimeField()
     def __str__(self):
         return self.nombre
 
@@ -60,8 +60,8 @@ class Cohorte(models.Model):
 
     estudiantes = models.ManyToManyField(LeaderTeacher)
 
-    #Relacion muchos a muchos con actividad
-    actividad = models.ManyToManyField(Actividad)
+    #Relacion muchos a muchos con actividad se quita porque ya se creo una clase que las relaciona
+    #actividad = models.ManyToManyField(Actividad)
     activo = models.BooleanField(default=True)
     class Meta:
         unique_together = ('numero_cohorte', 'periodo','fecha_inicial')
@@ -77,4 +77,13 @@ class Aspirante(models.Model):
 
     def __str__(self):
         return self.leader_teacher.get_full_name()
+
+class Actividad_Cohorte(models.Model):
+    actividad = models.ForeignKey(Actividad)
+    cohorte = models.ForeignKey(Cohorte)
+    fecha_inicial = models.DateTimeField()
+    fecha_entrega = models.DateTimeField()
+
+    def __str__(self):
+        return self.actividad.nombre
 
