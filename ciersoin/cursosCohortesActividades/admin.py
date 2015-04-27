@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(Curso)
 admin.site.register(Cohorte)
 admin.site.register(Actividad)
+admin.site.register(Actividad_Cohorte)
