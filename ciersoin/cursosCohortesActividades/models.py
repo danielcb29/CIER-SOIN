@@ -73,7 +73,7 @@ class Cohorte(models.Model):
         unique_together = ('numero_cohorte', 'periodo','fecha_inicial')
 
     def __str__(self):
-        return self.curso.nombre+"-"+self.numero_cohorte+":"+self.fecha_inicial+","+self.periodo
+        return self.curso.nombre+"-"+str(self.numero_cohorte)+":Periodo "+self.periodo
 
 class Aspirante(models.Model):
     leader_teacher = models.ForeignKey(LeaderTeacher)
