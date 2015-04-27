@@ -21,9 +21,11 @@
                                         <th>Nombre del Curso</th>
                                         <th>Descripción</th>
                                         <th>Área</th>
+                                        <th>Semanas</th>
+                                        <th>Editar</th>
                                         <th>Estado</th>
                                         <th>Activar/Desactivar</th>
-                                        <th>Editar</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,6 +34,7 @@
                                         <td>{{curso.nombre}}</td>
                                         <td>{{curso.descripcion}}</td>
                                         <td>{{curso.area}}</td>
+                                        <td>{{curso.semanas}}</td>
                                         <td><a href="/cursos/editar/{{curso.id}}"><button class="btn btn-xs btn-info dim"><i class="fa fa-check-square-o"></i> Editar</button></a></td>
                                         {%if curso.activo %}
 								            <td><p><span class="badge badge-primary">Activo</span></p></td>
@@ -87,6 +90,12 @@
                             {{form_edicion.area.errors}}
                             <label class="col-lg-2 control-label">{{form_edicion.area.label}}</label>
                             <div class="col-lg-6">{{form_edicion.area}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            {{form_edicion.semanas.errors}}
+                            <label class="col-lg-2 control-label">{{form_edicion.semanas.label}}</label>
+                            <div class="col-lg-6">{{form_edicion.semanas}}</div>
                         </div>
                 </div>
                     <div class="modal-footer">
