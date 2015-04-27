@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Listar cursos <small>Activacion/Desactivacion de una actividad...</small>
+                            Listar actividades <small>Activacion/Desactivacion de una actividad...</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
@@ -22,9 +22,10 @@
                                         <th>Descripción</th>
                                         <th>Tipo</th>
                                         <th>Curso</th>
-                                        <th>Fecha entrega</th>
-                                        <th>Activar/Desactivar</th>
                                         <th>Editar</th>
+                                        <th>Estado</th>
+                                        <th>Activar/Desactivar</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,15 +33,15 @@
                                     <tr>
                                         <td>{{actividad.nombre}}</td>
                                         <td>{{actividad.descripcion}}</td>
+                                        <td>{{actividad.tipo}}</td>
                                         <td>{{actividad.curso}}</td>
-                                        <td>{{actividad.fecha_entrega}}</td>
-                                        <td><a href="/actividades/editar/{{actividad.id}}"><button class="btn btn-xs btn-info dim"><i class="fa fa-check-square-o"></i> Editar</button></a></td>
+                                        <td><a href="/actividades/editaractividad/{{actividad.id}}"><button class="btn btn-xs btn-info dim"><i class="fa fa-check-square-o"></i> Editar</button></a></td>
                                         {%if actividad.activo %}
 								            <td><p><span class="badge badge-primary">Activo</span></p></td>
-                                            <td><a href="/actividades/eliminar/{{curso.id}}"><button class="btn btn-xs btn-danger dim"><i class="fa fa-check-square-o"></i> Desactivar</button></a></td>
+                                            <td><a href="/actividades/eliminaractividad/{{actividad.id}}"><button class="btn btn-xs btn-danger dim"><i class="fa fa-check-square-o"></i> Desactivar</button></a></td>
 							            {%else%}
 								            <td><p><span class="badge badge-danger">Inactivo</span></p></td>
-                                            <td><a href="/actividades/eliminar/{{curso.id}}"><button class="btn btn-xs btn-success dim"><i class="fa fa-check-square"></i> Reactivar</button></a></td>
+                                            <td><a href="/actividades/eliminaractividad/{{actividad.id}}"><button class="btn btn-xs btn-success dim"><i class="fa fa-check-square"></i> Reactivar</button></a></td>
 							            {%endif%}
 
                                     </tr>
@@ -57,7 +58,7 @@
         El código incluye un botón invisible, un modal y un script que hará clic en el botón para que salga el modal con el formulario lleno
         con la información del integrante en cuestión-->
 {% if edicion %}
-    <button type="button" id="botonModalEdicion" data-toggle="modal" data-target="#editarCurso" style="display:none;"></button>
+    <button type="button" id="botonModalEdicion" data-toggle="modal" data-target="#editarActividad" style="display:none;"></button>
 
     <div class="modal inmodal" id="editarActividad" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
@@ -73,41 +74,30 @@
                         {% csrf_token %}
                          <!-- Nombre -->
                                 <div class="form-group">
-                                    <label>{{form.nombre.label}}</label>
-                                    <p class="help-block">Nombre de la actividad.</p>
-                                    {{form.nombre}}
+                                    <label class="col-lg-2 control-label">{{form_edicion.nombre.label}}</label>
+                                    <div class="col-lg-6">{{form_edicion.nombre}}</div>
                                 </div>
 
                                 <!-- Descripcion -->
                                 <div class="form-group">
-                                    <label>{{form.descripcion.label}}</label>
-                                    <p class="help-block">Descripción de la actividad.</p>
-                                    {{form.descripcion}}
+                                    <label class="col-lg-2 control-label">{{form_edicion.descripcion.label}}</label>
+                                    <div class="col-lg-6"> {{form_edicion.descripcion}}</div>
                                 </div>
 
                                 <!-- Tipo -->
                                 <div class="form-group">
-                                    <label>{{form.tipo.label}}</label>
-                                    <p class="help-block">Tipo de Actividad.</p>
-                                    {{form.tipo}}
+                                    <label class="col-lg-2 control-label">{{form_edicion.tipo.label}}</label>
+                                    <div class="col-lg-6">{{form_edicion.tipo}}</div>
                                 </div>
 
                                 <!-- Curso -->
                                 <div class="form-group">
-                                    <label>{{form.curso.label}}</label>
-                                    <p class="help-block">Curso al que pertenece la Actividad.</p>
-                                     {{form.curso}}
-                                </div>
-
-                                <!-- Fecha de entrega de la actividad-->
-                                <div class="form-group">
-                                    <label>{{form.fecha_entrega.label}}</label>
-                                    <p class="help-block">Fecha de entrega de la Actividad.</p>
-                                    {{form.fecha_entrega}}
+                                    <label class="col-lg-2 control-label">{{form_edicion.curso.label}}</label>
+                                    <div class="col-lg-6">{{form_edicion.curso}}</div>
                                 </div>
                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-white" href="/cursos/listarcursos" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-white" href="/actividades/listar" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </div>
                 </form>
