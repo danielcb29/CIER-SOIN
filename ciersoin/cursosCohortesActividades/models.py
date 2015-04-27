@@ -7,7 +7,13 @@ from areas.models import Area
 class Curso(models.Model):
     nombre = models.CharField(max_length=100,unique=True)
     descripcion = models.TextField()
-
+    SEIS = 6
+    SIETE = 7
+    SEMA_CHOICES = (
+        (SEIS,6),
+        (SIETE,7),
+    )
+    semanas = models.IntegerField(choices=SEMA_CHOICES,default=SEIS)
     area = models.ForeignKey(Area)
     activo = models.BooleanField(default=True)
     def __str__(self):
