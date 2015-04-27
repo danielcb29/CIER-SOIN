@@ -15,7 +15,7 @@ def listar_curos_area(request,area):
 
 #Funcionalidades con login0
 @login_required
-@permission_required('curso.add_curso', login_url="/index")
+@permission_required('cursosCohortesActividades.add_curso', login_url="/index")
 def crear_curso(request):
     curso = CursoForm()
     exito = False
@@ -29,7 +29,7 @@ def crear_curso(request):
     return render(request, 'crear_curso.html', {'form':curso,'exito':exito} )
 
 @login_required
-@permission_required('curso.add_curso', login_url="/index")
+@permission_required('cursosCohortesActividades.add_curso', login_url="/index")
 def listar_curso(request):
     cursos = Curso.objects.all()
     return render(request, 'listar_cursos.html', {'cursos':cursos})
@@ -44,7 +44,7 @@ def eliminar_curso(request, id):
     return HttpResponseRedirect("/cursos/listarcursos")
 
 @login_required
-@permission_required('curso.change_curso', login_url="/index")
+@permission_required('cursosCohortesActividades.change_curso', login_url="/index")
 def editar_curso(request, id_curso):
     cursos = Curso.objects.all()
     curso = Curso.objects.get(pk = id_curso)
@@ -62,7 +62,7 @@ def editar_curso(request, id_curso):
 
 
 @login_required
-@permission_required('actividad.add_actividad',login_url='index')
+@permission_required('cursosCohortesActividades.add_actividad',login_url='index')
 def crear_actividad(request):
     actividad = ActividadForm()
     exito = False
