@@ -175,7 +175,7 @@
                         {% if 'teacher.ver_calificaciones' in perms and user.is_authenticated%}
                         <!-- calificaciones LT-->
                         <li>
-                            <a href=""><i class="fa fa-fw fa-desktop"></i> Calificaciones</a>
+                            <a href="/calificaciones/visualizar"><i class="fa fa-fw fa-desktop"></i> Calificaciones</a>
                         </li>
                         {% endif %}
 
@@ -189,8 +189,8 @@
                         {% if 'calificacionesCertificados.ver_reportes' in perms and user.is_authenticated%}
                         <!-- DASHBOARDS -->
                         <li>
-                                <a href="javascript:;" data-toggle="collapse" data-target="#terminar_datos"><i class="fa fa-fw fa-pie-chart"></i> Reportes <i class="fa fa-fw fa-caret-down"></i></a>
-                                <ul id="terminar_datos" class="collapse">
+                                <a href="javascript:;" data-toggle="collapse" data-target="#dash"><i class="fa fa-fw fa-pie-chart"></i> Reportes <i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="dash" class="collapse">
                                     <li>
                                         <a href="/reportes/graficos">Graficos</a>
                                     </li>
