@@ -86,6 +86,7 @@ def ingresar_notas(request,id_cohor,id_act):
             calificacion.valor = request.POST[str(est.id)]
             calificacion.save()
             exito = True
+            est.val = calificacion
     return render(request,'calificar_actividad.html',{'cohorte':cohorte,'actividad':actividad,'estudiantes':estudiantes,'exito':exito})
 
 
