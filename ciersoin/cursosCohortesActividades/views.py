@@ -21,7 +21,6 @@ def crear_curso(request):
     exito = False
     if request.method=='POST':
         curso = CursoForm(request.POST)
-        print curso.errors
         if curso.is_valid():
             curso.save()
             exito = True
@@ -68,7 +67,6 @@ def crear_actividad(request):
     exito = False
     if request.method =='POST':
         actividad = ActividadForm(request.POST)
-        print actividad.errors
         if actividad.is_valid():
             actividad.save()
             exito = True
