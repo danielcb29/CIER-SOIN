@@ -9,11 +9,19 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Cohorte: {{cohorte}} ; Actividad: {{actividad}} ; Tipo: {{actividad.tipo}}
+                                <i class="fa fa-tags"></i> Cohorte: {{cohorte}} ; Actividad: {{actividad}} ; Tipo: {{actividad.tipo}}
                             </li>
 
                         </ol>
                         <div class="col-lg-10">
+                            {% if exito %}
+                                <div class="alert alert-success alert-dismissable">
+                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                                    <i class="fa fa-check"></i> Se han ingresado las calificaciones con exito!!
+                                    <a href="/calificaciones/calificar"><button class="btn btn-success"><i class="fa fa-keyboard-o"></i> Seguir calificando</button></a>
+                                    <a href="/index"><button class="btn btn-success"><i class="fa fa-home"></i> Ir al Inicio</button></a>
+                                </div>
+					        {% endif %}
                             <form action="" method="post">
                                     {% csrf_token %}
                                 <table class="table table-hover table-striped">
@@ -24,14 +32,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {%for es in cohorte.estudiantes.all %}
+                                        {%for es in estudiantes %}
                                             <tr>
                                                 <td><strong>{{es}}</strong></td>
-                                                <td><input type="number" min="0.0" max="5.0" name="es.id" id="id_es.id"></td>
+                                                <td><input type="number" step="any" required min="0.0" max="5.0" name="{{es.id}}" id="id_{{es.id}}" value="{{es.val}}"></td>
                                             </tr>
                                         {% endfor %}
                                             <tr>
-                                                <td><a href="/calificaciones/calificar/general"><button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button></a></td>
+                                                <td><a href="/calificaciones/calificar"><button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button></a></td>
                                                 <td><button type="submit" class="btn btn-success">Finalizar</button></td>
                                             </tr>
                                         </tbody>
