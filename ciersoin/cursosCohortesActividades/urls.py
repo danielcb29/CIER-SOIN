@@ -9,4 +9,8 @@ urlpatterns = patterns('',
     url(r'^listarcursos$', listar_curso),
     url(r'^eliminar/(\d+)$',eliminar_curso),
     url(r'^editar/(\d+)$',editar_curso),
+    url(r'^crear$',crear_actividad),
+    url(r'^listar$',listar_actividades),
+    url(r'^editaractividad/(\d+)$',editar_actividad),
+    url(r'^eliminaractividad/(\d+)$',eliminar_actividad),
 )

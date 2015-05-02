@@ -15,7 +15,7 @@ def listar_curos_area(request,area):
 
 #Funcionalidades con login0
 @login_required
-@permission_required('curso.add_curso', login_url="/index")
+@permission_required('cursosCohortesActividades.add_curso', login_url="/index")
 def crear_curso(request):
     curso = CursoForm()
     exito = False
@@ -28,7 +28,7 @@ def crear_curso(request):
     return render(request, 'crear_curso.html', {'form':curso,'exito':exito} )
 
 @login_required
-@permission_required('curso.add_curso', login_url="/index")
+@permission_required('cursosCohortesActividades.add_curso', login_url="/index")
 def listar_curso(request):
     cursos = Curso.objects.all()
     return render(request, 'listar_cursos.html', {'cursos':cursos})
@@ -43,7 +43,7 @@ def eliminar_curso(request, id):
     return HttpResponseRedirect("/cursos/listarcursos")
 
 @login_required
-@permission_required('curso.change_curso', login_url="/index")
+@permission_required('cursosCohortesActividades.change_curso', login_url="/index")
 def editar_curso(request, id_curso):
     cursos = Curso.objects.all()
     curso = Curso.objects.get(pk = id_curso)
@@ -61,7 +61,7 @@ def editar_curso(request, id_curso):
 
 
 @login_required
-@permission_required('actividad.add_actividad',login_url='index')
+@permission_required('cursosCohortesActividades.add_actividad',login_url='index')
 def crear_actividad(request):
     actividad = ActividadForm()
     exito = False
@@ -75,3 +75,37 @@ def crear_actividad(request):
 
 def crear_cohorte(request):
     return render(request, 'crear_cohorte.html',{})
+
+@login_required
+@permission_required('cursosCohortesActividades.add_curso', login_url="/index")
+def listar_actividades(request):
+    actividades = Actividad.objects.all()
+    return render(request, 'listar_actividades.html', {'actividades':actividades})
+
+@login_required
+@permission_required('cursosCohortesActividades.change_actividad', login_url="/index")
+def editar_actividad(request, id_actividad):
+    actividades = Actividad.objects.all()
+    actividad = Actividad.objects.get(pk = id_actividad)
+    form_edicion = ActividadForm(instance=actividad, initial=actividad.__dict__)
+    if request.method == 'POST':
+        form_edicion = ActividadForm(
+            request.POST, instance=actividad, initial=actividad.__dict__)
+        if form_edicion.has_changed():
+            if form_edicion.is_valid():
+                form_edicion.save()
+                return HttpResponseRedirect("/actividades/listar")
+        else:
+            return HttpResponseRedirect("/actividades/listar")
+    return render(request, 'listar_actividades.html', {'actividades': actividades, 'edicion': True, 'form_edicion': form_edicion})
+
+
+def eliminar_actividad(request, id):
+    actividad = Actividad.objects.get(id=id)
+    if actividad.activo:
+        actividad.activo=False
+    else:
+        actividad.activo=True
+    actividad.save()
+    return HttpResponseRedirect("/actividades/listar")
+

@@ -1,6 +1,6 @@
 from django.db import models
 from teacher.models import LeaderTeacher
-from cursosCohortesActividades.models import Cohorte,Actividad
+from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte
 # Create your models here.
 
 class Certificado(models.Model):
@@ -26,7 +26,7 @@ class Certificado(models.Model):
 #Una calificacion representa la abstraccion de una nota , una nota tiene un valor, una unica actividad a la cual pertenece y un unico estudiante
 class Calificacion(models.Model):
     valor = models.FloatField(default=-1)
-    actividad = models.ForeignKey(Actividad)
+    actividad_cohorte = models.ForeignKey(Actividad_Cohorte)
     leader_teacher = models.ForeignKey(LeaderTeacher)
 
     class Meta:
@@ -35,4 +35,4 @@ class Calificacion(models.Model):
         )
 
     def __str__(self):
-        return self.valor
+        return str(self.valor)
