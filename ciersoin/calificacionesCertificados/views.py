@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .estadoCurso import Contexto
 from teacher.models import MasterTeacher
-from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte
+from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte,Actividad
 from django.contrib.auth.decorators import login_required,permission_required
 
 # Create your views here.
@@ -27,7 +27,10 @@ def calificar(request):
 @permission_required('teacher.anadir_calificaciones',login_url="/index")
 #Metodo para calificar una actvidad de una cohorte en particular
 def ingresar_notas(request,id_cohor,id_act):
-    pass
+    cohorte = Cohorte.objects.get(id=id_cohor)
+    actividad = Actividad.objects.get(id=id_act)
+    print actividad
+    return render(request,'calificar_actividad.html',{'cohorte':cohorte,'actividad':actividad})
 
 
 
