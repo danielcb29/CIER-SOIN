@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .estadoCurso import Contexto
 from teacher.models import MasterTeacher
-from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte
+from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte,Actividad
 from django.contrib.auth.decorators import login_required,permission_required
+from .models import Calificacion
 
 # Create your views here.
 def consultar_calificaciones(request):
@@ -27,7 +28,26 @@ def calificar(request):
 @permission_required('teacher.anadir_calificaciones',login_url="/index")
 #Metodo para calificar una actvidad de una cohorte en particular
 def ingresar_notas(request,id_cohor,id_act):
-    pass
+    cohorte = Cohorte.objects.get(id=id_cohor)
+    actividad = Actividad.objects.get(id=id_act)
+    actividades_cohorte = Actividad_Cohorte.objects.get(actividad=actividad,cohorte=cohorte)
+    estudiantes = cohorte.estudiantes.all()
+    exito = False
+    for est in estudiantes:
+        calificacion = Calificacion.objects.get(actividad_cohorte = actividades_cohorte, leader_teacher = est)
+        #print calificacion
+        if float(calificacion.valor) != -1.0:
+            est.val  =calificacion
+        else:
+            est.val = 0
+    if request.method=='POST':
+        for est in estudiantes:
+            calificacion = Calificacion.objects.get(actividad_cohorte = actividades_cohorte, leader_teacher = est)
+            calificacion.valor = request.POST[str(est.id)]
+            calificacion.save()
+            exito = True
+
+    return render(request,'calificar_actividad.html',{'cohorte':cohorte,'actividad':actividad,'estudiantes':estudiantes,'exito':exito})
 
 
 
