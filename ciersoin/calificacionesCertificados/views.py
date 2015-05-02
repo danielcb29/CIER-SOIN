@@ -20,7 +20,7 @@ def consultar_calificaciones(request):
             if float(calif.valor) != -1.0:
                 a.nota = calif
             else:
-                a.nota = 'Nil'
+                a.nota = 'NIL'
         c.actividades = actividades
     return render(request,'visualizar_calificaciones.html',{'cohortes':cohortes})
 
