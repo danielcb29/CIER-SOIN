@@ -1,0 +1,49 @@
+{%extends "admin.html"%}
+{%load staticfiles%}
+{%block content %}
+ <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Tus Califiaciones! <small></small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-superscript"></i> Nil: No se ha ingresado la calificacion aun
+                            </li>
+
+                        </ol>
+                        <div class="col-lg-10">
+                            {%for cohor in cohortes%}
+                                <h4>{{cohor}}</h4>
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Actividad</th>
+                                            <th>Calificacion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {%for ac in cohor.actividades %}
+                                        <tr>
+                                            <td>{{ac.actividad}}</td>
+                                            <td>{{ac.nota}}</td>
+
+
+                                        </tr>
+                                    {% endfor %}
+                                        <tr>
+                                            <td><strong>Certificado: </strong></td>
+                                            <td><a href=""><button class="btn btn-xm btn-success"><i class="fa fa-angle-double-down"></i> Descargar</button></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            {%endfor%}
+                        </div>
+                    </div>
+
+                </div>
+{% endblock %}
+{%block js%}
+{{block.super}}
+{% endblock %}

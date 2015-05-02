@@ -1,13 +1,28 @@
 from django.shortcuts import render
 from .estadoCurso import Contexto
-from teacher.models import MasterTeacher
+from teacher.models import MasterTeacher,LeaderTeacher
 from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte,Actividad
 from django.contrib.auth.decorators import login_required,permission_required
 from .models import Calificacion
 
 # Create your views here.
+
+@login_required
+@permission_required('teacher.ver_calificaciones',login_url="/index")
+#Metodo que permite visualizar las calificaciones de un lt
 def consultar_calificaciones(request):
-    return render(request,'admin.html',{})
+    lt = LeaderTeacher.objects.get(id=request.user.id)
+    cohortes = Cohorte.objects.filter(estudiantes=lt,activo=True)
+    for c in cohortes:
+        actividades = Actividad_Cohorte.objects.filter(cohorte=c)
+        for a in actividades:
+            calif = Calificacion.objects.get(actividad_cohorte=a,leader_teacher=lt)
+            if float(calif.valor) != -1.0:
+                a.nota = calif
+            else:
+                a.nota = 'Nil'
+        c.actividades = actividades
+    return render(request,'visualizar_calificaciones.html',{'cohortes':cohortes})
 
 # Metodo para la generacion de certificados
 def generar_Certificado(request, idTeacher):
@@ -46,7 +61,6 @@ def ingresar_notas(request,id_cohor,id_act):
             calificacion.valor = request.POST[str(est.id)]
             calificacion.save()
             exito = True
-
     return render(request,'calificar_actividad.html',{'cohorte':cohorte,'actividad':actividad,'estudiantes':estudiantes,'exito':exito})
 
 
