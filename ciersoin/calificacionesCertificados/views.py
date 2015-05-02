@@ -24,9 +24,24 @@ def consultar_calificaciones(request):
         c.actividades = actividades
     return render(request,'visualizar_calificaciones.html',{'cohortes':cohortes})
 
+@login_required
+@permission_required('teacher.ver_calificaciones',login_url="/index")
 # Metodo para la generacion de certificados
-def generar_Certificado(request, idTeacher):
-    pass
+def generar_Certificado(request, id_cohor,id_teach):
+
+    repro = True
+    lt = LeaderTeacher.objects.get(id=request.user.id)
+    cohortes = Cohorte.objects.filter(estudiantes=lt,activo=True)
+    for c in cohortes:
+        actividades = Actividad_Cohorte.objects.filter(cohorte=c)
+        for a in actividades:
+            calif = Calificacion.objects.get(actividad_cohorte=a,leader_teacher=lt)
+            if float(calif.valor) != -1.0:
+                a.nota = calif
+            else:
+                a.nota = 'NIL'
+        c.actividades = actividades
+    return render(request,'visualizar_calificaciones.html',{'repro':repro,'cohortes':cohortes})
 
 @login_required
 @permission_required('teacher.anadir_calificaciones',login_url="/index")

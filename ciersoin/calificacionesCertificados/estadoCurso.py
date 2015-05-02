@@ -7,7 +7,6 @@ class Contexto():
 
     global EstadoCurso
 
-
 class EstadoCursoAprobado():
 
     def generarCertificado(idTeacher):
