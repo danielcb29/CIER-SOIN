@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from teacher.forms import LeaderTeacherForm
 from .singletonsesion import Sesion
+from teacher.models import LeaderTeacher
 
 def iniciar_sesion(request):
     if Sesion.creada(Sesion(),request.user):
@@ -37,7 +38,8 @@ def cerrar_sesion(request):
 
 def index(request):
     lt_form = LeaderTeacherForm()
-    return render(request,'index.html',{'form':lt_form,'exito':False})
+    lt_registrados = LeaderTeacher.objects.all().count()
+    return render(request,'index.html',{'form':lt_form,'exito':False,'total_lt':lt_registrados})
 
 @login_required(login_url='/login')
 def admin_index(request):
