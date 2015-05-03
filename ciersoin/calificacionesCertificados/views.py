@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .estadoCurso import Contexto
+from .estadoCurso import Contexto,EstadoCursoExiste,EstadoCursoNoExiste
 from teacher.models import MasterTeacher,LeaderTeacher
 from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte,Actividad
 from django.contrib.auth.decorators import login_required,permission_required
@@ -24,9 +24,34 @@ def consultar_calificaciones(request):
         c.actividades = actividades
     return render(request,'visualizar_calificaciones.html',{'cohortes':cohortes})
 
+@login_required
+@permission_required('teacher.ver_calificaciones',login_url="/index")
 # Metodo para la generacion de certificados
-def generar_Certificado(request, idTeacher):
-    pass
+def generar_Certificado(request, id_cohor,id_teach):
+    contexto = Contexto()
+    if contexto.existe_certficiado(id_teach,id_cohor):
+        existe = EstadoCursoExiste()
+        cert = existe.generarCertificado(id_teach,id_cohor)
+        return render(request,'certificado.html',{'certificado':cert})
+    else:
+        existe = EstadoCursoNoExiste()
+        if existe.posible(id_teach,id_cohor):
+            cert = existe.generarCertificado(id_teach,id_cohor)
+            return render(request,'certificado.html',{'certificado':cert})
+        else:
+            repro = True
+            lt = LeaderTeacher.objects.get(id=request.user.id)
+            cohortes = Cohorte.objects.filter(estudiantes=lt,activo=True)
+            for c in cohortes:
+                actividades = Actividad_Cohorte.objects.filter(cohorte=c)
+                for a in actividades:
+                    calif = Calificacion.objects.get(actividad_cohorte=a,leader_teacher=lt)
+                    if float(calif.valor) != -1.0:
+                        a.nota = calif
+                    else:
+                        a.nota = 'NIL'
+                c.actividades = actividades
+            return render(request,'visualizar_calificaciones.html',{'repro':repro,'cohortes':cohortes})
 
 @login_required
 @permission_required('teacher.anadir_calificaciones',login_url="/index")
@@ -61,6 +86,7 @@ def ingresar_notas(request,id_cohor,id_act):
             calificacion.valor = request.POST[str(est.id)]
             calificacion.save()
             exito = True
+            est.val = calificacion
     return render(request,'calificar_actividad.html',{'cohorte':cohorte,'actividad':actividad,'estudiantes':estudiantes,'exito':exito})
 
 
