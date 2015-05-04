@@ -34,16 +34,53 @@
                                     {% endfor %}
                                         <tr>
                                             <td><strong>Certificado: </strong></td>
-                                            <td><a href=""><button class="btn btn-xm btn-success"><i class="fa fa-angle-double-down"></i> Descargar</button></a></td>
+                                            <td><a href="/calificaciones/certificado/{{cohor.id}}/{{user.id}}"><button class="btn btn-xm btn-success"><i class="fa fa-angle-double-down"></i> Descargar</button></a></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             {%endfor%}
                         </div>
                     </div>
-
                 </div>
+
+<!-- CODIGO DE MODAL DE EDICION DE DATOS -->
+		{% if repro %}
+		<button type="button" id="botonModalEdicion" class="btn btn-primary" data-toggle="modal" data-target="#editarTeach" style="display:none;"></button>
+		<div class="modal fade" id="editarTeach">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">No Disponible!</h4>
+						<small>Lea con atención</small>
+					</div>
+					<div class="modal-body">
+						<strong>Usted no puede descargar su certificado por una de dos razones: <br/>
+                            1) Su profesor no ha terminado de calificar todas las actividades de esta cohorte <br/>
+                            2) Usted no ha obtenido por lo menos el 50% de la nota, es decir, reprobo el curso.
+                        </strong>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-success" href="/calificaciones/calificar" data-dismiss="modal">Cerrar</button>
+						</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		{% endif %}
+
 {% endblock %}
 {%block js%}
-{{block.super}}
+    <script src="{% static 'js/ui-modal-notification.demo.min.js' %}"></script>
+
+    {{block.super}}
+
+    {%if repro %}
+        <script>
+            $(document).ready(function(){
+                $('#botonModalEdicion').click();
+            });
+        </script>
+    {%endif%}
 {% endblock %}
