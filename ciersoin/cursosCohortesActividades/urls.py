@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^listar$',listar_actividades),
     url(r'^editaractividad/(\d+)$',editar_actividad),
     url(r'^eliminaractividad/(\d+)$',eliminar_actividad),
+    url(r'^crearcohorte$',crear_cohorte),
 )
