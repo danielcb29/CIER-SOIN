@@ -39,31 +39,25 @@
                                     {{form.numero_cohorte}}
                                 </div>
 
-
                                 <div class="form-group" id="data_1">
                                     {{form.fecha_inicial.errors}}
-                                    <label class="col-lg-2 control-label">{{form.fecha_inicial.label}}</label>
-                                    <div class="col-lg-4">
+                                    <label>{{form.fecha_inicial.label}}</label>
                                         <div class=" input-group date ">
                                             <span class="input-group-addon "><i class="fa fa-calendar"></i>
                                             </span>
                                             {{form.fecha_inicial}}
                                         </div>
-                                    </div>
                                </div>
 
 
-                                <div class="form-group" id="data_2">
+                                <div class="form-group" id="data_1">
                                     {{form.fecha_final.errors}}
-                                    <label class="col-lg-2 control-label">{{form.fecha_final.label}}</label>
-                                    <div class="col-lg-4">
+                                    <label>{{form.fecha_final.label}}</label>
                                         <div class="input-group date ">
                                                     <span class="input-group-addon "><i class="fa fa-calendar"></i>
                                                     </span>
                                                     {{form.fecha_final}}
                                         </div>
-
-                                    </div>
                                </div>
 
                                 <div class="form-group">
@@ -108,25 +102,12 @@
 
 
 {% block js %}
+    {{block.super}}
    <!-- Data picker -->
    <script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
    <!-- Chosen -->
     <script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
-    <!-- Switchery -->
-   <script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
-    <script>
-        $(document).ready(function(){
-            var changeCheckbox = document.querySelector('.js-check-change');
-            if (changeCheckbox.checked){
-                document.getElementById("id_fecha_inicial").disabled = true;
-                document.getElementById("id_fecha_final").required = false;
-            }else{
-                document.getElementById("id_fecha_fin_vin").disabled = false;
-                document.getElementById("id_fecha_fin_vin").required = true;
-            }
 
-        });
-    </script>
    <script type="text/javascript">
             $('#data_1 .input-group.date').datepicker({
                 todayBtn: "linked",
@@ -136,37 +117,6 @@
                 autoclose: true
             });
 
-            $('#data_2 .input-group.date').datepicker({
-                startView: 2,
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                autoclose: true
-            });
-
-            $('#data_4 .input-group.date').datepicker({
-                minViewMode: 1,
-                keyboardNavigation: false,
-                forceParse: false,
-                autoclose: true,
-                todayHighlight: true
-            });
-
-            var elem_2 = document.querySelector('.js-switch_2');
-            var switchery_2 = new Switchery(elem_2, { color: '#ED5565' , size: 'small'});
-            var changeCheckbox = document.querySelector('.js-check-change');
-            changeCheckbox.onchange = function() {
-                if (changeCheckbox.checked){
-                    //Nos chekiaron
-                    document.getElementById("id_fecha_fin_vin").disabled = true;
-                    document.getElementById("id_fecha_fin_vin").required = false;
-
-                }else{
-                    //Nos deschekiaron
-                    document.getElementById("id_fecha_fin_vin").disabled = false;
-                    document.getElementById("id_fecha_fin_vin").required = true;
-                }
-            };
 
             var config = {
                 '.chosen-select'           : {},
@@ -180,7 +130,7 @@
             }
 
    </script>
-{{block.super}}
+
 
 
 {% endblock %}
