@@ -11,13 +11,13 @@
                         <h1 class="page-header">
                             Reportes <small>Datos estadisticos recuperados del sistema</small>
                         </h1>
-                        {% ifequal regs 'NO' %}
+                        {% ifequal regs 'SI' %}
                             <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
                                 <i class="fa fa-check"></i> Se han encontrado registros para esos datos!
                             </div>
                         {% endifequal %}
-                        {% ifequal regs 'SI' %}
+                        {% ifequal regs 'NO' %}
                             <div class="alert alert-danger alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
                                 <i class="fa fa-check"></i> Lo sentimos no hay registros con dichos datos, cambie los parametros de busqueda
@@ -60,7 +60,7 @@
                                  <div class="col-lg-3">
                                       <div class="form-group">
                                           <label>Año [Reportes Semestrales] *</label>
-                                          <input type="number" min="2015" class="form-control">
+                                          <input type="number" min="2015" name="year" id="id_year" class="form-control">
                                       </div>
                                  </div>
                                  <div class="col-lg-3">
@@ -73,7 +73,7 @@
                          </form>
 
                         <br/>
-                        Estos reportes muestran las estadisticas del mes: {{mes}} ; Periodo: {{periodo}} ; Año: {{year}}
+                        Estos reportes muestran las estadisticas del mes: <strong>{{mes}}</strong> ; Periodo: <strong>{{periodo}}</strong> ; Año: <strong>{{year}}</strong>
 
                         <br/>
                         <br/>
