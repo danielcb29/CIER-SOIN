@@ -11,9 +11,73 @@
                         <h1 class="page-header">
                             Reportes <small>Datos estadisticos recuperados del sistema</small>
                         </h1>
-                        Estos reportes muestran las estadisticas del mes: {{mes}}
+                        {% ifequal regs 'NO' %}
+                            <div class="alert alert-success alert-dismissable">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                                <i class="fa fa-check"></i> Se han encontrado registros para esos datos!
+                            </div>
+                        {% endifequal %}
+                        {% ifequal regs 'SI' %}
+                            <div class="alert alert-danger alert-dismissable">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                                <i class="fa fa-check"></i> Lo sentimos no hay registros con dichos datos, cambie los parametros de busqueda
+                            </div>
+                        {% endifequal %}
+                        Ingrese los parametros de busqueda:
                         <br/>
                         <br/>
+                         <form id="form" action="" method="post" >
+                             {% csrf_token %}
+                             <div class="row">
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label>Mes [Reportes Mensulaes] *</label>
+                                          <select name="mes" id="id_mes" class="form-control required" required>
+                                              <option value="1">Enero</option>
+                                              <option value="2">Febrero</option>
+                                              <option value="3">Marzo</option>
+                                              <option value="4">Abril</option>
+                                              <option value="5">Mayo</option>
+                                              <option value="6">Junio</option>
+                                              <option value="7">Julio</option>
+                                              <option value="8">Agosto</option>
+                                              <option value="9">Septiembre</option>
+                                              <option value="10">Octubre</option>
+                                              <option value="11">Noviembre</option>
+                                              <option value="12">Diciembre</option>
+                                          </select>
+                                      </div>
+                                 </div>
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label>Periodo [Reportes Semestrales] *</label>
+                                          <select name="periodo" id="id_periodo" class="form-control required" required>
+                                              <option value="I:Feb-Jun">I:Feb-Jun</option>
+                                              <option value="II:Agos-Dic">II:Agos-Dic</option>
+                                          </select>
+                                      </div>
+                                 </div>
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label>Año [Reportes Semestrales] *</label>
+                                          <input type="number" min="2015" class="form-control">
+                                      </div>
+                                 </div>
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label></label><br/>
+                                          <button type="submit" class="btn btn-success">Buscar</button>
+                                      </div>
+                                 </div>
+                             </div>
+                         </form>
+
+                        <br/>
+                        Estos reportes muestran las estadisticas del mes: {{mes}} ; Periodo: {{periodo}} ; Año: {{year}}
+
+                        <br/>
+                        <br/>
+
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i> Cursos con Menos potencial de avance
