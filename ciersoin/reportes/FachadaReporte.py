@@ -1,6 +1,6 @@
 __author__ = 'alvaromartinez'
 from teacher.models import LeaderTeacher
-from cursosCohortesActividades.models import Curso,Actividad,Cohorte,Actividad_Cohorte
+from cursosCohortesActividades.models import Curso,Actividad,Cohorte,Actividad_Cohorte,Aspirante
 from calificacionesCertificados.models import Calificacion,Certificado
 
 class FachadaReporte():
@@ -25,19 +25,30 @@ class FachadaReporte():
 
 #La	tienda	genera	unos	reportes	mensuales o	semestrales con	visualizaciones	graficas	de:
 
-    #Definicion de la funcion para la generacion de reporte de asistentes por  un curso determinado
-    def reportarAsistCurso(self, idCurso):
-        pass
+    #####ON TESTING########
+    def ordenar_cursos(self,cursos):
+        a = []
+        b = []
+        for c in cursos:
+            a.append(c.nombre)
+            b.append(c.total)
+        return a,b
 
-    #Definicion de la funcion para la generacion de reporte de docentes por departamento
-    def reportarDocentePorDepart(self, idDepart):
-        pass
-
-    #Definicion de la funcion para la generacion de reporte de cursos con menos potencial de avance
-    def reportarCursosMenosPotencial(self):
-        pass
+    #Cursos	con	mayor	numero	de	asistentes en	el	mes	(Top	10)
+    #####ON TESTING########
+    def top10_max_estudiantes(self,mes,year):
+        cursos = Curso.objects.all()
+        for c in cursos:
+            cohortes = Cohorte.objects.filter(fecha_inicial__month__lte= mes, fecha_final__month__gte = mes, fecha_inicial__year__lte=year, fecha_final__year__gte=year,curso=c)
+            total = 0
+            for ch in cohortes:
+                total += ch.estudiantes.all().count()
+            c.total = total
+        nombres,valores = self.ordenar_cursos(cursos)
+        return nombres,valores
 
     #Definicion de la funcion para la generacion de reporte de Porcentaje de aprobados y reprobados en un curso determinado
+    #####ON TESTING########
     def reportarAprobReproCurso(self,periodo,year):
         lts = LeaderTeacher.objects.all().order_by('departamento')
         cohorte_in_semester = Cohorte.objects.filter(fecha_final__year=year,estudiantes__in= lts,periodo=periodo).distinct()
@@ -58,14 +69,16 @@ class FachadaReporte():
             i += 1
 
         return ap_percent,rp_percent
-    #Definicion de la funcion para la generacion de reporte de notas de los estudiantes en un curso determinado
-    def reportarNotasEstu(self, idCurso):
-        pass
 
-    #Definicion de la funcion para la generacion de reporte de historico de los estudiantes que han ganado un curso
-    def reportarHistoricoEstudi(self, idCurso):
-        pass
+    #Numero	de	docentes	estudiantes	que	han	llegado	en	el	mes	de	cada	departamento	de	la	region
+    def total_lt_mes_region(self,mes,year):
+        departamentos = ["Valle", "Cauca", "Narino", "Tolima", "Huila", "Caqueta", "Putumayo","Amazonas"]
+        cohortes = Cohorte.objects.filter(fecha_inicial__month=mes,fecha_inicial__year=year)
+        numero = []
+        for dpto in departamentos:
+            total=0
+            for ch in cohortes:
+                total += ch.estudiantes.filter(departamento=dpto).count()
+            numero.append(total)
+        return numero
 
-    #Definicion de la funcion para la generacion de reporte de datos de los estudiantes detallados y organizados por departamentos
-    def reportarEstudianteDetPorDepartamento(self):
-        pass

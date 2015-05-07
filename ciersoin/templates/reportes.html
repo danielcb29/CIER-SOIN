@@ -237,7 +237,7 @@
                     <div class="col-lg-10">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Porcentajes de estudiantes que aprobaron y reprobaron Semestre XXXX[EX: FEB-JUN I]</h3>
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Porcentajes de estudiantes que aprobaron y reprobaron Semestre {{periodo}} {{year}}</h3>
                             </div>
                             <div class="panel-body">
                                 <canvas id="bar_porcentajes"></canvas>
@@ -298,7 +298,7 @@
     $(document).ready(function(){
 
         var datos_cursoaspirante = {
-        labels: ['Discretas','Pintura','Magia', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso'], // {{lista_cursos|safe}}
+        labels:{{lista_cursos|safe}} , // ['Discretas','Pintura','Magia', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso']
         datasets: [
                 {
                     label: "Curso con mayor numero de asistentes",
@@ -306,7 +306,7 @@
                     strokeColor: "rgba(26,179,148,0.8)",
                     highlightFill: "rgba(26,179,148,0.75)",
                     highlightStroke: "rgba(26,179,148,1)",
-                    data: [23,78,34,67,23,56,49,56,43,78] // {{cantidad_asistentes}}
+                    data: {{cantidad_asistentes}} //[23,78,34,67,23,56,49,56,43,78]
                 }
             ]
         };
@@ -367,49 +367,49 @@
 
         var doughnutData = [
         {
-            value: 300, //{{ingreso_valle}}
+            value: {{ingreso_valle}}, //300
             color: "#a3e1d4",
             highlight: "#1ab394",
             label: "Valle"
         },
         {
-            value: 50, //{{ingreso_cauca}}
+            value: {{ingreso_cauca}}, //50
             color: "#dedede",
             highlight: "#1ab394",
             label: "Cauca"
         },
         {
-            value: 100, //{{ingreso_narino}}
+            value: {{ingreso_narino}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Nariño"
         },
         {
-            value: 100, //{{ingreso_tolima}}
+            value: {{ingreso_tolima}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Tolima"
         },
         {
-            value: 100, //{{ingreso_huila}}
+            value: {{ingreso_huila}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Huila"
         },
         {
-            value: 100, //{{ingreso_caqueta}}
+            value: {{ingreso_caqueta}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Caqueta"
         },
         {
-            value: 100, //{{ingreso_putumayo}}
+            value: {{ingreso_putumayo}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Putumayo"
         },
         {
-            value: 100, //{{ingreso_amazonas}}
+            value: {{ingreso_amazonas}}, //100
             color: "#FCF8E3",
             highlight: "#1ab394",
             label: "Amazonas"
