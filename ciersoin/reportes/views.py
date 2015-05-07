@@ -14,20 +14,19 @@ def dashboards(request):
     year = 'No Seleccionado'
     lista_cursos= []
     cantidad_asistentes = []
-    numero_lt_region=[]
     if request.method == 'POST':
         mes = request.POST['mes']
         periodo=request.POST['periodo']
         year =request.POST['year']
         #Reporte aprobados y reporbados en un semestre
-        #aproved,reporv = fachada.reportarAprobReproCurso(month) #Aprobados y reporbados ordenados por dpto
+        aproved,reporv = fachada.reportarAprobReproCurso(periodo,year) #Aprobados y reporbados ordenados por dpto
 
         #Cantidad de asistentes a cursos
         #lista_cursos,cantidad_asistentes = fachada.top10_max_estudiantes(mes,year)
 
         #Cantidad de lt por dpto en el mes
         numero_lt_region=fachada.total_lt_mes_region(mes,year)
-        return render(request,'reportes.html',{'mes':mes,'periodo':periodo,'year':year,'regs':regs,'lista_cursos':lista_cursos,'cantidad_asistentes':cantidad_asistentes,'ingreso_valle':numero_lt_region[0],'ingreso_cauca':numero_lt_region[1],'ingreso_narino':numero_lt_region[2],'ingreso_tolima':numero_lt_region[3],'ingreso_huila':numero_lt_region[4],'ingreso_caqueta':numero_lt_region[5],'ingreso_putumayo':numero_lt_region[6],'ingreso_amazonas':numero_lt_region[7]})
+        return render(request,'reportes.html',{'mes':mes,'periodo':periodo,'year':year,'regs':regs,'lista_cursos':lista_cursos,'cantidad_asistentes':cantidad_asistentes,'ingreso_valle':numero_lt_region[0],'ingreso_cauca':numero_lt_region[1],'ingreso_narino':numero_lt_region[2],'ingreso_tolima':numero_lt_region[3],'ingreso_huila':numero_lt_region[4],'ingreso_caqueta':numero_lt_region[5],'ingreso_putumayo':numero_lt_region[6],'ingreso_amazonas':numero_lt_region[7],'porcentaje_gano':aproved,'porcentaje_perdio':reporv})
     return render(request,'reportes.html',{'mes':mes,'periodo':periodo,'year':year,'regs':regs})
 
 def listados(request):

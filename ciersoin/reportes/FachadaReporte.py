@@ -25,6 +25,10 @@ class FachadaReporte():
 
 #La	tienda	genera	unos	reportes	mensuales o	semestrales con	visualizaciones	graficas	de:
 
+    #Cursos	con	menos	potencial	de	avance
+    ####ON TESTING####
+    def cursos_bajo_avance(self,mes,year):
+        pass
     #####ON TESTING########
     def ordenar_cursos(self,cursos):
         a = []
@@ -48,27 +52,36 @@ class FachadaReporte():
         return nombres,valores
 
     #Definicion de la funcion para la generacion de reporte de Porcentaje de aprobados y reprobados en un curso determinado
-    #####ON TESTING########
     def reportarAprobReproCurso(self,periodo,year):
-        lts = LeaderTeacher.objects.all().order_by('departamento')
-        cohorte_in_semester = Cohorte.objects.filter(fecha_final__year=year,estudiantes__in= lts,periodo=periodo).distinct()
-        array_act_cohor = []
-        for coh in cohorte_in_semester:
-            actvi = Actividad_Cohorte.objects.filter(cohorte=coh)
-            array_act_cohor.append(actvi)
+        departamentos = ["Valle", "Cauca", "Narino", "Tolima", "Huila", "Caqueta", "Putumayo","Amazonas"]
+        cohortes = Cohorte.objects.filter(periodo=periodo,fecha_final__year=year)
+        ganaron = []
+        perdieron = []
+        for dpto in departamentos:
+            paso = 0
+            reprob = 0
+            for ch in cohortes:
+                est = ch.estudiantes.filter(departamento=dpto)
+                act = Actividad_Cohorte.objects.filter(cohorte=ch)
+                for e in est:
+                    definitiva = 0
+                    for a in act:
+                        calificacion = float(Calificacion.objects.get(leader_teacher=e,actividad_cohorte=a).valor)
+                        #Que pasa si el curso va atrasao?, se le pone 0
 
-        aproved = Certificado.objects.filter(cohorte__in = cohorte_in_month,tipo='Excelencia').count
-        reporv = Certificado.objects.filter(cohorte__in = cohorte_in_month,tipo='Asistencia').count
-        i = 0
-        ap_percent = []
-        rp_percent = []
-        for ap in aproved:
-            total = ap + reporv[i]
-            ap_percent.append((ap/total)*100)
-            rp_percent.append((reporv[i]/total)*100)
-            i += 1
-
-        return ap_percent,rp_percent
+                        if calificacion == -1.0:
+                            definitiva+=0.0
+                        else:
+                            definitiva+=calificacion
+                    definitiva /= len(act)
+                    print definitiva
+                    if definitiva <= 2.5:
+                        reprob+=1
+                    else:
+                        paso+=1
+            ganaron.append(paso )
+            perdieron.append(reprob)
+        return ganaron,perdieron
 
     #Numero	de	docentes	estudiantes	que	han	llegado	en	el	mes	de	cada	departamento	de	la	region
     def total_lt_mes_region(self,mes,year):
