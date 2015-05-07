@@ -23,6 +23,8 @@ class FachadaReporte():
             c.cert = Certificado.objects.filter(cohorte=c)
         return cohortes
 
+#La	tienda	genera	unos	reportes	mensuales o	semestrales con	visualizaciones	gráficas	de:
+
     #Definicion de la funcion para la generacion de reporte de asistentes por  un curso determinado
     def reportarAsistCurso(self, idCurso):
         pass
