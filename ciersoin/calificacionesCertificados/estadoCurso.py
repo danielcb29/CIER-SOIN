@@ -28,12 +28,10 @@ class EstadoCursoNoExiste():
         definitiva = 0.0
         for act in actividades:
             calificacion = Calificacion.objects.get(actividad_cohorte=act,leader_teacher=lt)
-            print 'CALIFICACION' + str(calificacion)
             if float(calificacion.valor) == -1.0:
                 return False
             definitiva+=calificacion.valor
         definitiva /= len(actividades)
-        print 'DEFINITIVA' + str(definitiva)
         if definitiva <= 2.5:
             return False
         elif definitiva >= 2.55 and definitiva <= 3.5 :

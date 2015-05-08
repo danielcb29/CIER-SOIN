@@ -89,7 +89,26 @@ def ingresar_notas(request,id_cohor,id_act):
             est.val = calificacion
     return render(request,'calificar_actividad.html',{'cohorte':cohorte,'actividad':actividad,'estudiantes':estudiantes,'exito':exito})
 
-
+@login_required
+@permission_required('teacher.anadir_calificaciones',login_url="/index")
+def listar_calificaciones(request):
+    mt = MasterTeacher.objects.get(id=request.user.id)
+    cohortes = Cohorte.objects.filter(master_teacher=mt,activo=True)
+    for c in cohortes:
+        actividades = Actividad_Cohorte.objects.filter(cohorte=c)
+        estudiantes = c.estudiantes.all()
+        for lt in estudiantes:
+            calificaciones = []
+            for a in actividades:
+                calif = Calificacion.objects.get(actividad_cohorte=a,leader_teacher=lt)
+                if float(calif.valor) != -1.0:
+                    calificaciones.append(calif.valor)
+                else:
+                    calificaciones.append('NIL')
+            lt.calificaciones = calificaciones
+        c.actividades = actividades
+        c.est = estudiantes
+    return render(request,'listar_calificaciones.html',{'cohortes':cohortes})
 
 
 
