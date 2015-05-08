@@ -2,6 +2,7 @@ __author__ = 'alvaromartinez'
 from teacher.models import LeaderTeacher
 from cursosCohortesActividades.models import Curso,Actividad,Cohorte,Actividad_Cohorte,Aspirante
 from calificacionesCertificados.models import Calificacion,Certificado
+import os,datetime
 
 class FachadaReporte():
 
@@ -26,9 +27,21 @@ class FachadaReporte():
 #La	tienda	genera	unos	reportes	mensuales o	semestrales con	visualizaciones	graficas	de:
 
     #Cursos	con	menos	potencial	de	avance
-    ####ON TESTING####
-    def cursos_bajo_avance(self,mes,year):
-        pass
+    def cursos_bajo_avance(self):
+        os.environ['TZ'] = 'America/Bogota'
+        calificaciones = Calificacion.objects.filter(valor=-1.0).distinct('actividad_cohorte')
+        cursos_atrasados  =[]
+        for cal in calificaciones:
+            cohorte = cal.actividad_cohorte.cohorte
+            now = datetime.date.today()
+            if len(cursos_atrasados) == 5:
+                break
+            elif cohorte.fecha_final < now:
+                cohorte.curso.dias = (now - cohorte.fecha_final).days
+                cursos_atrasados.append(cohorte.curso)
+        return cursos_atrasados
+
+
     #####ON TESTING########
     def ordenar_cursos(self,cursos):
         a = []

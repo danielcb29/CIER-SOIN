@@ -103,101 +103,26 @@
                             </div>
                         </div>
                     </div>
-                    <!--
-                        {%for curso in bajo_avance%}
+                    
+                    {%for curso in bajo_avance%}
                         <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <h4>Matematicas Discretas</h4>
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        {% endfor %}
-                    -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-warning fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <h4>{{curso.nombre}}</h4>
+                                            <div>{{curso.dias}} Dias!</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
+                    
                 <!-- /.row -->
                 <br/>
                 <br/>

@@ -14,6 +14,7 @@ def dashboards(request):
     year = 'No Seleccionado'
     lista_cursos= []
     cantidad_asistentes = []
+    cursos_bajo = fachada.cursos_bajo_avance()
     if request.method == 'POST':
         mes = request.POST['mes']
         periodo=request.POST['periodo']
@@ -24,10 +25,13 @@ def dashboards(request):
         #Cantidad de asistentes a cursos
         #lista_cursos,cantidad_asistentes = fachada.top10_max_estudiantes(mes,year)
 
+        #Cursos con bajo avance
+
+
         #Cantidad de lt por dpto en el mes
         numero_lt_region=fachada.total_lt_mes_region(mes,year)
-        return render(request,'reportes.html',{'mes':mes,'periodo':periodo,'year':year,'regs':regs,'lista_cursos':lista_cursos,'cantidad_asistentes':cantidad_asistentes,'ingreso_valle':numero_lt_region[0],'ingreso_cauca':numero_lt_region[1],'ingreso_narino':numero_lt_region[2],'ingreso_tolima':numero_lt_region[3],'ingreso_huila':numero_lt_region[4],'ingreso_caqueta':numero_lt_region[5],'ingreso_putumayo':numero_lt_region[6],'ingreso_amazonas':numero_lt_region[7],'porcentaje_gano':aproved,'porcentaje_perdio':reporv})
-    return render(request,'reportes.html',{'mes':mes,'periodo':periodo,'year':year,'regs':regs})
+        return render(request,'reportes.html',{'mes':mes,'periodo':periodo,'year':year,'regs':regs,'lista_cursos':lista_cursos,'cantidad_asistentes':cantidad_asistentes,'ingreso_valle':numero_lt_region[0],'ingreso_cauca':numero_lt_region[1],'ingreso_narino':numero_lt_region[2],'ingreso_tolima':numero_lt_region[3],'ingreso_huila':numero_lt_region[4],'ingreso_caqueta':numero_lt_region[5],'ingreso_putumayo':numero_lt_region[6],'ingreso_amazonas':numero_lt_region[7],'porcentaje_gano':aproved,'porcentaje_perdio':reporv,'bajo_avance':cursos_bajo})
+    return render(request,'reportes.html',{'mes':mes,'periodo':periodo,'year':year,'regs':regs,'bajo_avance':cursos_bajo})
 
 def listados(request):
     cursos = Curso.objects.all()
