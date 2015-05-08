@@ -182,7 +182,15 @@
                         {% if 'teacher.anadir_calificaciones' in perms and user.is_authenticated%}
                         <!-- calificaciones MT-->
                         <li>
-                            <a href="/calificaciones/calificar"><i class="fa fa-fw fa-desktop"></i> Calificaciones</a>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#cal_mt"><i class="fa fa-fw fa-bank"></i> Calificaciones <i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="cal_mt" class="collapse">
+                                    <li>
+                                        <a href="/calificaciones/calificar">Ingresar</a>
+                                    </li>
+                                    <li>
+                                        <a href="/calificaciones/listar">Visualizar</a>
+                                    </li>
+                                </ul>
                         </li>
                         {% endif %}
 

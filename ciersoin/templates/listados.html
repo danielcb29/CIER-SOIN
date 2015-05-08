@@ -7,71 +7,149 @@
                         <h1 class="page-header">
                             Reportes en tablas <small>Detalles de estudiantes requeridos</small>
                         </h1>
+
+                        {% ifequal regs 'SI' %}
+                            <div class="alert alert-success alert-dismissable">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                                <i class="fa fa-check"></i> Se han encontrado registros para esos datos!
+                            </div>
+                        {% endifequal %}
+                        {% ifequal regs 'NO' %}
+                            <div class="alert alert-danger alert-dismissable">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                                <i class="fa fa-check"></i> Lo sentimos no hay registros con dichos datos, cambie los parametros de busqueda
+                            </div>
+                        {% endifequal %}
+
+                        Ingrese los parametros de busqueda:
+                        <br/>
+                        <br/>
+                         <form id="form" action="" method="post" >
+                             {% csrf_token %}
+                             <div class="row">
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label>Mes *</label>
+                                          <select name="mes" id="id_mes" class="form-control required" required>
+                                              <option value="1">Enero</option>
+                                              <option value="2">Febrero</option>
+                                              <option value="3">Marzo</option>
+                                              <option value="4">Abril</option>
+                                              <option value="5">Mayo</option>
+                                              <option value="6">Junio</option>
+                                              <option value="7">Julio</option>
+                                              <option value="8">Agosto</option>
+                                              <option value="9">Septiembre</option>
+                                              <option value="10">Octubre</option>
+                                              <option value="11">Noviembre</option>
+                                              <option value="12">Diciembre</option>
+                                          </select>
+                                      </div>
+                                 </div>
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label>Año *</label>
+                                          <input type="number" min="2015" name="year" id="id_year" class="form-control">
+                                      </div>
+                                 </div>
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label>Curso *</label>
+                                          <select  name="curso" id="id_curso" class="form-control" required>
+                                              {%for c in cursos%}
+                                              <option value="{{c}}">{{c}}</option>
+                                              {%endfor%}
+                                          </select>
+                                      </div>
+                                 </div>
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label></label><br/>
+                                          <button type="submit" class="btn btn-success">Buscar</button>
+                                      </div>
+                                 </div>
+                             </div>
+                         </form>
+
+                        <br/>
+                        Estos reportes muestran las estadisticas del mes: <strong>{{mes}}</strong> ; Curso: <strong>{{curso}}</strong> ; Año: <strong>{{year}}</strong>
+
+                        <br/>
+                        <br/>
+
+
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-font"></i> Historico de estudiantes que han ganado un curso
+                                <i class="fa fa-font"></i> Detalle	de	estudiantes	en	{{curso}}	por	departamentos, se organizan por COHORTES
                             </li>
 
                         </ol>
+                        {% for d in detalle_dpto%}
+                            <div class="col-lg-10">
+                                <h4>{{d}}</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Apellido</th>
+                                                <th>Identificación</th>
+                                                <th>Departamento</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {%for e in d.est%}
+                                            <tr>
+                                                <td>{{e.first_name}}</td>
+                                                <td>{{e.last_name}}</td>
+                                                <td>{{e.cedula}}</td>
+                                                <td>{{e.departamento}}</td>
+                                            </tr>
+                                        {%endfor%}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {%endfor%}
+                        <br/>
+                        <br/>
                         <div class="col-lg-10">
-                        <h4>Detalles de estudiantes</h4>
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <ol class="breadcrumb">
+                                <li class="active">
+                                    <i class="fa fa-font"></i>Histórico de estudiantes	que	ganaron {{curso}}, se organizan por COHORTES
+                                </li>
+
+                            </ol>
                         </div>
-                    </div>
+                        {% for h in historico_mes%}
+                            <div class="col-lg-10">
+                                <h4>{{h}}</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Apellido</th>
+                                                <th>Identificación</th>
+                                                <th>Departamento</th>
+                                                <th>Merito</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {%for c in h.cert%}
+                                            <tr>
+                                                <td>{{c.leader_teacher.first_name}}</td>
+                                                <td>{{c.leader_teacher.last_name}}</td>
+                                                <td>{{c.leader_teacher.cedula}}</td>
+                                                <td>{{c.leader_teacher.departamento}}</td>
+                                                <td>{{c.tipo}}</td>
+                                            </tr>
+                                        {%endfor%}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        {%endfor%}
                     </div>
 
                 </div>

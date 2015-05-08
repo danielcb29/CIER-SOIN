@@ -11,9 +11,73 @@
                         <h1 class="page-header">
                             Reportes <small>Datos estadisticos recuperados del sistema</small>
                         </h1>
-                        Estos reportes muestran las estadisticas del mes: {{mes}}
+                        {% ifequal regs 'SI' %}
+                            <div class="alert alert-success alert-dismissable">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                                <i class="fa fa-check"></i> Se han encontrado registros para esos datos!
+                            </div>
+                        {% endifequal %}
+                        {% ifequal regs 'NO' %}
+                            <div class="alert alert-danger alert-dismissable">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                                <i class="fa fa-check"></i> Lo sentimos no hay registros con dichos datos, cambie los parametros de busqueda
+                            </div>
+                        {% endifequal %}
+                        Ingrese los parametros de busqueda:
                         <br/>
                         <br/>
+                         <form id="form" action="" method="post" >
+                             {% csrf_token %}
+                             <div class="row">
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label>Mes [Reportes Mensulaes] *</label>
+                                          <select name="mes" id="id_mes" class="form-control required" required>
+                                              <option value="1">Enero</option>
+                                              <option value="2">Febrero</option>
+                                              <option value="3">Marzo</option>
+                                              <option value="4">Abril</option>
+                                              <option value="5">Mayo</option>
+                                              <option value="6">Junio</option>
+                                              <option value="7">Julio</option>
+                                              <option value="8">Agosto</option>
+                                              <option value="9">Septiembre</option>
+                                              <option value="10">Octubre</option>
+                                              <option value="11">Noviembre</option>
+                                              <option value="12">Diciembre</option>
+                                          </select>
+                                      </div>
+                                 </div>
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label>Periodo [Reportes Semestrales] *</label>
+                                          <select name="periodo" id="id_periodo" class="form-control required" required>
+                                              <option value="I:Feb-Jun">I:Feb-Jun</option>
+                                              <option value="II:Agos-Dic">II:Agos-Dic</option>
+                                          </select>
+                                      </div>
+                                 </div>
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label>Año [Reportes Semestrales] *</label>
+                                          <input type="number" min="2015" name="year" id="id_year" class="form-control">
+                                      </div>
+                                 </div>
+                                 <div class="col-lg-3">
+                                      <div class="form-group">
+                                          <label></label><br/>
+                                          <button type="submit" class="btn btn-success">Buscar</button>
+                                      </div>
+                                 </div>
+                             </div>
+                         </form>
+
+                        <br/>
+                        Estos reportes muestran las estadisticas del mes: <strong>{{mes}}</strong> ; Periodo: <strong>{{periodo}}</strong> ; Año: <strong>{{year}}</strong>
+
+                        <br/>
+                        <br/>
+
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i> Cursos con Menos potencial de avance
@@ -39,101 +103,26 @@
                             </div>
                         </div>
                     </div>
-                    <!--
-                        {%for curso in bajo_avance%}
+                    
+                    {%for curso in bajo_avance%}
                         <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <h4>Matematicas Discretas</h4>
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        {% endfor %}
-                    -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-warning fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <h4>{{curso.nombre}}</h4>
+                                            <div>{{curso.dias}} Dias!</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="panel panel-warning">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <i class="fa fa-warning fa-5x"></i>
-                                    </div>
-                                    <div class="col-xs-9 text-right">
-                                        <!--div class="huge"--><h4>Matematicas Discretas</h4><!--/div-->
-                                        <div>24 Dias!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
+                    
                 <!-- /.row -->
                 <br/>
                 <br/>
@@ -148,7 +137,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">Top 10</div>
-                                        <div>Estos que a la fecha presentan mayor numero de asistentes</div>
+                                        <div>Estos que en el mes {{mes}} presentan mayor numero de asistentes</div>
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +162,7 @@
                     <div class="col-lg-10">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Porcentajes de estudiantes que aprobaron y reprobaron Semestre XXXX[EX: FEB-JUN I]</h3>
+                                <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Porcentajes de estudiantes que aprobaron y reprobaron Semestre {{periodo}} {{year}}</h3>
                             </div>
                             <div class="panel-body">
                                 <canvas id="bar_porcentajes"></canvas>
@@ -189,7 +178,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">%</div>
-                                        <div>Esta es el porcentaje de estudiantes que han reprobado y aprobado en el actual semestre. Gris: Reprobado Verde:Aprobado</div>
+                                        <div>Este es el numero de estudiantes que han reprobado y aprobado en el actual semestre. Gris: Reprobado Verde:Aprobado</div>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +223,7 @@
     $(document).ready(function(){
 
         var datos_cursoaspirante = {
-        labels: ['Discretas','Pintura','Magia', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso'], // {{lista_cursos|safe}}
+        labels:{{lista_cursos|safe}} , // ['Discretas','Pintura','Magia', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso', 'Curso']
         datasets: [
                 {
                     label: "Curso con mayor numero de asistentes",
@@ -242,7 +231,7 @@
                     strokeColor: "rgba(26,179,148,0.8)",
                     highlightFill: "rgba(26,179,148,0.75)",
                     highlightStroke: "rgba(26,179,148,1)",
-                    data: [23,78,34,67,23,56,49,56,43,78] // {{cantidad_asistentes}}
+                    data: {{cantidad_asistentes}} //[23,78,34,67,23,56,49,56,43,78]
                 }
             ]
         };
@@ -272,7 +261,7 @@
                 strokeColor: "rgba(220,220,220,0.8)",
                 highlightFill: "rgba(220,220,220,0.75)",
                 highlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40, 78] //{{porcentaje_gano}}
+                data: {{porcentaje_perdio}} //[65, 59, 80, 81, 56, 55, 40, 78]
             },
             {
                 label: "My Second dataset",
@@ -280,7 +269,7 @@
                 strokeColor: "rgba(26,179,148,0.8)",
                 highlightFill: "rgba(26,179,148,0.75)",
                 highlightStroke: "rgba(26,179,148,1)",
-                data: [28, 48, 40, 19, 86, 27, 90,69] //{{porcentaje_perdio}}
+                data:{{porcentaje_gano}} // [28, 48, 40, 19, 86, 27, 90,69]
             }
         ]
         };
@@ -303,49 +292,49 @@
 
         var doughnutData = [
         {
-            value: 300, //{{ingreso_valle}}
+            value: {{ingreso_valle}}, //300
             color: "#a3e1d4",
             highlight: "#1ab394",
             label: "Valle"
         },
         {
-            value: 50, //{{ingreso_cauca}}
+            value: {{ingreso_cauca}}, //50
             color: "#dedede",
             highlight: "#1ab394",
             label: "Cauca"
         },
         {
-            value: 100, //{{ingreso_narino}}
+            value: {{ingreso_narino}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Nariño"
         },
         {
-            value: 100, //{{ingreso_tolima}}
+            value: {{ingreso_tolima}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Tolima"
         },
         {
-            value: 100, //{{ingreso_huila}}
+            value: {{ingreso_huila}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Huila"
         },
         {
-            value: 100, //{{ingreso_caqueta}}
+            value: {{ingreso_caqueta}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Caqueta"
         },
         {
-            value: 100, //{{ingreso_putumayo}}
+            value: {{ingreso_putumayo}}, //100
             color: "#b5b8cf",
             highlight: "#1ab394",
             label: "Putumayo"
         },
         {
-            value: 100, //{{ingreso_amazonas}}
+            value: {{ingreso_amazonas}}, //100
             color: "#FCF8E3",
             highlight: "#1ab394",
             label: "Amazonas"
