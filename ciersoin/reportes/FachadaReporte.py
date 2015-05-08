@@ -3,6 +3,7 @@ from teacher.models import LeaderTeacher
 from cursosCohortesActividades.models import Curso,Actividad,Cohorte,Actividad_Cohorte,Aspirante
 from calificacionesCertificados.models import Calificacion,Certificado
 import os,datetime
+from django.db.models import Count
 
 class FachadaReporte():
 
@@ -42,26 +43,19 @@ class FachadaReporte():
         return cursos_atrasados
 
 
-    #####ON TESTING########
-    def ordenar_cursos(self,cursos):
-        a = []
-        b = []
-        for c in cursos:
-            a.append(c.nombre)
-            b.append(c.total)
-        return a,b
 
     #Cursos	con	mayor	numero	de	asistentes en	el	mes	(Top	10)
     #####ON TESTING########
     def top10_max_estudiantes(self,mes,year):
-        cursos = Curso.objects.all()
-        for c in cursos:
-            cohortes = Cohorte.objects.filter(fecha_inicial__month__lte= mes, fecha_final__month__gte = mes, fecha_inicial__year__lte=year, fecha_final__year__gte=year,curso=c)
-            total = 0
-            for ch in cohortes:
-                total += ch.estudiantes.all().count()
-            c.total = total
-        nombres,valores = self.ordenar_cursos(cursos)
+        days = [31,28,31,30,31,30,31,31,30,31,30,31]
+        fecha = datetime.date(int(year),int(mes),days[int(mes)-1])
+        consulta =  Cohorte.objects.values('curso').annotate(Count('estudiantes')).order_by('-estudiantes__count').filter(fecha_final__lte=fecha)
+        nombres = []
+        valores = []
+        for curso in consulta:
+            nombres.append(str(Curso.objects.get(id=curso['curso']).nombre))
+            valores.append(int(curso['estudiantes__count']))
+        print nombres,valores
         return nombres,valores
 
     #Definicion de la funcion para la generacion de reporte de Porcentaje de aprobados y reprobados en un curso determinado
@@ -86,8 +80,9 @@ class FachadaReporte():
                             definitiva+=0.0
                         else:
                             definitiva+=calificacion
-                    definitiva /= len(act)
-                    print definitiva
+                    if len(act)>0:
+                        definitiva /= len(act)
+                    #print definitiva
                     if definitiva <= 2.5:
                         reprob+=1
                     else:
