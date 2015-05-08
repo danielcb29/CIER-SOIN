@@ -49,7 +49,7 @@ class FachadaReporte():
     def top10_max_estudiantes(self,mes,year):
         days = [31,28,31,30,31,30,31,31,30,31,30,31]
         fecha = datetime.date(int(year),int(mes),days[int(mes)-1])
-        consulta =  Cohorte.objects.values('curso').annotate(Count('estudiantes')).order_by('-estudiantes__count').filter(fecha_final__lte=fecha)
+        consulta =  Cohorte.objects.values('curso').annotate(Count('estudiantes')).order_by('-estudiantes__count').filter(fecha_final__lte=fecha)[:10]
         nombres = []
         valores = []
         for curso in consulta:
