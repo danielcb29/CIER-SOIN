@@ -2,14 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .cursoobserver import CursoObserver
 from teacher.forms import LeaderTeacherForm
-<<<<<<< HEAD
 from .models import Curso, Actividad, Cohorte
 from .forms import CursoForm, ActividadForm, CohorteForm
-=======
 from teacher.models import LeaderTeacher
 from .models import Curso, Actividad
 from .forms import CursoForm, ActividadForm
->>>>>>> 678a18cd53c1fd626488dfb778e302a5bbd1d8e2
 from django.contrib.auth.decorators import login_required,permission_required
 # Create your views here.
 
