@@ -14,6 +14,11 @@ def consultar_calificaciones(request):
     lt = LeaderTeacher.objects.get(id=request.user.id)
     cohortes = Cohorte.objects.filter(estudiantes=lt,activo=True)
     for c in cohortes:
+        aspirante = Aspirante.objects.filter(leader_teacher=lt,curso=c)
+        if len(aspirante) !=0:
+            asistencia=aspirante[0].asistencia
+        else:
+            asistencia=False
         actividades = Actividad_Cohorte.objects.filter(cohorte=c)
         for a in actividades:
             calif = Calificacion.objects.get(actividad_cohorte=a,leader_teacher=lt)
@@ -22,7 +27,7 @@ def consultar_calificaciones(request):
             else:
                 a.nota = 'NIL'
         c.actividades = actividades
-    return render(request,'visualizar_calificaciones.html',{'cohortes':cohortes})
+    return render(request,'visualizar_calificaciones.html',{'cohortes':cohortes,'asistencia':asistencia})
 
 @login_required
 @permission_required('teacher.ver_calificaciones',login_url="/index")
