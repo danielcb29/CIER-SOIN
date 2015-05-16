@@ -80,7 +80,7 @@ class Aspirante(models.Model):
     curso = models.ForeignKey(Curso)
     aceptado = models.BooleanField(default=False)
     matriculado = models.BooleanField(default=False) #Para listar solo los que no han sido matriculados
-
+    asistencia = models.BooleanField(default=False) #Para conocer su asistencia el curso
     def __str__(self):
         return self.leader_teacher.get_full_name()
 

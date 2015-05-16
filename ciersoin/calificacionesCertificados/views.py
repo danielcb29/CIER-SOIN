@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .estadoCurso import Contexto,EstadoCursoExiste,EstadoCursoNoExiste
 from teacher.models import MasterTeacher,LeaderTeacher
-from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte,Actividad
+from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte,Actividad,Aspirante
 from django.contrib.auth.decorators import login_required,permission_required
 from .models import Calificacion
 
@@ -109,6 +109,30 @@ def listar_calificaciones(request):
         c.actividades = actividades
         c.est = estudiantes
     return render(request,'listar_calificaciones.html',{'cohortes':cohortes})
+
+@login_required
+@permission_required('teacher.anadir_calificaciones',login_url="/index")
+def ingresar_asistencia(request,id_cohor):
+    cohorte = Cohorte.objects.get(id=id_cohor)
+    estudiantes = cohorte.estudiantes.all()
+    exito=False
+    curso = cohorte.curso
+    for es in estudiantes:
+        aspirante = Aspirante.objects.get(curso=curso,leader_teacher=es)
+        es.check = aspirante.asistencia
+    if request.method=='POST':
+        cambio_no=True
+        for es in estudiantes:
+            aspirante = Aspirante.objects.get(curso=curso,leader_teacher=es)
+            if str(es.id) in request.POST:
+                aspirante.asistencia=True
+                es.check=True
+            else:
+                aspirante.asistencia=False
+                es.check=False
+            aspirante.save()
+            exito = True
+    return render(request,'calificar_asistencia.html',{'cohorte':cohorte,'estudiantes':estudiantes,'exito':exito})
 
 
 

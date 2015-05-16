@@ -16,6 +16,11 @@
                         <div class="col-lg-10">
                             {%for cohor in cohortes%}
                                 <h4>{{cohor}}</h4>
+                                <ol class="breadcrumb">
+                                    <li class="active">
+                                        <i class="fa fa-pencil-square"></i> Ingresar asistencia: <a href="/calificaciones/asistencia/{{cohor.id}}"><button class="btn btn-xs btn-info dim"><i class="fa fa-pencil-square-o"></i> Ingresar</button></a>
+                                    </li>
+                                </ol>
                                 <table class="table table-hover table-striped">
                                     <thead>
                                         <tr>
