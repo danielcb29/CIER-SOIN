@@ -90,12 +90,44 @@ def crear_cohorte(request):
             cohorte = CohorteForm()
     return render(request, 'crear_cohorte.html', {'form':CohorteForm, 'exito':exito})
 
+@login_required
+@permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
+def listar_cohorte(request):
+    cohortes = Cohorte.objects.all()
+    return render(request, 'listar_cohortes.html', {'cohortes':cohortes})
+
 
 @login_required
-@permission_required('cursosCohortesActividades.add_curso', login_url="/index")
+@permission_required('cursosCohortesActividades.add_actividades', login_url="/index")
 def listar_actividades(request):
     actividades = Actividad.objects.all()
     return render(request, 'listar_actividades.html', {'actividades':actividades})
+
+@login_required
+@permission_required('cursosCohortesActividades.change_cohorte', login_url="/index")
+def editar_cohorte(request, id_actividad):
+    cohortes = Cohorte.objects.all()
+    cohorte = Cohorte.objects.get(pk = id_actividad)
+    form_edicion = ActividadForm(instance=cohorte, initial=cohorte.__dict__)
+    if request.method == 'POST':
+        form_edicion = CohorteForm(
+            request.POST, instance=cohorte, initial=cohorte.__dict__)
+        if form_edicion.has_changed():
+            if form_edicion.is_valid():
+                form_edicion.save()
+                return HttpResponseRedirect("/cohorte/listarcohorte")
+        else:
+            return HttpResponseRedirect("/cohorte/listarcorte")
+    return render(request, 'listar_cohortes.html', {'cohortes': cohortes, 'edicion': True, 'form_edicion': form_edicion})
+
+def eliminar_cohorte(request, id):
+    cohorte = Cohorte.objects.get(id=id)
+    if cohorte.activo:
+        cohorte.activo=False
+    else:
+        cohorte.activo=True
+    cohorte.save()
+    return HttpResponseRedirect("/cohortes/listarcohorte")
 
 @login_required
 @permission_required('cursosCohortesActividades.change_actividad', login_url="/index")
