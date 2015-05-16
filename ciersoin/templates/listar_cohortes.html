@@ -67,17 +67,17 @@
 
     <div class="modal inmodal" id="editarCohorte" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content animated fadeIn">
+        <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <i class="fa fa-users modal-icon"></i>
                     <h4 class="modal-title">Editar cohorte</h4>
                     <small class="font-bold">Por favor modifique a continuación los campos deseados y dé clic en guardar cambios cuando haya terminado, de lo contrario de clic en cancelar.</small>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" >
+                    <div class="col-lg-10">
                     <form action="" method="post" class="form-horizontal">
                         {% csrf_token %}
-                         <!-- Nombre -->
                                 <div class="form-group" >
                                     <label>{{form_edicion.numero_cohorte.label}}</label>
                                     <p class="help-block">Número de la cohorte</p>
@@ -129,12 +129,18 @@
                                     <p class="help-block">Estudiantes que se matricualaran</p>
                                      {{form_edicion.estudiantes}}
                                 </div>
-                </div>
-                    <div class="modal-footer">
+                        </div>
+                        <div class="modal-footer">
                         <button type="button" class="btn btn-white" href="/cohortes/listarcohorte" data-dismiss="modal">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+
+                        </form>
+
+
+
                     </div>
-                </form>
+
             </div>
         </div>
     </div>
@@ -143,19 +149,46 @@
 
 {% endblock %}
 {%block js%}
-    {{block.super}}
-    <!-- Data Tables -->
-    <script src="{% static 'js/plugins/dataTables/jquery.dataTables.js' %}"></script>
-    <script src="{% static 'js/plugins/dataTables/dataTables.bootstrap.js' %}"></script>
-    <script src="{% static 'js/plugins/dataTables/dataTables.responsive.js' %}"></script>
-    <!-- Switchery -->
-   <script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
 
-    {%if edicion %}
+    {{block.super}}
+
+
+
+    <!-- Chosen -->
+    <script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
+
+   <!-- Data picker -->
+   <script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+
+ {%if edicion %}
         <script>
             $(document).ready(function(){
                 $('#botonModalEdicion').click();
             });
         </script>
     {%endif%}
+   <script type="text/javascript">
+            $('#data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+
+            var config = {
+                '.chosen-select'           : {},
+                '.chosen-select-deselect'  : {allow_single_deselect:true},
+                '.chosen-select-no-single' : {disable_search_threshold:10},
+                '.chosen-select-no-results': {no_results_text:'Oops, no se encontró nada!'},
+                '.chosen-select-width'     : {width:"95%"}
+            };
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+
+   </script>
+
+
 {% endblock %}

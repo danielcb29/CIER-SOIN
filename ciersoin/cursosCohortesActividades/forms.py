@@ -34,7 +34,7 @@ class CohorteForm(ModelForm):
             'fecha_inicial': forms.DateInput(attrs={'class':'form-control required','placeholder':'Fecha...'}),
             'fecha_final': forms.DateInput(attrs={'class':'form-control required','placeholder':'Fecha...'}),
             'periodo': forms.Select(attrs={'class':'form-control required','placeholder':'Periodo...'}),
-            'estudiantes': forms.SelectMultiple(attrs={'class':'chosen-select', 'multiple':'multiple','requiered':'','placeholder':'Estudiantes...','style':'width:350px;' ,'tabindex':'4'}),
+            'estudiantes': forms.SelectMultiple(attrs={'class':'form-control chosen-select', 'multiple':'','requiered':'','placeholder':'Estudiantes...' ,'tabindex':'4'}),
             'master_teacher': forms.Select(attrs={'class':'form-control required','placeholder':'Master Teacher...'}),
             'curso': forms.Select(attrs={'class':'form-control required'}),
             #'actividad': forms.SelectMultiple(attrs={'class':'form-control required','placeholder':'Actividad...'}),

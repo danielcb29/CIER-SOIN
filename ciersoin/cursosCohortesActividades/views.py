@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .cursoobserver import CursoObserver
 from teacher.forms import LeaderTeacherForm
-from .models import Curso, Actividad, Cohorte
+from .models import Curso, Actividad, Cohorte, Aspirante
 from .forms import CursoForm, ActividadForm, CohorteForm
 from teacher.models import LeaderTeacher
 from .models import Curso, Actividad
@@ -86,6 +86,9 @@ def crear_cohorte(request):
         cohorte = CohorteForm(request.POST)
         if cohorte.is_valid():
             cohorte.save()
+            leaderTeachers = cohorte.estudiantes.all();
+            for i in leaderTeachers:
+                aspirante = Aspirante.get(pk = estudiantes[i].)
             exito = True
             cohorte = CohorteForm()
     return render(request, 'crear_cohorte.html', {'form':CohorteForm, 'exito':exito})
@@ -108,16 +111,16 @@ def listar_actividades(request):
 def editar_cohorte(request, id_actividad):
     cohortes = Cohorte.objects.all()
     cohorte = Cohorte.objects.get(pk = id_actividad)
-    form_edicion = ActividadForm(instance=cohorte, initial=cohorte.__dict__)
+    form_edicion = CohorteForm(instance=cohorte, initial=cohorte.__dict__)
     if request.method == 'POST':
         form_edicion = CohorteForm(
             request.POST, instance=cohorte, initial=cohorte.__dict__)
         if form_edicion.has_changed():
             if form_edicion.is_valid():
                 form_edicion.save()
-                return HttpResponseRedirect("/cohorte/listarcohorte")
+                return HttpResponseRedirect("/cohortes/listarcohorte")
         else:
-            return HttpResponseRedirect("/cohorte/listarcorte")
+            return HttpResponseRedirect("/cohortes/listarcohorte")
     return render(request, 'listar_cohortes.html', {'cohortes': cohortes, 'edicion': True, 'form_edicion': form_edicion})
 
 def eliminar_cohorte(request, id):
