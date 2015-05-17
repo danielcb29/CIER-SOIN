@@ -27,6 +27,10 @@ def consultar_calificaciones(request):
             else:
                 a.nota = 'NIL'
         c.actividades = actividades
+        if len(actividades) == 0:
+            c.has_act = False
+        else:
+            c.has_act = True
     return render(request,'visualizar_calificaciones.html',{'cohortes':cohortes,'asistencia':asistencia})
 
 @login_required
@@ -80,7 +84,6 @@ def ingresar_notas(request,id_cohor,id_act):
     exito = False
     for est in estudiantes:
         calificacion = Calificacion.objects.get(actividad_cohorte = actividades_cohorte, leader_teacher = est)
-        #print calificacion
         if float(calificacion.valor) != -1.0:
             est.val  =calificacion
         else:

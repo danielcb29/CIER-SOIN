@@ -43,10 +43,17 @@
                                             <td><i class="fa fa-gavel"></i> No</td>
                                         </tr>
                                    {% endif %}
+                                    {% if cohor.has_act%}
                                         <tr>
                                             <td><strong>Certificado: </strong></td>
                                             <td><a href="/calificaciones/certificado/{{cohor.id}}/{{user.id}}"><button class="btn btn-xm btn-success"><i class="fa fa-angle-double-down"></i> Descargar</button></a></td>
                                         </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td><strong>Certificado: </strong></td>
+                                            <td><button class="btn btn-xm btn-success" disabled><i class="fa fa-angle-double-down"></i> Descargar</button></td>
+                                        </tr>
+                                    {%endif%}
                                     </tbody>
                                 </table>
                             {%endfor%}
