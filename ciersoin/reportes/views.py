@@ -3,9 +3,6 @@ import datetime
 from .FachadaReporte import FachadaReporte
 from cursosCohortesActividades.models import Curso
 # Create your views here.
-'''mon_str = {0:'Enero',1:'Febrero',2:'Marzo',3:'Abril',4:'Mayo',5:'Junio',6:'Julio',7:'Agosto',8:'Septiembre',9:'Ocutbre',10:'Noviembre',11:'Diciembre'}
-        month = datetime.datetime.now().month
-        mon_spanish = mon_str[month]'''
 fachada = FachadaReporte()
 def dashboards(request):
     regs = 'NIL'
@@ -23,9 +20,6 @@ def dashboards(request):
 
         #Cantidad de asistentes a cursos
         lista_cursos,cantidad_asistentes = fachada.top10_max_estudiantes(mes,year)
-        print 'EN VIEW'
-        print lista_cursos,cantidad_asistentes
-        #lista_cursos,cantidad_asistentes = ['Curso D','Curso MA'],[12,34]
 
         #Cantidad de lt por dpto en el mes
         numero_lt_region=fachada.total_lt_mes_region(mes,year)

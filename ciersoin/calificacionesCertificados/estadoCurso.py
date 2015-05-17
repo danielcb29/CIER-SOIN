@@ -1,7 +1,7 @@
 __author__ = 'alvaro'
 from .models import Certificado,Calificacion
 from teacher.models import LeaderTeacher
-from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte
+from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte,Aspirante
 
 class Contexto():
 
@@ -24,6 +24,7 @@ class EstadoCursoNoExiste():
     def posible(self,id_teach,id_cohor):
         lt = LeaderTeacher.objects.get(id=id_teach)
         cohor = Cohorte.objects.get(id=id_cohor)
+        aspirante = Aspirante.objects.get(leader_teacher=lt,curso=cohor.curso)
         actividades = Actividad_Cohorte.objects.filter(cohorte=cohor)
         definitiva = 0.0
         for act in actividades:
@@ -32,7 +33,7 @@ class EstadoCursoNoExiste():
                 return False
             definitiva+=calificacion.valor
         definitiva /= len(actividades)
-        if definitiva <= 2.5:
+        if definitiva <= 2.5 or aspirante.asistencia==False:
             return False
         elif definitiva >= 2.55 and definitiva <= 3.5 :
             cert = Certificado()
