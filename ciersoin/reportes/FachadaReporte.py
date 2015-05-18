@@ -55,7 +55,7 @@ class FachadaReporte():
         for curso in consulta:
             nombres.append(str(Curso.objects.get(id=curso['curso']).nombre))
             valores.append(int(curso['estudiantes__count']))
-        print nombres,valores
+        print(nombres,valores)
         return nombres,valores
 
     #Definicion de la funcion para la generacion de reporte de Porcentaje de aprobados y reprobados en un curso determinado
