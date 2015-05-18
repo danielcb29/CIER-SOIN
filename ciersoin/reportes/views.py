@@ -23,8 +23,8 @@ def dashboards(request):
 
         #Cantidad de asistentes a cursos
         lista_cursos,cantidad_asistentes = fachada.top10_max_estudiantes(mes,year)
-        print 'EN VIEW'
-        print lista_cursos,cantidad_asistentes
+        print('EN VIEW')
+        print(lista_cursos, cantidad_asistentes)
         #lista_cursos,cantidad_asistentes = ['Curso D','Curso MA'],[12,34]
 
         #Cantidad de lt por dpto en el mes

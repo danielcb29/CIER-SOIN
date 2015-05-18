@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .cursoobserver import CursoObserver
 from teacher.forms import LeaderTeacherForm
-from .models import Curso, Actividad, Cohorte
+from .models import Curso, Actividad, Cohorte, Aspirante
 from .forms import CursoForm, ActividadForm, CohorteForm
 from teacher.models import LeaderTeacher
 from .models import Curso, Actividad
@@ -85,9 +85,14 @@ def crear_cohorte(request):
     if request.method =='POST':
         cohorte = CohorteForm(request.POST)
         if cohorte.is_valid():
-            cohorte.save()
+            cohorteCread = cohorte.save()
+            leader_teachers = cohorteCread.estudiantes.all()
+            for leader_teacher_coho in leader_teachers:
+                aspirante_cohorte = Aspirante.objects.get(leader_teacher=leader_teacher_coho)
+                aspirante_cohorte.matriculado = True
+                aspirante_cohorte.save()
             exito = True
-            cohorte = CohorteForm()
+            cohorte = CohorteForm(  )
     return render(request, 'crear_cohorte.html', {'form':CohorteForm, 'exito':exito})
 
 @login_required
@@ -108,18 +113,20 @@ def listar_actividades(request):
 def editar_cohorte(request, id_actividad):
     cohortes = Cohorte.objects.all()
     cohorte = Cohorte.objects.get(pk = id_actividad)
-    form_edicion = ActividadForm(instance=cohorte, initial=cohorte.__dict__)
+    form_edicion = CohorteForm(instance=cohorte, initial=cohorte.__dict__)
     if request.method == 'POST':
         form_edicion = CohorteForm(
             request.POST, instance=cohorte, initial=cohorte.__dict__)
         if form_edicion.has_changed():
             if form_edicion.is_valid():
                 form_edicion.save()
-                return HttpResponseRedirect("/cohorte/listarcohorte")
+                return HttpResponseRedirect("/cohortes/listarcohorte")
         else:
-            return HttpResponseRedirect("/cohorte/listarcorte")
+            return HttpResponseRedirect("/cohortes/listarcohorte")
     return render(request, 'listar_cohortes.html', {'cohortes': cohortes, 'edicion': True, 'form_edicion': form_edicion})
 
+@login_required
+@permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
 def eliminar_cohorte(request, id):
     cohorte = Cohorte.objects.get(id=id)
     if cohorte.activo:
@@ -147,6 +154,8 @@ def editar_actividad(request, id_actividad):
     return render(request, 'listar_actividades.html', {'actividades': actividades, 'edicion': True, 'form_edicion': form_edicion})
 
 
+@login_required
+@permission_required('cursosCohortesActividades.add_actividad',login_url='index')
 def eliminar_actividad(request, id):
     actividad = Actividad.objects.get(id=id)
     if actividad.activo:
