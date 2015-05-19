@@ -5,7 +5,7 @@ from teacher.forms import LeaderTeacherForm
 from .models import Curso, Actividad, Cohorte, Aspirante
 from .forms import CursoForm, ActividadForm, CohorteForm
 from teacher.models import LeaderTeacher
-from .models import Curso, Actividad
+from .models import Curso, Actividad,Actividad_Cohorte
 from .forms import CursoForm, ActividadForm
 from django.contrib.auth.decorators import login_required,permission_required
 # Create your views here.
@@ -151,26 +151,7 @@ def eliminar_actividad(request, id):
     actividad.save()
     return HttpResponseRedirect("/actividades/listar")
 
-#Funcionalidades adicionales de la matricual
-
-@login_required
-@permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
-def crear_cohorte(request):
-    cohorte = CohorteForm()
-    exito = False
-    if request.method =='POST':
-        cohorte = CohorteForm(request.POST)
-        print cohorte.errors
-        if cohorte.is_valid():
-            cohorteCread = cohorte.save()
-            leader_teachers = cohorteCread.estudiantes.all()
-            for leader_teacher_coho in leader_teachers:
-                aspirante_cohorte = Aspirante.objects.get(leader_teacher=leader_teacher_coho,curso=cohorteCread.curso)
-                aspirante_cohorte.matriculado = True
-                aspirante_cohorte.save()
-            exito = True
-            cohorte = CohorteForm()
-    return render(request, 'crear_cohorte_paso_estudiantes.html', {'form':cohorte, 'exito':exito})
+#Funcionalidades adicionales de la matricula
 
 @login_required
 @permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
@@ -203,6 +184,11 @@ def crear_cohorte_estudiantes(request,nombre_curso):
 def crear_cohorte_actividades(request,id_cohorte):
     cohorte = Cohorte.objects.get(id=id_cohorte)
     actividades = Actividad.objects.filter(curso=cohorte.curso)
+    if request.method=='POST':
+        estudiantes = cohorte.estudiantes
+        for act in actividades:
+            if str(act.id) in request.POST:
+                actividad_coh = Actividad_Cohorte()
     return render(request,'crear_cohorte_paso_actividades.html',{'actividades':actividades})
 
 

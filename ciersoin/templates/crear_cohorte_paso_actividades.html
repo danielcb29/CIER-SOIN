@@ -3,6 +3,7 @@
 {% block css%}
 {{block.super}}
 <link href="{% static 'css/plugins/switchery/switchery.css' %}" rel="stylesheet">
+<link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
 {% endblock %}
 {%block content %}
  <!-- Page Heading -->
@@ -35,17 +36,35 @@
                                             <tr>
                                                 <th>Nombre</th>
                                                 <th>Incluida?</th>
+                                                <th>Fecha Inicio</th>
+                                                <th>Fecha Fin</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         {%for act in actividades %}
                                             <tr>
                                                 <td><strong>{{act}}</strong></td>
-                                                {% if es.check%}
-                                                    <td><input type="checkbox" class="js-switch_{{act.id}}" name="{{es.id}}" id="id_{{act.id}}" checked></td>
+                                                {% if act.check%}
+                                                    <td><input type="checkbox" class="js-switch_{{act.id}}" name="{{act.id}}" id="id_{{act.id}}" checked></td>
                                                 {% else %}
-                                                    <td><input type="checkbox" class="js-switch_{{act.id}}" name="{{es.id}}" id="id_{{act.id}}"></td>
+                                                    <td><input type="checkbox" class="js-switch_{{act.id}}" name="{{act.id}}" id="id_{{act.id}}"></td>
                                                 {%endif%}
+                                                <td>
+                                                    <div class="form-group" id="data_1">
+                                                        <div class=" input-group date ">
+                                                        <span class="input-group-addon "><i class="fa fa-calendar"></i></span>
+                                                        <input type="text" class="form-control" disabled id="id_fecha_in_{{act.id}}" name="fecha_in_{{act.id}}">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group" id="data_1">
+                                                        <div class=" input-group date ">
+                                                        <span class="input-group-addon "><i class="fa fa-calendar"></i></span>
+                                                        <input type="text" class="form-control" disabled id="id_fecha_fin_{{act.id}}" name="fecha_fin_{{act.id}}">
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         {% endfor %}
                                             <tr>
@@ -63,6 +82,8 @@
 {% endblock %}
 {%block js%}
 {{block.super}}
+    <!-- Data picker -->
+   <script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
     <!-- Switchery -->
     <script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
 
@@ -71,5 +92,15 @@
             var elem_2 = document.querySelector('.js-switch_{{act.id}}');
             var switchery_2 = new Switchery(elem_2, { color: '#5CB85C' , size: 'small'});
         {% endfor %}
+
+        $('#data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+
    </script>
 {% endblock %}
