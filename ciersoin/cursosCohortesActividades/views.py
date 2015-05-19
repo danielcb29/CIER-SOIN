@@ -86,6 +86,7 @@ def crear_cohorte(request):
     exito = False
     if request.method =='POST':
         cohorte = CohorteForm(request.POST)
+        print cohorte.errors
         if cohorte.is_valid():
             cohorteCread = cohorte.save()
             leader_teachers = cohorteCread.estudiantes.all()
