@@ -6,7 +6,20 @@
     <link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
     <link href="{% static 'css/plugins/chosen/chosen.css' %}" rel="stylesheet">
     <link href="{% static 'css/plugins/switchery/switchery.css' %}" rel="stylesheet">
-
+    <style type="text/css">
+        ul.errorlist {
+            margin: 0;
+            padding: 0;
+        }
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font-size: 10px;
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+    </style>
 {% endblock %}
 
 {%block content %}
@@ -105,65 +118,6 @@
                                         <button type="submit" class="btn btn-primary">Crear</button>
                                     </div>
                                 </div>
-                                <!--div class="form-group" >
-                                    <label>{{form.numero_cohorte.label}}</label>
-                                    <p class="help-block">Número de la cohorte</p>
-                                    {{form.numero_cohorte}}
-                                </div-->
-
-                                <!--div class="form-group" id="data_1">
-                                    {{form.fecha_inicial.errors}}
-                                    <label>{{form.fecha_inicial.label}}</label>
-                                        <div class=" input-group date ">
-                                            <span class="input-group-addon "><i class="fa fa-calendar"></i>
-                                            </span>
-                                            {{form.fecha_inicial}}
-                                        </div>
-                                </div-->
-
-
-                                <!--div class="form-group" id="data_1">
-                                    {{form.fecha_final.errors}}
-                                    <label>{{form.fecha_final.label}}</label>
-                                        <div class="input-group date ">
-                                                    <span class="input-group-addon "><i class="fa fa-calendar"></i>
-                                                    </span>
-                                                    {{form.fecha_final}}
-                                        </div>
-                               </div>
-
-                                <div class="form-group">
-                                    <label>{{form.periodo.label}}</label>
-                                    <p class="help-block">Periodo</p>
-                                    {{form.periodo}}
-                                </div>
-
-                                <div class="form-group">
-                                    <label>{{form.master_teacher.label}}</label>
-                                    <p class="help-block">Master teacher que dictara el curso</p>
-                                     {{form.master_teacher}}
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label>{{form.curso.label}}</label>
-                                    <p class="help-block">Curso de la cohorte.</p>
-                                     {{form.curso}}
-                                </div>
-
-                                <div class="form-group">
-                                    <label>{{form.estudiantes.label}}</label>
-                                    <p class="help-block">Estudiantes que se matricualaran</p>
-                                     {{form.estudiantes}}
-                                </div-->
-
-
-                                <!--BOTON-->
-
-								<!--div class="form-group">
-									<button type="submit" class="btn btn-primary">Crear</button>
-								</div-->
-
                             </form>
                         </div>
                     </div>
