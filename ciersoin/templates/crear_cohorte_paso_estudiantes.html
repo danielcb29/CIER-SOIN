@@ -107,10 +107,24 @@
                                 <div class="col-lg-12">
                                     <br/>
                                     <br/>
-                                    <div class="form-group">
-                                        <label>{{form.estudiantes.label}}</label>
-                                        <p class="help-block">Estudiantes que se matricualaran</p>
-                                         {{form.estudiantes}}
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <label>Cargar Estudiantes</label>
+                                            <p class="help-block"></p>
+                                            <button class="btn btn-success" onclick="list_student();">Cargar</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <div class="form-group">
+                                            <label>{{form.estudiantes.label}}</label>
+                                            <p class="help-block">Estudiantes que se matricualaran</p>
+                                             <!--{{form.estudiantes}}-->
+                                            <select disabled class="form-control chosen-select" multiple requiered placeholder="Estudiantes..." tabindex="4">
+                                                {%for curso in curso_list%}
+                                                    <option value="{{curso}}">{{curso}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -134,7 +148,15 @@
    <script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
    <!-- Chosen -->
     <script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
-
+    <!--Script que permite traer los estudiantes-->
+    <script>
+        function list_student() {
+            var curso = document.getElementById("id_curso");
+            var selected_curso = curso.options[curso.selectedIndex].text;
+            var link = "/cohortes/listarestudiantes/".concat(selected_curso);
+            window.location=link;
+        };
+    </script>
    <script type="text/javascript">
             $('#data_1 .input-group.date').datepicker({
                 todayBtn: "linked",

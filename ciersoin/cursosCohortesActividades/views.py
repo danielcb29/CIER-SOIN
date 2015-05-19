@@ -79,24 +79,7 @@ def crear_actividad(request):
             actividad = ActividadForm()
     return render(request, 'crear_actividades.html', {'form':ActividadForm, 'exito':exito})
 
-@login_required
-@permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
-def crear_cohorte(request):
-    cohorte = CohorteForm()
-    exito = False
-    if request.method =='POST':
-        cohorte = CohorteForm(request.POST)
-        print cohorte.errors
-        if cohorte.is_valid():
-            cohorteCread = cohorte.save()
-            leader_teachers = cohorteCread.estudiantes.all()
-            for leader_teacher_coho in leader_teachers:
-                aspirante_cohorte = Aspirante.objects.get(leader_teacher=leader_teacher_coho,curso=cohorteCread.curso)
-                aspirante_cohorte.matriculado = True
-                aspirante_cohorte.save()
-            exito = True
-            cohorte = CohorteForm()
-    return render(request, 'crear_cohorte.html', {'form':cohorte, 'exito':exito})
+
 
 @login_required
 @permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
@@ -167,4 +150,39 @@ def eliminar_actividad(request, id):
         actividad.activo=True
     actividad.save()
     return HttpResponseRedirect("/actividades/listar")
+
+#Funcionalidades adicionales de la matricual
+
+@login_required
+@permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
+def crear_cohorte(request):
+    cohorte = CohorteForm()
+    exito = False
+    if request.method =='POST':
+        cohorte = CohorteForm(request.POST)
+        print cohorte.errors
+        if cohorte.is_valid():
+            cohorteCread = cohorte.save()
+            leader_teachers = cohorteCread.estudiantes.all()
+            for leader_teacher_coho in leader_teachers:
+                aspirante_cohorte = Aspirante.objects.get(leader_teacher=leader_teacher_coho,curso=cohorteCread.curso)
+                aspirante_cohorte.matriculado = True
+                aspirante_cohorte.save()
+            exito = True
+            cohorte = CohorteForm()
+    return render(request, 'crear_cohorte_paso_estudiantes.html', {'form':cohorte, 'exito':exito})
+
+@login_required
+@permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
+def crear_cohorte_paso_curso(request):
+    cursos = Curso.objects.all()
+    return render(request,'crear_cohorte_paso_curso.html',{'curso_list':cursos})
+
+@login_required
+@permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
+def crear_cohorte_estudiantes(request,curso):
+    pass
+
+def listar_actividades_cohorte(request):
+    pass
 

@@ -13,8 +13,12 @@ urlpatterns = patterns('',
     url(r'^listar$',listar_actividades),
     url(r'^editaractividad/(\d+)$',editar_actividad),
     url(r'^eliminaractividad/(\d+)$',eliminar_actividad),
-    url(r'^crearcohorte$',crear_cohorte),
+
     url(r'^listarcohorte$',listar_cohorte),
     url(r'^editarcohorte/(\d+)$',editar_cohorte),
     url(r'^eliminarcohorte/(\d+)$',eliminar_cohorte),
+    url(r'^actividades$',listar_actividades_cohorte),
+
+    url(r'^crearcohorte$',crear_cohorte_paso_curso),
+    url(r'^crearcohorte/(.+)$',crear_cohorte_estudiantes),
 )
