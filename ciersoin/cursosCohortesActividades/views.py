@@ -7,7 +7,9 @@ from .forms import CursoForm, ActividadForm, CohorteForm
 from teacher.models import LeaderTeacher
 from .models import Curso, Actividad,Actividad_Cohorte
 from .forms import CursoForm, ActividadForm
+from calificacionesCertificados.models import Calificacion
 from django.contrib.auth.decorators import login_required,permission_required
+import datetime
 # Create your views here.
 
 def listar_curos_area(request,area):
@@ -184,11 +186,25 @@ def crear_cohorte_estudiantes(request,nombre_curso):
 def crear_cohorte_actividades(request,id_cohorte):
     cohorte = Cohorte.objects.get(id=id_cohorte)
     actividades = Actividad.objects.filter(curso=cohorte.curso)
+    exito=False
     if request.method=='POST':
-        estudiantes = cohorte.estudiantes
         for act in actividades:
             if str(act.id) in request.POST:
-                actividad_coh = Actividad_Cohorte()
-    return render(request,'crear_cohorte_paso_actividades.html',{'actividades':actividades})
+                s_in= request.POST['fecha_in_'+str(act.id)]
+                d_in = datetime.date(int(s_in[6:]),int(s_in[:2])-1,int(s_in[3:5]))
+                s_fn = request.POST['fecha_fin_'+str(act.id)]
+                d_fn = datetime.date(int(s_fn[6:]),int(s_fn[:2])-1,int(s_fn[3:5]))
+                actividad_coh = Actividad_Cohorte(cohorte=cohorte,actividad=act,fecha_inicial=d_in,fecha_entrega=d_fn)
+                actividad_coh.save()
+                for es in cohorte.estudiantes.all():
+                    cal = Calificacion()
+                    cal.actividad_cohorte= actividad_coh
+                    cal.leader_teacher = es
+                    cal.save()
+                act.check=True
+                act.f_in = s_in
+                act.f_fn = s_fn
+        exito=True
+    return render(request,'crear_cohorte_paso_actividades.html',{'actividades':actividades,'exito':exito})
 
 

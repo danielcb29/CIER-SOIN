@@ -53,7 +53,7 @@
                                                     <div class="form-group" id="data_1">
                                                         <div class=" input-group date ">
                                                         <span class="input-group-addon "><i class="fa fa-calendar"></i></span>
-                                                        <input type="text" class="form-control" disabled id="id_fecha_in_{{act.id}}" name="fecha_in_{{act.id}}">
+                                                        <input type="text" class="form-control"  id="id_fecha_in_{{act.id}}" name="fecha_in_{{act.id}}" value="{{act.f_in}}">
                                                         </div>
                                                     </div>
                                                 </td>
@@ -61,7 +61,7 @@
                                                     <div class="form-group" id="data_1">
                                                         <div class=" input-group date ">
                                                         <span class="input-group-addon "><i class="fa fa-calendar"></i></span>
-                                                        <input type="text" class="form-control" disabled id="id_fecha_fin_{{act.id}}" name="fecha_fin_{{act.id}}">
+                                                        <input type="text" class="form-control"  id="id_fecha_fin_{{act.id}}" name="fecha_fin_{{act.id}}" value="{{act.f_fn}}">
                                                         </div>
                                                     </div>
                                                 </td>
@@ -89,8 +89,25 @@
 
     <script type="text/javascript">
         {%for act in actividades %}
-            var elem_2 = document.querySelector('.js-switch_{{act.id}}');
-            var switchery_2 = new Switchery(elem_2, { color: '#5CB85C' , size: 'small'});
+            var elem_{{act.id}} = document.querySelector('.js-switch_{{act.id}}');
+            var switchery_{{act.id}} = new Switchery(elem_{{act.id}}, { color: '#5CB85C' , size: 'small'});
+            /*var changeCheckbox = document.querySelector('.js-check-change_{{act.id}}');
+            changeCheckbox.onchange = function chang_{{act.id}}() {
+                if (changeCheckbox.checked){
+                    //Nos chekiaron
+                    document.getElementById("id_fecha_in_{{act.id}}").disabled = false;
+                    //document.getElementById("id_fecha_in_{{act.id}}").required = true;
+                    document.getElementById("id_fecha_fin_{{act.id}}").disabled = false;
+                    //document.getElementById("id_fecha_fin_{{act.id}}").required = true;
+
+                }else{
+                    //Nos deschekiaron
+                    document.getElementById("id_fecha_in_{{act.id}}").disabled = true;
+                    //document.getElementById("id_fecha_in_{{act.id}}").required = false;
+                    document.getElementById("id_fecha_fin_{{act.id}}").disabled = true;
+                    //document.getElementById("id_fecha_fin_{{act.id}}").required = false;
+                }
+            };*/
         {% endfor %}
 
         $('#data_1 .input-group.date').datepicker({
