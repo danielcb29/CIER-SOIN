@@ -90,11 +90,11 @@ def crear_cohorte(request):
             cohorteCread = cohorte.save()
             leader_teachers = cohorteCread.estudiantes.all()
             for leader_teacher_coho in leader_teachers:
-                aspirante_cohorte = Aspirante.objects.get(leader_teacher=leader_teacher_coho)
+                aspirante_cohorte = Aspirante.objects.get(leader_teacher=leader_teacher_coho,curso=request.POST['curso'])
                 aspirante_cohorte.matriculado = True
                 aspirante_cohorte.save()
             exito = True
-            cohorte = CohorteForm(  )
+            cohorte = CohorteForm()
     return render(request, 'crear_cohorte.html', {'form':CohorteForm, 'exito':exito})
 
 @login_required

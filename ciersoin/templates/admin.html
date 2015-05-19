@@ -104,13 +104,6 @@
                             <a style="background-color: white;" href="/index"><img src="{% static 'img/logo_admpage.png' %}" style="padding-left: 20px; "></a>
                         </li>
 
-                        {% if 'teacher.matricular_lt' in perms and user.is_authenticated%}
-                        <!-- matricula -->
-                        <li class="">
-                            <a href="/index"><i class="fa fa-fw fa-dashboard"></i> Matricula</a>
-                        </li>
-                        {% endif %}
-
                         {% if 'cursosCohortesActividades.add_curso' in perms and user.is_authenticated%}
                         <!-- cursos -->
                         <li>
