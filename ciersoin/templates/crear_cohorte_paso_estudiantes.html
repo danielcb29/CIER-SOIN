@@ -94,6 +94,7 @@
                                             <label>{{form.curso.label}}</label>
                                             <p class="help-block">Curso de la cohorte.</p>
                                              <input type="text" disabled value="{{curso}}" class="form-control">
+                                            <div style="display: none;">{{form.curso}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +105,7 @@
                                             <label>{{form.estudiantes.label}}</label>
                                             <p class="help-block">Estudiantes que se matricualaran</p>
                                              <!--{{form.estudiantes}}-->
-                                            <select class="form-control chosen-select" multiple requiered placeholder="Estudiantes..." tabindex="4">
+                                            <select id="id_estudiantes" name="estudiantes" class="form-control chosen-select" multiple requiered placeholder="Estudiantes..." tabindex="4">
                                                 {%for es in estudiantes%}
                                                     <option value="{{es.id}}">{{es.cedula}}-{{es.get_full_name}}</option>
                                                 {% endfor %}
@@ -114,8 +115,10 @@
                                 </div>
 
                                 <div class="col-lg-12">
+                                    <br/>
+                                    <br/>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Crear</button>
+                                        <button type="submit" class="btn btn-success">Crear y Siguiente</button>
                                     </div>
                                 </div>
                             </form>
