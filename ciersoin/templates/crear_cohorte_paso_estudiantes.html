@@ -1,0 +1,173 @@
+{%extends "admin.html"%}
+
+{% load staticfiles %}
+{% block css %}
+    {{block.super}}
+    <link href="{% static 'css/plugins/datapicker/datepicker3.css' %}" rel="stylesheet">
+    <link href="{% static 'css/plugins/chosen/chosen.css' %}" rel="stylesheet">
+    <link href="{% static 'css/plugins/switchery/switchery.css' %}" rel="stylesheet">
+    <style type="text/css">
+        ul.errorlist {
+            margin: 0;
+            padding: 0;
+        }
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            font-size: 10px;
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+    </style>
+{% endblock %}
+
+{%block content %}
+
+    <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Cohortes <small>Creacion de cohortes...</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> Paso 2: Ingreso de datos de cohortes
+                            </li>
+
+                        </ol>
+
+                        <div class="col-lg-12">
+                            {{form.errors}}
+                            <form action="" method="post">
+                                {% csrf_token %}
+
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4">
+                                        <div class="form-group" >
+                                            <label>{{form.numero_cohorte.label}}</label>
+                                            <p class="help-block">Número de la cohorte</p>
+                                            {{form.numero_cohorte}}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group" id="data_1">
+                                            {{form.fecha_inicial.errors}}
+                                            <label>{{form.fecha_inicial.label}}</label>
+                                            <p class="help-block">Fecha en que inicia esta cohorte</p>
+                                            <div class=" input-group date ">
+                                                <span class="input-group-addon "><i class="fa fa-calendar"></i></span>
+                                                {{form.fecha_inicial}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group" id="data_1">
+                                            {{form.fecha_final.errors}}
+                                            <label>{{form.fecha_final.label}}</label>
+                                            <p class="help-block">Fecha en que finaliza esta cohorte</p>
+                                                <div class="input-group date ">
+                                                    <span class="input-group-addon "><i class="fa fa-calendar"></i></span>
+                                                    {{form.fecha_final}}
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <br/>
+                                    <br/>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>{{form.periodo.label}}</label>
+                                            <p class="help-block">Periodo del año</p>
+                                            {{form.periodo}}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>{{form.master_teacher.label}}</label>
+                                            <p class="help-block">Master teacher que dictara el curso</p>
+                                             {{form.master_teacher}}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>{{form.curso.label}}</label>
+                                            <p class="help-block">Curso de la cohorte.</p>
+                                             <input type="text" disabled value="{{curso}}" class="form-control">
+                                            <div style="display: none;">{{form.curso}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="col-lg-10">
+                                        <div class="form-group">
+                                            <label>{{form.estudiantes.label}}</label>
+                                            <p class="help-block">Estudiantes que se matricualaran</p>
+                                             <!--{{form.estudiantes}}-->
+                                            <select id="id_estudiantes" name="estudiantes" class="form-control chosen-select" multiple requiered placeholder="Estudiantes..." tabindex="4">
+                                                {%for es in estudiantes%}
+                                                    <option value="{{es.id}}">{{es.cedula}}-{{es.get_full_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <br/>
+                                    <br/>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">Crear y Siguiente</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block js %}
+    {{block.super}}
+   <!-- Data picker -->
+   <script src="{% static 'js/plugins/datapicker/bootstrap-datepicker.js' %}"></script>
+   <!-- Chosen -->
+    <script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
+    <!--Script que permite traer los estudiantes-->
+    <script>
+        function list_student() {
+            var curso = document.getElementById("id_curso");
+            var selected_curso = curso.options[curso.selectedIndex].text;
+            var link = "/cohortes/listarestudiantes/".concat(selected_curso);
+            window.location=link;
+        };
+    </script>
+   <script type="text/javascript">
+            $('#data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+
+            var config = {
+                '.chosen-select'           : {},
+                '.chosen-select-deselect'  : {allow_single_deselect:true},
+                '.chosen-select-no-single' : {disable_search_threshold:10},
+                '.chosen-select-no-results': {no_results_text:'Oops, no se encontró nada!'},
+                '.chosen-select-width'     : {width:"95%"}
+            };
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+
+   </script>
+
+
+
+{% endblock %}

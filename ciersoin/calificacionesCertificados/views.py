@@ -129,7 +129,6 @@ def ingresar_asistencia(request,id_cohor):
         aspirante = Aspirante.objects.get(curso=curso,leader_teacher=es)
         es.check = aspirante.asistencia
     if request.method=='POST':
-        cambio_no=True
         for es in estudiantes:
             aspirante = Aspirante.objects.get(curso=curso,leader_teacher=es)
             if str(es.id) in request.POST:

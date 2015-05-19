@@ -104,13 +104,6 @@
                             <a style="background-color: white;" href="/index"><img src="{% static 'img/logo_admpage.png' %}" style="padding-left: 20px; "></a>
                         </li>
 
-                        {% if 'teacher.matricular_lt' in perms and user.is_authenticated%}
-                        <!-- matricula -->
-                        <li class="">
-                            <a href="/index"><i class="fa fa-fw fa-dashboard"></i> Matricula</a>
-                        </li>
-                        {% endif %}
-
                         {% if 'cursosCohortesActividades.add_curso' in perms and user.is_authenticated%}
                         <!-- cursos -->
                         <li>
@@ -127,18 +120,18 @@
                         {% endif %}
 
                         {% if 'cursosCohortesActividades.add_cohorte' in perms and user.is_authenticated%}
-                        <!-- cohortes -->
-                        <!--li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#cohorte"><i class="fa fa-fw fa-arrows-v"></i> Cohortes <i class="fa fa-fw fa-caret-down"></i></a>
+
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#cohorte"><i class="fa fa-fw fa-building"></i> Cohortes <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="cohorte" class="collapse">
                                 <li>
-                                    <a href="#">Crear</a>
+                                    <a href="/cohortes/crearcohorte">Crear</a>
                                 </li>
                                 <li>
-                                    <a href="#">Listar</a>
+                                    <a href="/cohortes/listarcohorte">Listar</a>
                                 </li>
                             </ul>
-                        </li-->
+                        </li>
                         {% endif %}
 
                         {% if 'cursosCohortesActividades.add_actividad' in perms and user.is_authenticated%}
