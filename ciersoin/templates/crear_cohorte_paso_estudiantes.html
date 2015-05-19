@@ -31,18 +31,12 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Aqui podra crear las cohortes de un periodo
+                                <i class="fa fa-dashboard"></i> Paso 2: Ingreso de datos de cohortes
                             </li>
 
                         </ol>
 
                         <div class="col-lg-12">
-                            {% if exito %}
-                                <div class="alert alert-success alert-dismissable">
-                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
-                                    <i class="fa fa-check"></i> Se creado una cohorte con exito!
-                                </div>
-					        {% endif %}
                             {{form.errors}}
                             <form action="" method="post">
                                 {% csrf_token %}
@@ -99,29 +93,20 @@
                                         <div class="form-group">
                                             <label>{{form.curso.label}}</label>
                                             <p class="help-block">Curso de la cohorte.</p>
-                                             {{form.curso}}
+                                             <input type="text" disabled value="{{curso}}" class="form-control">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12">
-                                    <br/>
-                                    <br/>
-                                    <div class="col-lg-2">
-                                        <div class="form-group">
-                                            <label>Cargar Estudiantes</label>
-                                            <p class="help-block"></p>
-                                            <button class="btn btn-success" onclick="list_student();">Cargar</button>
-                                        </div>
-                                    </div>
                                     <div class="col-lg-10">
                                         <div class="form-group">
                                             <label>{{form.estudiantes.label}}</label>
                                             <p class="help-block">Estudiantes que se matricualaran</p>
                                              <!--{{form.estudiantes}}-->
-                                            <select disabled class="form-control chosen-select" multiple requiered placeholder="Estudiantes..." tabindex="4">
-                                                {%for curso in curso_list%}
-                                                    <option value="{{curso}}">{{curso}}</option>
+                                            <select class="form-control chosen-select" multiple requiered placeholder="Estudiantes..." tabindex="4">
+                                                {%for es in estudiantes%}
+                                                    <option value="{{es.id}}">{{es.cedula}}-{{es.get_full_name}}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>

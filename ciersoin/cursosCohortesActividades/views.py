@@ -180,8 +180,22 @@ def crear_cohorte_paso_curso(request):
 
 @login_required
 @permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
-def crear_cohorte_estudiantes(request,curso):
-    return render(request,'crear_cohorte_paso_estudiantes.html',{})
+def crear_cohorte_estudiantes(request,nombre_curso):
+    curso = Curso.objects.get(nombre=nombre_curso)
+    cohorte = CohorteForm(initial={'curso':curso})
+    estudiantes = [asp.leader_teacher for asp in Aspirante.objects.filter(curso=curso,matriculado=False,aceptado=True)]
+    print estudiantes
+    if request.method =='POST':
+        cohorte = CohorteForm(request.POST)
+        print cohorte.errors
+        if cohorte.is_valid():
+            cohorteCread = cohorte.save()
+            leader_teachers = cohorteCread.estudiantes.all()
+            for leader_teacher_coho in leader_teachers:
+                aspirante_cohorte = Aspirante.objects.get(leader_teacher=leader_teacher_coho,curso=cohorteCread.curso)
+                aspirante_cohorte.matriculado = True
+                aspirante_cohorte.save()
+    return render(request, 'crear_cohorte_paso_estudiantes.html', {'form':cohorte, 'estudiantes':estudiantes,'curso':curso})
 
 def listar_actividades_cohorte(request):
     pass
