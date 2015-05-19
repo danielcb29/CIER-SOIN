@@ -37,7 +37,6 @@
                         </ol>
 
                         <div class="col-lg-12">
-                                <!--div class="col-lg-12"-->
                                     <h3><strong>Seleccione el Curso</strong></h3>
                                     <div class="col-lg-6">
                                         <br/>
@@ -52,7 +51,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                <!--/div-->
 
                                 <div class="col-lg-12">
                                     <br/>
@@ -64,7 +62,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <button onclick="list_student()" class="btn btn-success">Siguiente</button>
+                                            <button onclick="next_step();" class="btn btn-success">Siguiente</button>
                                         </div>
                                     </div>
 
@@ -85,10 +83,10 @@
     <script src="{% static 'js/plugins/chosen/chosen.jquery.js' %}"></script>
     <!--Script que permite traer los estudiantes-->
     <script>
-        function list_student() {
+        function next_step() {
             var curso = document.getElementById("id_curso");
             var selected_curso = curso.options[curso.selectedIndex].text;
-            var link = "/cohortes/listarestudiantes/".concat(selected_curso);
+            var link = "/cohortes/crearcohorte/".concat(selected_curso);
             window.location=link;
         };
     </script>

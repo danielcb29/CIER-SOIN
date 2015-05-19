@@ -181,7 +181,7 @@ def crear_cohorte_paso_curso(request):
 @login_required
 @permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
 def crear_cohorte_estudiantes(request,curso):
-    pass
+    return render(request,'crear_cohorte_paso_estudiantes.html',{})
 
 def listar_actividades_cohorte(request):
     pass
