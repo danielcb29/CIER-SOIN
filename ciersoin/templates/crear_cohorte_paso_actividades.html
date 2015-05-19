@@ -9,11 +9,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Asistencia <small>Ingrese la asistencia para cada estudiante</small>
+                            Cohortes <small>Creacion de cohortes...</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-tags"></i> Cohorte: {{cohorte}}
+                                <i class="fa fa-tags"></i> Paso 3: Ingreso de actividades de cohorte
                             </li>
 
                         </ol>
@@ -21,33 +21,35 @@
                             {% if exito %}
                                 <div class="alert alert-success alert-dismissable">
                                     <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
-                                    <i class="fa fa-check"></i> Se ha ingresado la asistencia con exito!!
-                                    <a href="/calificaciones/calificar"><button class="btn btn-success"><i class="fa fa-keyboard-o"></i> Seguir calificando</button></a>
+                                    <i class="fa fa-check"></i> A terminado todos los pasos para la creacion de la Cohorte!
+                                    <a href="/cohortes/crearcohorte"><button class="btn btn-success"><i class="fa fa-keyboard-o"></i> Crear otra Cohorte</button></a>
                                     <a href="/index"><button class="btn btn-success"><i class="fa fa-home"></i> Ir al Inicio</button></a>
                                 </div>
 					        {% endif %}
+                            <h3><strong>Actividades</strong></h3>
+                            Seleccione las que aplican para esta cohorte
                             <form action="" method="post">
                                     {% csrf_token %}
                                 <table class="table table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Estudiante</th>
-                                                <th>Asistencia</th>
+                                                <th>Nombre</th>
+                                                <th>Incluida?</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {%for es in estudiantes %}
+                                        {%for act in actividades %}
                                             <tr>
-                                                <td><strong>{{es}}</strong></td>
+                                                <td><strong>{{act}}</strong></td>
                                                 {% if es.check%}
-                                                    <td><input type="checkbox" class="js-switch_{{es.id}}" name="{{es.id}}" id="id_{{es.id}}" checked></td>
+                                                    <td><input type="checkbox" class="js-switch_{{act.id}}" name="{{es.id}}" id="id_{{act.id}}" checked></td>
                                                 {% else %}
-                                                    <td><input type="checkbox" class="js-switch_{{es.id}}" name="{{es.id}}" id="id_{{es.id}}"></td>
+                                                    <td><input type="checkbox" class="js-switch_{{act.id}}" name="{{es.id}}" id="id_{{act.id}}"></td>
                                                 {%endif%}
                                             </tr>
                                         {% endfor %}
                                             <tr>
-                                                <td><a href="/calificaciones/calificar"><button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button></a></td>
+                                                <!--td><a href="/calificaciones/calificar"><button class="btn btn-danger"><i class="fa fa-times"></i> Cancelar</button></a></td-->
                                                 <td><button type="submit" class="btn btn-success">Finalizar</button></td>
                                             </tr>
                                         </tbody>
@@ -65,8 +67,8 @@
     <script src="{% static 'js/plugins/switchery/switchery.js' %}"></script>
 
     <script type="text/javascript">
-        {%for es in estudiantes %}
-            var elem_2 = document.querySelector('.js-switch_{{es.id}}');
+        {%for act in actividades %}
+            var elem_2 = document.querySelector('.js-switch_{{act.id}}');
             var switchery_2 = new Switchery(elem_2, { color: '#5CB85C' , size: 'small'});
         {% endfor %}
    </script>

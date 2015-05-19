@@ -195,14 +195,14 @@ def crear_cohorte_estudiantes(request,nombre_curso):
                 aspirante_cohorte = Aspirante.objects.get(leader_teacher=leader_teacher_coho,curso=cohorteCread.curso)
                 aspirante_cohorte.matriculado = True
                 aspirante_cohorte.save()
-            print 'SISAAA'
             return HttpResponseRedirect('/cohortes/actividades/'+str(cohorteCread.id))
     return render(request, 'crear_cohorte_paso_estudiantes.html', {'form':cohorte, 'estudiantes':estudiantes,'curso':curso})
 
 @login_required
 @permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
 def crear_cohorte_actividades(request,id_cohorte):
-    print 'cohorte',id_cohorte
-    return render(request,'crear_cohorte_paso_actividades.html',{})
+    cohorte = Cohorte.objects.get(id=id_cohorte)
+    actividades = Actividad.objects.filter(curso=cohorte.curso)
+    return render(request,'crear_cohorte_paso_actividades.html',{'actividades':actividades})
 
 
