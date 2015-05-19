@@ -55,7 +55,6 @@ class FachadaReporte():
         for curso in consulta:
             nombres.append(str(Curso.objects.get(id=curso['curso']).nombre))
             valores.append(int(curso['estudiantes__count']))
-        print(nombres,valores)
         return nombres,valores
 
     #Definicion de la funcion para la generacion de reporte de Porcentaje de aprobados y reprobados en un curso determinado
@@ -82,7 +81,6 @@ class FachadaReporte():
                             definitiva+=calificacion
                     if len(act)>0:
                         definitiva /= len(act)
-                    #print definitiva
                     if definitiva <= 2.5:
                         reprob+=1
                     else:

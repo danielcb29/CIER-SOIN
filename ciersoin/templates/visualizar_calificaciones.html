@@ -32,10 +32,28 @@
 
                                         </tr>
                                     {% endfor %}
+                                    {%if asistencia%}
+                                        <tr>
+                                            <td><strong>Asistencia: </strong></td>
+                                            <td><i class="fa fa-check"></i> Si</td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td><strong>Asistencia: </strong></td>
+                                            <td><i class="fa fa-gavel"></i> No</td>
+                                        </tr>
+                                   {% endif %}
+                                    {% if cohor.has_act%}
                                         <tr>
                                             <td><strong>Certificado: </strong></td>
                                             <td><a href="/calificaciones/certificado/{{cohor.id}}/{{user.id}}"><button class="btn btn-xm btn-success"><i class="fa fa-angle-double-down"></i> Descargar</button></a></td>
                                         </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td><strong>Certificado: </strong></td>
+                                            <td><button class="btn btn-xm btn-success" disabled><i class="fa fa-angle-double-down"></i> Descargar</button></td>
+                                        </tr>
+                                    {%endif%}
                                     </tbody>
                                 </table>
                             {%endfor%}
@@ -57,7 +75,7 @@
 					<div class="modal-body">
 						<strong>Usted no puede descargar su certificado por una de dos razones: <br/>
                             1) Su profesor no ha terminado de calificar todas las actividades de esta cohorte <br/>
-                            2) Usted no ha obtenido por lo menos el 50% de la nota, es decir, reprobo el curso.
+                            2) Usted no ha obtenido por lo menos el 50% de la nota o no asistio al curso, es decir, reprobo el curso.
                         </strong>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-success" href="/calificaciones/calificar" data-dismiss="modal">Cerrar</button>
