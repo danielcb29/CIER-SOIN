@@ -37,6 +37,8 @@ def listar_curso(request):
     cursos = Curso.objects.all()
     return render(request, 'listar_cursos.html', {'cursos':cursos})
 
+@login_required
+@permission_required('cursosCohortesActividades.change_curso', login_url="/index")
 def eliminar_curso(request, id):
     curso = Curso.objects.get(id=id)
     if curso.activo:
