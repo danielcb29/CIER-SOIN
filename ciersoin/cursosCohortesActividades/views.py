@@ -224,6 +224,48 @@ def editar_cohorte(request, id_coho):
 def editar_cohorte_actividad(request, id_coho):
     cohorte = Cohorte.objects.get(id=id_coho)
     actividades = Actividad.objects.filter(curso=cohorte.curso)
+    actividades_cohor = [act_coh.actividad for act_coh in Actividad_Cohorte.objects.filter(cohorte=cohorte)]
+    for ac in actividades:
+        if ac in actividades_cohor:
+            ac.check=True
+            act_coh = Actividad_Cohorte.objects.get(actividad=ac,cohorte=cohorte)
+            ac.f_in = str(act_coh.fecha_inicial.month)+'/'+str(act_coh.fecha_inicial.day)+'/'+str(act_coh.fecha_inicial.year)
+            ac.f_fn = str(act_coh.fecha_entrega.month)+'/'+str(act_coh.fecha_entrega.day)+'/'+str(act_coh.fecha_entrega.year)
+        else:
+            ac.check=False
     exito=False
-    
+    if request.method=='POST':
+        array_new_act = []
+        for ac in actividades:
+            if str(ac.id) in request.POST:
+                ex = Actividad_Cohorte.objects.filter(actividad=ac,cohorte=cohorte)
+                s_in = request.POST['fecha_in_'+str(ac.id)]
+                d_in = datetime.date(int(s_in[6:]),int(s_in[:2])-1,int(s_in[3:5]))
+                s_fn = request.POST['fecha_fin_'+str(ac.id)]
+                d_fn = datetime.date(int(s_fn[6:]),int(s_fn[:2])-1,int(s_fn[3:5]))
+                if len(ex) != 0:
+                    if ex[0].fecha_inicial != d_in or ex[0].fecha_entrega != d_fn:
+                        ex[0].fecha_inicial=d_in
+                        ex[0].fecha_entrega=d_fn
+                        ex[0].save()
+                        array_new_act.append(ex[0])
+                else:
+                    actividad_coh = Actividad_Cohorte(cohorte=cohorte,actividad=ac,fecha_inicial=d_in,fecha_entrega=d_fn)
+                    actividad_coh.save()
+                    for es in cohorte.estudiantes.all():
+                        cal = Calificacion()
+                        cal.actividad_cohorte= actividad_coh
+                        cal.leader_teacher = es
+                        cal.save()
+                    array_new_act.append(actividad_coh)
+                ac.check=True
+                ac.f_in = s_in
+                ac.f_fn = s_fn
+                exito=True
+        for a_ch in actividades_cohor:
+            if a_ch not in array_new_act:
+                actividad_cohorte = Actividad_Cohorte.objects.get(actividad=a_ch,cohorte=cohorte)
+                for e in cohorte.estudiantes.all():
+                    Calificacion.objects.get(leader_teacher=e,actividad_cohorte=actividad_cohorte).delete()
+                actividad_cohorte.delete()
     return render(request,'crear_cohorte_paso_actividades.html',{'actividades':actividades,'exito_edit':exito})
