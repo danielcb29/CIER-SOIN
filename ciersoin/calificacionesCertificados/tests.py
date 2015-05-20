@@ -10,16 +10,18 @@ import datetime
 class CertificadoTest(TestCase):
 
     def setUp(self):
-        """area = Area.objects.create(nombre='area_1',descripcion='descripcion')
+        area = Area.objects.create(nombre='area_1',descripcion='descripcion')
         curso = Curso.objects.create(nombre='curso_1',descripcion='descripcion',area=area)
         actividad = Actividad.objects.create(nombre='actividad_1',descripcion='descripcion',curso=curso)
         lt1 = LeaderTeacher.objects.create(username='username_lt_1', email = 'useremaillt1@gmail.com', password = 'userpass_lt_1', first_name='name_lt_1',last_name='last_name_lt_1',cedula = '1234',direccion = 'dir_lt_1',municipio  = 'municipio_lt_1',area_interes=area)
         lt2 = LeaderTeacher.objects.create(username='username_lt_2', email = 'useremaillt1@gmail.com', password = 'userpass_lt_2', first_name='name_lt_2',last_name='last_name_lt_2',cedula = '12345',direccion = 'dir_lt_1',municipio  = 'municipio_lt_1',area_interes=area)
         asp = Aspirante.objects.create(leader_teacher=lt1,curso=curso)
         mt = MasterTeacher.objects.create(username='username_mt_1', email = 'useremailmt1@gmail.com', password = 'userpass_mt_1',first_name='name_mt_1',last_name='last_name_mt_1',cedula = '4321',direccion = 'dir_mt_1',municipio  = 'municipio_mt_1',area_interes=area)
-        coh = Cohorte.objects.create(numero_cohorte= int(11), fecha_inicial = datetime.date(2015/2/19),fecha_final = datetime.date(2015/7/19),curso = curso,master_teacher = mt, estudiantes = [lt1, lt2])
-        act_coh = Actividad_Cohorte.objects.create(actividad = actividad,cohorte = coh ,fecha_inicial = datetime.date(2015/2/19),fecha_final = datetime.date(2015/7/19))
-        cal = Calificacion.objects.create(valor = 0,actividad_cohorte = act_coh,leader_teacher = lt1)"""
+        coh = Cohorte.objects.create(numero_cohorte= int(11), fecha_inicial = datetime.date(2015,9,19),fecha_final = datetime.date(2015,7,19),curso = curso,master_teacher = mt)
+        coh.estudiantes.add(lt1)
+        coh.estudiantes.add(lt2)
+        act_coh = Actividad_Cohorte.objects.create(actividad = actividad,cohorte = coh ,fecha_inicial = datetime.date(2015,2,19),fecha_entrega = datetime.date(2015,7,19))
+        cal = Calificacion.objects.create(valor = 0,actividad_cohorte = act_coh,leader_teacher = lt1)
 
     def test_posible_certificado(self):
         """Es posible obtener un certificado"""

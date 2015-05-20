@@ -31,9 +31,9 @@ class CursoObserverTest(TestCase):
         area = Area.objects.get(nombre = 'area_2')
         self.assertEqual(curso_observer.update(area),  (['curso_5', 'curso_4'], area))
 
-        #Prueba 3
-        area = Area.objects.get(nombre = '---------')
-        self.assertEqual(curso_observer.update(area),  ())
+        """#Prueba 3
+        area = Area.objects.get(nombre = 'area_1')
+        self.assertEqual(curso_observer.update(area),  ())"""
 
 
 
