@@ -38,6 +38,15 @@ class CursoObserverTest(TestCase):
             self.fail('Area no encontrada')
         self.assertEqual(curso_observer.update(area),  ())
 
+    def test_update_cursos_cuatro(self):
+        curso_observer = CursoObserver()
+        #Prueba 2
+        try:
+            area = Area.objects.get(nombre = '')
+        except Exception:
+            self.fail('Area no encontrada')
+        self.assertEqual(curso_observer.update(area),  ())
+
 
 
 # Create your tests here.
