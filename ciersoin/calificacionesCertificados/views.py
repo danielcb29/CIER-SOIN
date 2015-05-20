@@ -4,6 +4,7 @@ from teacher.models import MasterTeacher,LeaderTeacher
 from cursosCohortesActividades.models import Cohorte,Actividad_Cohorte,Actividad,Aspirante
 from django.contrib.auth.decorators import login_required,permission_required
 from .models import Calificacion
+from django.http import Http404
 
 # Create your views here.
 
@@ -91,7 +92,11 @@ def ingresar_notas(request,id_cohor,id_act):
     if request.method=='POST':
         for est in estudiantes:
             calificacion = Calificacion.objects.get(actividad_cohorte = actividades_cohorte, leader_teacher = est)
-            calificacion.valor = request.POST[str(est.id)]
+            valor = request.POST[str(est.id)]
+            if valor >= 0.0 and valor <= 5.0:
+                calificacion.valor = valor
+            else:
+                return Http404('Error con el valor de las notas, Esta ingresando al backend desde otra fuente?')
             calificacion.save()
             exito = True
             est.val = calificacion
