@@ -43,7 +43,7 @@
                                         <td><a href="/cohortes/editarcohorte/{{cohorte.id}}"><button class="btn btn-xs btn-info dim"><i class="fa fa-check-square-o"></i> Editar</button></a></td>
                                         {%if cohorte.activo %}
 								            <td><p><span class="badge badge-primary">Activo</span></p></td>
-                                            <td><a href="/cohortes/eliminarcohorte{{cohorte.id}}"><button class="btn btn-xs btn-danger dim"><i class="fa fa-check-square-o"></i> Desactivar</button></a></td>
+                                            <td><a href="/cohortes/eliminarcohorte/{{cohorte.id}}"><button class="btn btn-xs btn-danger dim"><i class="fa fa-check-square-o"></i> Desactivar</button></a></td>
 							            {%else%}
 								            <td><p><span class="badge badge-danger">Inactivo</span></p></td>
                                             <td><a href="/cohortes/eliminarcohorte/{{cohorte.id}}"><button class="btn btn-xs btn-success dim"><i class="fa fa-check-square"></i> Reactivar</button></a></td>

@@ -114,17 +114,6 @@ def editar_cohorte(request, id_actividad):
     return render(request, 'listar_cohortes.html', {'cohortes': cohortes, 'edicion': True, 'form_edicion': form_edicion})
 
 @login_required
-@permission_required('cursosCohortesActividades.add_cohorte',login_url='index')
-def eliminar_cohorte(request, id):
-    cohorte = Cohorte.objects.get(id=id)
-    if cohorte.activo:
-        cohorte.activo=False
-    else:
-        cohorte.activo=True
-    cohorte.save()
-    return HttpResponseRedirect("/cohortes/listarcohorte")
-
-@login_required
 @permission_required('cursosCohortesActividades.change_actividad', login_url="/index")
 def editar_actividad(request, id_actividad):
     actividades = Actividad.objects.all()
@@ -206,5 +195,16 @@ def crear_cohorte_actividades(request,id_cohorte):
                 act.f_fn = s_fn
         exito=True
     return render(request,'crear_cohorte_paso_actividades.html',{'actividades':actividades,'exito':exito})
+
+@login_required
+@permission_required('cursosCohortesActividades.change_cohorte',login_url='index')
+def eliminar_cohorte(request, id):
+    cohorte = Cohorte.objects.get(id=id)
+    if cohorte.activo:
+        cohorte.activo=False
+    else:
+        cohorte.activo=True
+    cohorte.save()
+    return HttpResponseRedirect("/cohortes/listarcohorte")
 
 
