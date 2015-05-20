@@ -53,3 +53,11 @@ class EstadoCursoNoExiste():
     def generarCertificado(self,id_teach,id_cohor):
         return Certificado.objects.get(leader_teacher= LeaderTeacher.objects.get(id=id_teach), cohorte = Cohorte.objects.get(id=id_cohor))
 
+    def testing_method(self,defin,asis):
+        if defin <= 2.5 or asis==False:
+            return False,'PERDIO'
+        elif defin >= 2.55 and defin <= 3.5 :
+            return True,'PARTICIPO'
+
+        elif defin >= 3.55 and defin <= 5.0:
+            return True,'EXCELENCIA'
