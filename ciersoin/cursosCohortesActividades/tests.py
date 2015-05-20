@@ -18,11 +18,9 @@ class CursoObserverTest(TestCase):
         curso_4 = Curso.objects.create(nombre='curso_4',descripcion='descripcion',area=area_2)
         curso_5 = Curso.objects.create(nombre='curso_5',descripcion='descripcion',area=area_2)
 
-
+    """Cursos a cargar"""
     def test_update_cursos(self):
-        """Cursos a cargar"""
         curso_observer = CursoObserver()
-
         #Prueba 1
         area = Area.objects.get(nombre = 'area_1')
         self.assertEqual(curso_observer.update(area),  (['curso_3', 'curso_2', 'curso_1'], area))
