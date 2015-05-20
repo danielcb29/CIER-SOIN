@@ -32,14 +32,14 @@
 
                                         </tr>
                                     {% endfor %}
-                                    {%if asistencia%}
+                                    {%if cohor.asistencia%}
                                         <tr>
-                                            <td><strong>Asistencia: </strong></td>
+                                            <td><strong>Asistencia: {{cohor.asistencia}} </strong></td>
                                             <td><i class="fa fa-check"></i> Si</td>
                                         </tr>
                                     {% else %}
                                         <tr>
-                                            <td><strong>Asistencia: </strong></td>
+                                            <td><strong>Asistencia: {{cohor.asistencia}}</strong></td>
                                             <td><i class="fa fa-gavel"></i> No</td>
                                         </tr>
                                    {% endif %}
