@@ -97,23 +97,6 @@ def listar_actividades(request):
     return render(request, 'listar_actividades.html', {'actividades':actividades})
 
 @login_required
-@permission_required('cursosCohortesActividades.change_cohorte', login_url="/index")
-def editar_cohorte(request, id_actividad):
-    cohortes = Cohorte.objects.all()
-    cohorte = Cohorte.objects.get(pk = id_actividad)
-    form_edicion = CohorteForm(instance=cohorte, initial=cohorte.__dict__)
-    if request.method == 'POST':
-        form_edicion = CohorteForm(
-            request.POST, instance=cohorte, initial=cohorte.__dict__)
-        if form_edicion.has_changed():
-            if form_edicion.is_valid():
-                form_edicion.save()
-                return HttpResponseRedirect("/cohortes/listarcohorte")
-        else:
-            return HttpResponseRedirect("/cohortes/listarcohorte")
-    return render(request, 'listar_cohortes.html', {'cohortes': cohortes, 'edicion': True, 'form_edicion': form_edicion})
-
-@login_required
 @permission_required('cursosCohortesActividades.change_actividad', login_url="/index")
 def editar_actividad(request, id_actividad):
     actividades = Actividad.objects.all()
@@ -207,4 +190,40 @@ def eliminar_cohorte(request, id):
     cohorte.save()
     return HttpResponseRedirect("/cohortes/listarcohorte")
 
+@login_required
+@permission_required('cursosCohortesActividades.change_cohorte', login_url="/index")
+def editar_cohorte(request, id_coho):
+    cohorte = Cohorte.objects.get(pk = id_coho)
+    estudiantes_cohor = cohorte.estudiantes.all()
+    estudiantes = [asp.leader_teacher for asp in Aspirante.objects.filter(curso=cohorte.curso,aceptado=True)]
+    for es in estudiantes:
+        if es in estudiantes_cohor:
+            es.selected=True
+        else:
+            es.selected=False
+    form_edicion = CohorteForm(instance=cohorte, initial=cohorte.__dict__)
+    if request.method == 'POST':
+        form_edicion = CohorteForm(
+            request.POST, instance=cohorte, initial=cohorte.__dict__)
+        if form_edicion.has_changed():
+            if form_edicion.is_valid():
+                new_coh = form_edicion.save()
+                new_estudiantes = new_coh.estudiantes.all()
+                for es in estudiantes_cohor :
+                    if es not in new_estudiantes:
+                        aspirante = Aspirante.objects.get(leader_teacher=es,curso=new_coh.curso)
+                        aspirante.matriculado=False
+                        aspirante.save()
+                return HttpResponseRedirect("/cohortes/editarcohorte/actividades/"+str(cohorte.id))
+        else:
+            return HttpResponseRedirect("/cohortes/editarcohorte/actividades/"+str(cohorte.id))
+    return render(request, 'crear_cohorte_paso_estudiantes.html', {'form': form_edicion,'estudiantes':estudiantes,'curso':cohorte.curso})
 
+@login_required
+@permission_required('cursosCohortesActividades.change_cohorte', login_url="/index")
+def editar_cohorte_actividad(request, id_coho):
+    cohorte = Cohorte.objects.get(id=id_coho)
+    actividades = Actividad.objects.filter(curso=cohorte.curso)
+    exito=False
+    
+    return render(request,'crear_cohorte_paso_actividades.html',{'actividades':actividades,'exito_edit':exito})
