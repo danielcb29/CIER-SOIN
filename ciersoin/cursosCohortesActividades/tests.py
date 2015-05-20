@@ -26,14 +26,19 @@ class CursoObserverTest(TestCase):
         #Prueba 1
         area = Area.objects.get(nombre = 'area_1')
         self.assertEqual(curso_observer.update(area),  (['curso_3', 'curso_2', 'curso_1'], area))
-
+    def test_update_cursos_dos(self):
+        curso_observer = CursoObserver()
         #Prueba 2
         area = Area.objects.get(nombre = 'area_2')
         self.assertEqual(curso_observer.update(area),  (['curso_5', 'curso_4'], area))
-
-        """#Prueba 3
-        area = Area.objects.get(nombre = 'area_1')
-        self.assertEqual(curso_observer.update(area),  ())"""
+    def test_update_cursos_tres(self):
+        curso_observer = CursoObserver()
+        #Prueba 3
+        try:
+            area = Area.objects.get(nombre = '-------------')
+        except Exception:
+            self.fail('Area no encontrada')
+        self.assertEqual(curso_observer.update(area),  ())
 
 
 
