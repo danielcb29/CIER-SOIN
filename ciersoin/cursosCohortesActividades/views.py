@@ -167,10 +167,10 @@ def crear_cohorte_estudiantes(request,nombre_curso):
     curso = Curso.objects.get(nombre=nombre_curso)
     cohorte = CohorteForm(initial={'curso':curso})
     estudiantes = [asp.leader_teacher for asp in Aspirante.objects.filter(curso=curso,matriculado=False,aceptado=True)]
-    print estudiantes
+    print (estudiantes)
     if request.method =='POST':
         cohorte = CohorteForm(request.POST)
-        print cohorte.errors
+        print (cohorte.errors)
         if cohorte.is_valid():
             cohorteCread = cohorte.save()
             leader_teachers = cohorteCread.estudiantes.all()
