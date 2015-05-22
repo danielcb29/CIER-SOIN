@@ -20,4 +20,5 @@ urlpatterns = patterns('',
     url(r'^crearcohorte$',crear_cohorte_paso_curso),
     url(r'^crearcohorte/(.+)$',crear_cohorte_estudiantes),
     url(r'^actividades/(\d+)',crear_cohorte_actividades),
+    url(r'^editarcohorte/actividades/(\d+)$',editar_cohorte_actividad),
 )
