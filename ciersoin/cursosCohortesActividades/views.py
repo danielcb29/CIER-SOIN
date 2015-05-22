@@ -229,8 +229,11 @@ def editar_cohorte_actividad(request, id_coho):
         if ac in actividades_cohor:
             ac.check=True
             act_coh = Actividad_Cohorte.objects.get(actividad=ac,cohorte=cohorte)
-            ac.f_in = str(act_coh.fecha_inicial.month)+'/'+str(act_coh.fecha_inicial.day)+'/'+str(act_coh.fecha_inicial.year)
-            ac.f_fn = str(act_coh.fecha_entrega.month)+'/'+str(act_coh.fecha_entrega.day)+'/'+str(act_coh.fecha_entrega.year)
+            #ac.f_in = str(act_coh.fecha_inicial.month)+'/'+str(act_coh.fecha_inicial.day)+'/'+str(act_coh.fecha_inicial.year)
+            #ac.f_fn = str(act_coh.fecha_entrega.month)+'/'+str(act_coh.fecha_entrega.day)+'/'+str(act_coh.fecha_entrega.year)
+            #print ac.f_in,ac.f_fn
+            ac.f_in = format_dates(str(act_coh.fecha_inicial.month)+'/'+str(act_coh.fecha_inicial.day)+'/'+str(act_coh.fecha_inicial.year))
+            ac.f_fn = format_dates(str(act_coh.fecha_entrega.month)+'/'+str(act_coh.fecha_entrega.day)+'/'+str(act_coh.fecha_entrega.year))
         else:
             ac.check=False
     exito=False
@@ -269,3 +272,11 @@ def editar_cohorte_actividad(request, id_coho):
                     Calificacion.objects.get(leader_teacher=e,actividad_cohorte=actividad_cohorte).delete()
                 actividad_cohorte.delete()
     return render(request,'crear_cohorte_paso_actividades.html',{'actividades':actividades,'exito_edit':exito})
+
+def format_dates(date):
+    if date[1:2] == '/':
+        date = '0' + date
+    if date[4:5] == '/':
+        date = date[:3] + '0' + date[3:]
+    return date
+
