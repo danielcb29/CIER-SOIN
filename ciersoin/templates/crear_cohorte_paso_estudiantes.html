@@ -107,7 +107,11 @@
                                              <!--{{form.estudiantes}}-->
                                             <select id="id_estudiantes" name="estudiantes" class="form-control chosen-select" multiple requiered placeholder="Estudiantes..." tabindex="4">
                                                 {%for es in estudiantes%}
-                                                    <option value="{{es.id}}">{{es.cedula}}-{{es.get_full_name}}</option>
+                                                    {% if es.selected %}
+                                                    <option value="{{es.id}}" selected>{{es.cedula}}-{{es.get_full_name}}</option>
+                                                    {%else%}
+                                                    <option value="{{es.id}}" >{{es.cedula}}-{{es.get_full_name}}</option>
+                                                    {%endif%}
                                                 {% endfor %}
                                             </select>
                                         </div>
@@ -118,7 +122,7 @@
                                     <br/>
                                     <br/>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success">Crear y Siguiente</button>
+                                        <button type="submit" class="btn btn-success">Guardar y Siguiente</button>
                                     </div>
                                 </div>
                             </form>

@@ -27,6 +27,14 @@
                                     <a href="/index"><button class="btn btn-success"><i class="fa fa-home"></i> Ir al Inicio</button></a>
                                 </div>
 					        {% endif %}
+                            {% if exito_edit %}
+                                <div class="alert alert-success alert-dismissable">
+                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button"></button>
+                                    <i class="fa fa-check"></i> A terminado todos los pasos para la edicion de la Cohorte!
+                                    <a href="/cohortes/listarcohorte"><button class="btn btn-success"><i class="fa fa-keyboard-o"></i> Editar otra Cohorte</button></a>
+                                    <a href="/index"><button class="btn btn-success"><i class="fa fa-home"></i> Ir al Inicio</button></a>
+                                </div>
+                            {% endif %}
                             <h3><strong>Actividades</strong></h3>
                             Seleccione las que aplican para esta cohorte
                             <form action="" method="post">
