@@ -59,7 +59,7 @@
                 {% if 'teacher.add_masterteacher' in perms and user.is_authenticated%}
                 <!-- mt -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bus"></i> Master Teacher <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-graduation-cap"></i> Master Teacher <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="/teacher/crearmt"><!--i class="fa fa-fw fa-power-off"></i--> Crear</a>
@@ -72,7 +72,7 @@
                 {% if 'teacher.listar_LT' in perms and user.is_authenticated%}
                 <!-- lt -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bus"></i> Leader Teacher <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-graduation-cap"></i> Leader Teacher <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="/teacher/listarlt"><!--i class="fa fa-fw fa-power-off"></i--> Listar</a>
@@ -107,7 +107,7 @@
                         {% if 'cursosCohortesActividades.add_curso' in perms and user.is_authenticated%}
                         <!-- cursos -->
                         <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#cursos"><i class="fa fa-fw fa-arrows-v"></i> Cursos <i class="fa fa-fw fa-caret-down"></i></a>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#cursos"><i class="fa fa-fw fa-history"></i> Cursos <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="cursos" class="collapse">
                                 <li>
                                     <a href="/cursos/crearcurso">Crear</a>
@@ -137,7 +137,7 @@
                         {% if 'cursosCohortesActividades.add_actividad' in perms and user.is_authenticated%}
                         <!-- actividades -->
                         <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#actividades"><i class="fa fa-fw fa-arrows-v"></i> Actividades <i class="fa fa-fw fa-caret-down"></i></a>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#actividades"><i class="fa fa-fw fa-calendar"></i> Actividades <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="actividades" class="collapse">
                                 <li>
                                     <a href="/actividades/crear">Crear</a>
@@ -168,7 +168,7 @@
                         {% if 'teacher.ver_calificaciones' in perms and user.is_authenticated%}
                         <!-- calificaciones LT-->
                         <li>
-                            <a href="/calificaciones/visualizar"><i class="fa fa-fw fa-desktop"></i> Calificaciones</a>
+                            <a href="/calificaciones/visualizar"><i class="fa fa-fw fa-bank"></i> Calificaciones</a>
                         </li>
                         {% endif %}
 
@@ -209,14 +209,10 @@
         <div id="page-wrapper">
             <div class="container-fluid">
             {% block content%}
-
             {% endblock%}
            </div>
            <br/>
            <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
             <div>
                 <strong>Copyright</strong> CIERSOIN Univalle &copy; 2015
             </div>

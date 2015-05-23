@@ -229,9 +229,6 @@ def editar_cohorte_actividad(request, id_coho):
         if ac in actividades_cohor:
             ac.check=True
             act_coh = Actividad_Cohorte.objects.get(actividad=ac,cohorte=cohorte)
-            #ac.f_in = str(act_coh.fecha_inicial.month)+'/'+str(act_coh.fecha_inicial.day)+'/'+str(act_coh.fecha_inicial.year)
-            #ac.f_fn = str(act_coh.fecha_entrega.month)+'/'+str(act_coh.fecha_entrega.day)+'/'+str(act_coh.fecha_entrega.year)
-            #print ac.f_in,ac.f_fn
             ac.f_in = format_dates(str(act_coh.fecha_inicial.month)+'/'+str(act_coh.fecha_inicial.day)+'/'+str(act_coh.fecha_inicial.year))
             ac.f_fn = format_dates(str(act_coh.fecha_entrega.month)+'/'+str(act_coh.fecha_entrega.day)+'/'+str(act_coh.fecha_entrega.year))
         else:
