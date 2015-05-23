@@ -44,3 +44,9 @@ def index(request):
 @login_required(login_url='/login')
 def admin_index(request):
     return render(request,'index_admin.html',{})
+
+def e_404(request):
+
+    return render(request,'404.html',{})
+def e_500(request):
+    return render(request,'500.html',{})

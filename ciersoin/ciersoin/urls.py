@@ -19,6 +19,9 @@ urlpatterns = patterns('',
     url(r'^actividades/',include('cursosCohortesActividades.urls')),
     url(r'^cohortes/', include('cursosCohortesActividades.urls')),
 
-    url(r'^reportes/',include('reportes.urls'))
+    url(r'^reportes/',include('reportes.urls')),
+
+    url(r'^400',e_404),
+    url(r'^500',e_500),
 
 )
