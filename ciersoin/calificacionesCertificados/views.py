@@ -93,7 +93,7 @@ def ingresar_notas(request,id_cohor,id_act):
         for est in estudiantes:
             calificacion = Calificacion.objects.get(actividad_cohorte = actividades_cohorte, leader_teacher = est)
             valor = request.POST[str(est.id)]
-            if valor >= 0.0 and valor <= 5.0:
+            if float(valor) >= 0.0 and float(valor) <= 5.0:
                 calificacion.valor = valor
             else:
                 return Http404('Error con el valor de las notas, Esta ingresando al backend desde otra fuente?')
